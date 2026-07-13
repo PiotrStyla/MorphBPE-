@@ -1,0 +1,240 @@
+
+######################################################################
+# BPE (α=0.0)
+######################################################################
+
+Dawidek Metrics Report
+======================================================================
+Lexeme          Forms    MFL     SI    ISS
+----------------------------------------------------------------------
+robić              19   2.00  84.2%  68.4%
+pisać              19   2.58   0.0%   5.3%
+czytać             19   2.47   0.0%  21.1%
+iść                19   2.42   5.3% 100.0%
+być                19   1.95  68.4%  68.4%
+ustawa             10   1.40 100.0%  50.0%
+człowiek           10   2.30   0.0%  60.0%
+dziecko             8   2.38  50.0%  12.5%
+prawo               9   1.44 100.0%  33.3%
+kraj                9   1.78 100.0%  33.3%
+----------------------------------------------------------------------
+MACRO AVG         141   2.07  50.8%  45.2%
+======================================================================
+
+  Detail: iść
+    idę             → i | dę                         SI=✗ ISS=✓
+    idziesz         → i | dzie | sz                  SI=✗ ISS=✓
+    idzie           → i | dzie                       SI=✗ ISS=✓
+    idziemy         → i | dzie | my                  SI=✗ ISS=✓
+    idziecie        → i | dziecie                    SI=✗ ISS=✓
+    idą             → i | dą                         SI=✗ ISS=✓
+    szedłem         → sze | d | łe | m               SI=✗ ISS=✓
+    szedłeś         → sze | d | łe | ś               SI=✗ ISS=✓
+    szedł           → sze | d | ł                    SI=✗ ISS=✓
+    szłam           → szła | m                       SI=✗ ISS=✓
+    szłaś           → szła | ś                       SI=✗ ISS=✓
+    szła            → szła                           SI=✓ ISS=✓
+    szliśmy         → sz | liśmy                     SI=✗ ISS=✓
+    szliście        → sz | liście                    SI=✗ ISS=✓
+    szli            → sz | li                        SI=✗ ISS=✓
+    idź             → i | dź                         SI=✗ ISS=✓
+    idźmy           → i | dź | my                    SI=✗ ISS=✓
+    idźcie          → i | dź | cie                   SI=✗ ISS=✓
+    iść             → i | ść                         SI=✗ ISS=✓
+
+  Detail: być
+    jestem          → jestem                         SI=✓ ISS=✓
+    jesteś          → jeste | ś                      SI=✗ ISS=✓
+    jest            → jest                           SI=✓ ISS=✓
+    jesteśmy        → jeste | śmy                    SI=✗ ISS=✓
+    jesteście       → jeste | ście                   SI=✗ ISS=✓
+    są              → są                             SI=✓ ISS=✓
+    byłem           → byłe | m                       SI=✓ ISS=✗
+    byłeś           → byłe | ś                       SI=✓ ISS=✗
+    był             → był                            SI=✓ ISS=✗
+    byłam           → była | m                       SI=✓ ISS=✗
+    byłaś           → była | ś                       SI=✓ ISS=✗
+    była            → była                           SI=✓ ISS=✗
+    byliśmy         → by | liśmy                     SI=✓ ISS=✓
+    byliście        → by | liście                    SI=✓ ISS=✓
+    byli            → by | li                        SI=✓ ISS=✓
+    bądź            → b | ą | dź                     SI=✗ ISS=✓
+    bądźmy          → b | ą | dź | my                SI=✗ ISS=✓
+    bądźcie         → b | ą | dź | cie               SI=✗ ISS=✓
+    być             → być                            SI=✓ ISS=✓
+
+  Detail: człowiek
+    człowiek        → człowie | k                    SI=✗ ISS=✓
+    człowieka       → człowie | ka                   SI=✗ ISS=✗
+    człowiekowi     → człowie | kowi                 SI=✗ ISS=✗
+    człowiekiem     → człowie | kiem                 SI=✗ ISS=✗
+    człowieku       → człowie | ku                   SI=✗ ISS=✗
+    ludzie          → lu | dzie                      SI=✗ ISS=✓
+    ludzi           → lu | dzi                       SI=✗ ISS=✓
+    ludziom         → lu | dzio | m                  SI=✗ ISS=✓
+    ludźmi          → lu | dź | mi                   SI=✗ ISS=✓
+    ludziach        → lu | dzia | ch                 SI=✗ ISS=✓
+
+
+######################################################################
+# MorphBPE (α=1.0)
+######################################################################
+
+Dawidek Metrics Report
+======================================================================
+Lexeme          Forms    MFL     SI    ISS
+----------------------------------------------------------------------
+robić              19   2.00  84.2%  68.4%
+pisać              19   2.63   0.0%   5.3%
+czytać             19   2.47   0.0%  21.1%
+iść                19   2.58   5.3% 100.0%
+być                19   1.79  68.4%  68.4%
+ustawa             10   1.50 100.0%  60.0%
+człowiek           10   1.90  50.0%  60.0%
+dziecko             8   2.38  50.0%  12.5%
+prawo               9   1.44 100.0%  33.3%
+kraj                9   1.78 100.0%  33.3%
+----------------------------------------------------------------------
+MACRO AVG         141   2.05  55.8%  46.2%
+======================================================================
+
+  Detail: iść
+    idę             → i | d | ę                      SI=✗ ISS=✓
+    idziesz         → i | dzie | sz                  SI=✗ ISS=✓
+    idzie           → i | dzie                       SI=✗ ISS=✓
+    idziemy         → i | dzie | my                  SI=✗ ISS=✓
+    idziecie        → i | dziecie                    SI=✗ ISS=✓
+    idą             → i | d | ą                      SI=✗ ISS=✓
+    szedłem         → sze | d | łe | m               SI=✗ ISS=✓
+    szedłeś         → sze | d | łe | ś               SI=✗ ISS=✓
+    szedł           → sze | d | ł                    SI=✗ ISS=✓
+    szłam           → szła | m                       SI=✗ ISS=✓
+    szłaś           → szła | ś                       SI=✗ ISS=✓
+    szła            → szła                           SI=✓ ISS=✓
+    szliśmy         → sz | liśmy                     SI=✗ ISS=✓
+    szliście        → sz | liście                    SI=✗ ISS=✓
+    szli            → sz | li                        SI=✗ ISS=✓
+    idź             → i | dź                         SI=✗ ISS=✓
+    idźmy           → i | dź | my                    SI=✗ ISS=✓
+    idźcie          → i | dź | cie                   SI=✗ ISS=✓
+    iść             → i | ś | ć                      SI=✗ ISS=✓
+
+  Detail: być
+    jestem          → jestem                         SI=✓ ISS=✓
+    jesteś          → jeste | ś                      SI=✗ ISS=✓
+    jest            → jest                           SI=✓ ISS=✓
+    jesteśmy        → jeste | śmy                    SI=✗ ISS=✓
+    jesteście       → jeste | ście                   SI=✗ ISS=✓
+    są              → są                             SI=✓ ISS=✓
+    byłem           → byłe | m                       SI=✓ ISS=✗
+    byłeś           → byłe | ś                       SI=✓ ISS=✗
+    był             → był                            SI=✓ ISS=✗
+    byłam           → była | m                       SI=✓ ISS=✗
+    byłaś           → była | ś                       SI=✓ ISS=✗
+    była            → była                           SI=✓ ISS=✗
+    byliśmy         → by | liśmy                     SI=✓ ISS=✓
+    byliście        → by | liście                    SI=✓ ISS=✓
+    byli            → by | li                        SI=✓ ISS=✓
+    bądź            → b | ądź                        SI=✗ ISS=✓
+    bądźmy          → b | ądź | my                   SI=✗ ISS=✓
+    bądźcie         → b | ądź | cie                  SI=✗ ISS=✓
+    być             → być                            SI=✓ ISS=✓
+
+  Detail: człowiek
+    człowiek        → człowiek                       SI=✓ ISS=✓
+    człowieka       → człowieka                      SI=✓ ISS=✗
+    człowiekowi     → człowiekowi                    SI=✓ ISS=✗
+    człowiekiem     → człowiekie | m                 SI=✓ ISS=✗
+    człowieku       → człowieku                      SI=✓ ISS=✗
+    ludzie          → lu | dzie                      SI=✗ ISS=✓
+    ludzi           → lu | dzi                       SI=✗ ISS=✓
+    ludziom         → lu | dzio | m                  SI=✗ ISS=✓
+    ludźmi          → lu | dź | mi                   SI=✗ ISS=✓
+    ludziach        → lu | dzia | ch                 SI=✗ ISS=✓
+
+
+######################################################################
+# MorphBPE (α=2.0)
+######################################################################
+
+Dawidek Metrics Report
+======================================================================
+Lexeme          Forms    MFL     SI    ISS
+----------------------------------------------------------------------
+robić              19   2.00  84.2%  68.4%
+pisać              19   2.58   0.0%   5.3%
+czytać             19   2.53   0.0%  21.1%
+iść                19   2.53   5.3% 100.0%
+być                19   1.79  68.4%  63.2%
+ustawa             10   1.40 100.0%  50.0%
+człowiek           10   1.30  80.0%  60.0%
+dziecko             8   2.25  50.0%  12.5%
+prawo               9   1.22 100.0%  33.3%
+kraj                9   1.56 100.0%  33.3%
+----------------------------------------------------------------------
+MACRO AVG         141   1.91  58.8%  44.7%
+======================================================================
+
+  Detail: iść
+    idę             → i | d | ę                      SI=✗ ISS=✓
+    idziesz         → i | dzie | sz                  SI=✗ ISS=✓
+    idzie           → i | dzie                       SI=✗ ISS=✓
+    idziemy         → i | dziemy                     SI=✗ ISS=✓
+    idziecie        → i | dziecie                    SI=✗ ISS=✓
+    idą             → i | d | ą                      SI=✗ ISS=✓
+    szedłem         → sze | d | łem                  SI=✗ ISS=✓
+    szedłeś         → sze | d | łe | ś               SI=✗ ISS=✓
+    szedł           → sze | d | ł                    SI=✗ ISS=✓
+    szłam           → szła | m                       SI=✗ ISS=✓
+    szłaś           → szła | ś                       SI=✗ ISS=✓
+    szła            → szła                           SI=✓ ISS=✓
+    szliśmy         → sz | liśmy                     SI=✗ ISS=✓
+    szliście        → sz | li | ście                 SI=✗ ISS=✓
+    szli            → sz | li                        SI=✗ ISS=✓
+    idź             → i | dź                         SI=✗ ISS=✓
+    idźmy           → i | dź | my                    SI=✗ ISS=✓
+    idźcie          → i | dź | cie                   SI=✗ ISS=✓
+    iść             → i | ś | ć                      SI=✗ ISS=✓
+
+  Detail: być
+    jestem          → jestem                         SI=✓ ISS=✓
+    jesteś          → jeste | ś                      SI=✗ ISS=✓
+    jest            → jest                           SI=✓ ISS=✓
+    jesteśmy        → jeste | śmy                    SI=✗ ISS=✓
+    jesteście       → jeste | ście                   SI=✗ ISS=✓
+    są              → są                             SI=✓ ISS=✓
+    byłem           → byłem                          SI=✓ ISS=✗
+    byłeś           → byłe | ś                       SI=✓ ISS=✗
+    był             → był                            SI=✓ ISS=✗
+    byłam           → była | m                       SI=✓ ISS=✗
+    byłaś           → była | ś                       SI=✓ ISS=✗
+    była            → była                           SI=✓ ISS=✗
+    byliśmy         → by | liśmy                     SI=✓ ISS=✓
+    byliście        → by | li | ście                 SI=✓ ISS=✗
+    byli            → by | li                        SI=✓ ISS=✓
+    bądź            → b | ądź                        SI=✗ ISS=✓
+    bądźmy          → b | ądź | my                   SI=✗ ISS=✓
+    bądźcie         → b | ądź | cie                  SI=✗ ISS=✓
+    być             → być                            SI=✓ ISS=✓
+
+  Detail: człowiek
+    człowiek        → człowiek                       SI=✓ ISS=✓
+    człowieka       → człowieka                      SI=✓ ISS=✗
+    człowiekowi     → człowiekowi                    SI=✓ ISS=✗
+    człowiekiem     → człowiekiem                    SI=✓ ISS=✗
+    człowieku       → człowieku                      SI=✓ ISS=✗
+    ludzie          → ludzie                         SI=✓ ISS=✓
+    ludzi           → ludzi                          SI=✓ ISS=✓
+    ludziom         → ludzio | m                     SI=✗ ISS=✓
+    ludźmi          → lu | dź | mi                   SI=✗ ISS=✓
+    ludziach        → ludziach                       SI=✓ ISS=✓
+
+
+======================================================================
+COMPARISON TABLE
+======================================================================
+Method                       MFL       SI      ISS
+----------------------------------------------------------------------
+BPE (α=0.0)                 2.07   50.8%   45.2%
+MorphBPE (α=1.0)            2.05   55.8%   46.2%
+MorphBPE (α=2.0)            1.91   58.8%   44.7%
