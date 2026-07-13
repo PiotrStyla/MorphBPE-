@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "morphbpe"
+version = "0.1.0"
+description = "MorphBPE: Morphologically-aware BPE tokenizer for Polish"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "Piotr Styła"}]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "tqdm>=4.60",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Natural Language :: Polish",
+]
+
+[project.optional-dependencies]
+morfeusz = ["morfeusz2"]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+morphbpe = "morphbpe.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["morphbpe*"]
