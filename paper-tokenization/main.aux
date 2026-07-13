@@ -1,0 +1,45 @@
+\relax 
+\providecommand \babel@aux [2]{\global \let \babel@toc \@gobbletwo }
+\@nameuse{bbl@beforestart}
+\catcode `"\active 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\babel@aux{polish}{}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {Morphological Edit Distance (MorphED) --- BPE vs MorphBPE.} Korpus: 10\,000 przemówień sejmowych (80/20 split, seed=42). Bootstrap CI 95\%: MorphBPE suffix vs BPE przy vocab=500: $2{,}414\,[2{,}408,\,2{,}420]$ vs $2{,}503\,[2{,}497,\,2{,}509]$ ($-3{,}6\%$); przy vocab=1000: $1{,}712\,[1{,}707,\,1{,}717]$ vs $1{,}838\,[1{,}832,\,1{,}843]$ ($-6{,}8\%$). Niżej = lepszy alignment morfologiczny.}}{1}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:hero}{{1}{1}{\textbf {Morphological Edit Distance (MorphED) --- BPE vs MorphBPE.} Korpus: 10\,000 przemówień sejmowych (80/20 split, seed=42). Bootstrap CI 95\%: MorphBPE suffix vs BPE przy vocab=500: $2{,}414\,[2{,}408,\,2{,}420]$ vs $2{,}503\,[2{,}497,\,2{,}509]$ ($-3{,}6\%$); przy vocab=1000: $1{,}712\,[1{,}707,\,1{,}717]$ vs $1{,}838\,[1{,}832,\,1{,}843]$ ($-6{,}8\%$). Niżej = lepszy alignment morfologiczny}{figure.caption.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Przegląd literatury}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Przegląd zbadanych podejść}{2}{section.2}\protected@file@percent }
+\newlabel{sec:exploration}{{2}{2}{Przegląd zbadanych podejść}{section.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Wprowadzenie}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Metoda}{3}{section.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Przykłady tokenizacji: BPE vs MorphBPE suffix (vocab=1000). Pionowa kreska \texttt  {|} oznacza granicę tokena.}}{4}{table.caption.2}\protected@file@percent }
+\newlabel{tab:examples}{{1}{4}{Przykłady tokenizacji: BPE vs MorphBPE suffix (vocab=1000). Pionowa kreska \texttt {|} oznacza granicę tokena}{table.caption.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Wyniki}{5}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{5}{Wyniki}{section.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Ewaluacja intrinsic: Fertility i~MorphED z~bootstrap CI (95\%). Korpus: 10\,000 przemówień sejmowych, split 80/20, seed=42.}}{5}{table.caption.3}\protected@file@percent }
+\newlabel{tab:intrinsic}{{2}{5}{Ewaluacja intrinsic: Fertility i~MorphED z~bootstrap CI (95\%). Korpus: 10\,000 przemówień sejmowych, split 80/20, seed=42}{table.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces MorphED --- BPE vs MorphBPE suffix. CI 95\% nie pokrywają się przy obu rozmiarach słownika.}}{5}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:morphed}{{2}{5}{MorphED --- BPE vs MorphBPE suffix. CI 95\% nie pokrywają się przy obu rozmiarach słownika}{figure.caption.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Ewaluacja extrinsic: cross-entropy i~perplexity LSTM LM. Model: LSTM(64, 128, 1 warstwa), 3 epoki, batch=128, seq\_len=32.}}{6}{table.caption.5}\protected@file@percent }
+\newlabel{tab:extrinsic}{{3}{6}{Ewaluacja extrinsic: cross-entropy i~perplexity LSTM LM. Model: LSTM(64, 128, 1 warstwa), 3 epoki, batch=128, seq\_len=32}{table.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Cross-entropy LSTM LM --- BPE vs MorphBPE suffix. MorphBPE suffix obniża CE o~1{,}3\% (vocab=500) i~2{,}6\% (vocab=1000).}}{6}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:ce}{{3}{6}{Cross-entropy LSTM LM --- BPE vs MorphBPE suffix. MorphBPE suffix obniża CE o~1{,}3\% (vocab=500) i~2{,}6\% (vocab=1000)}{figure.caption.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Ewaluacja extrinsic: cross-entropy i~perplexity Transformer LM. Model: Transformer(64, 4h, 2L, ff=256), 3 epoki, batch=128, seq\_len=32.}}{7}{table.caption.7}\protected@file@percent }
+\newlabel{tab:transformer}{{4}{7}{Ewaluacja extrinsic: cross-entropy i~perplexity Transformer LM. Model: Transformer(64, 4h, 2L, ff=256), 3 epoki, batch=128, seq\_len=32}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Analiza błędów: średni per-token CE wg grupy sufiksu (Transformer, vocab=1000). $\Delta < 0$ = MorphBPE lepszy.}}{7}{table.caption.8}\protected@file@percent }
+\newlabel{tab:errors}{{5}{7}{Analiza błędów: średni per-token CE wg grupy sufiksu (Transformer, vocab=1000). $\Delta < 0$ = MorphBPE lepszy}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Wpływ siły kary i~typu ograniczenia}{7}{section.6}\protected@file@percent }
+\newlabel{sec:penalty-sweep}{{6}{7}{Wpływ siły kary i~typu ograniczenia}{section.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Wpływ $\alpha $ i~typu ograniczenia na cross-entropy Transformer LM (vocab=500). $\alpha = 0{,}0$ = standardowy BPE.}}{8}{table.caption.9}\protected@file@percent }
+\newlabel{tab:sweep500}{{6}{8}{Wpływ $\alpha $ i~typu ograniczenia na cross-entropy Transformer LM (vocab=500). $\alpha = 0{,}0$ = standardowy BPE}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Wpływ $\alpha $ i~typu ograniczenia na cross-entropy Transformer LM (vocab=1000).}}{8}{table.caption.10}\protected@file@percent }
+\newlabel{tab:sweep1000}{{7}{8}{Wpływ $\alpha $ i~typu ograniczenia na cross-entropy Transformer LM (vocab=1000)}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Over-penalization: $\alpha > 1{,}0$, ograniczenie suffix. CE i~MorphED z~bootstrap CI (95\%).}}{9}{table.caption.11}\protected@file@percent }
+\newlabel{tab:extended}{{8}{9}{Over-penalization: $\alpha > 1{,}0$, ograniczenie suffix. CE i~MorphED z~bootstrap CI (95\%)}{table.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Wpływ kary $\alpha $ na cross-entropy Transformer LM. Linia przerywana oddziela standardowy zakres ($\alpha \le 1$) od over-penalization ($\alpha > 1$). Skok przy $\alpha = 2{,}0$ jest wyraźnie widoczny przy obu rozmiarach słownika.}}{9}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:alpha-sweep}{{4}{9}{Wpływ kary $\alpha $ na cross-entropy Transformer LM. Linia przerywana oddziela standardowy zakres ($\alpha \le 1$) od over-penalization ($\alpha > 1$). Skok przy $\alpha = 2{,}0$ jest wyraźnie widoczny przy obu rozmiarach słownika}{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Warunek obalenia}{10}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Dyskusja}{10}{section.8}\protected@file@percent }
+\gdef \@abspage@last{12}

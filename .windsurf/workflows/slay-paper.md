@@ -24,22 +24,24 @@ Podaj URL repozytorium GitHub z danymi. Cascade pobiera:
 - `reports/slayer-readiness.md` (werdykt gotowości)
 - `reports/dataset-card.md` (metadane, licencja, ograniczenia)
 
-### 2. Utwórz projekt slay-paper
+### 2. Utwórz paper jako podfolder w repo z danymi
 
-Cascade tworzy katalog `C:\Users\Hipek\CascadeProjects\<nazwa-projektu>\` ze strukturą:
+Paper trafia bezpośrednio do repo z danymi (`PiotrStyla/Datasets`):
 
 ```
-paper/
-├── main.tex                    ← wrapper (nie edytować)
-├── formatka/slayer.sty         ← wygląd (nie edytować)
-└── tresc/
-    ├── 00-strona-tytulowa.tex  ← tytuł + autor + wykres hero z realnymi danymi
-    └── 10-tresc.tex            ← 7 obowiązkowych sekcji
-.github/workflows/latex.yml     ← CI: lint unicode + kompilacja → artefakt PDF
-README.md
+PiotrStyla/Datasets/
+├── datasets/<nazwa>/           ← dane (JSONL, raporty jakości, itp.)
+└── papers/<nazwa>/             ← raport LaTeX ← TUTAJ
+    ├── main.tex                    ← wrapper (nie edytować)
+    ├── formatka/slayer.sty         ← wygląd (nie edytować)
+    └── tresc/
+        ├── 00-strona-tytulowa.tex  ← tytuł + autor + wykres hero
+        └── 10-tresc.tex            ← 7 obowiązkowych sekcji
 ```
 
-Pliki `main.tex`, `formatka/slayer.sty` i `latex.yml` kopiowane bez zmian z szablonu.  
+CI w `.github/workflows/latex.yml` (już w repo) **automatycznie wykrywa** każdy nowy folder `papers/*/` i buduje PDF — nie trzeba edytować workflow przy nowych raportach.
+
+Pliki `main.tex` i `formatka/slayer.sty` kopiowane bez zmian.  
 Edytowane są tylko `tresc/*.tex` — wypełniane realnymi danymi z kroku 1.
 
 ### 3. Wypełnij 00-strona-tytulowa.tex
@@ -66,19 +68,19 @@ Edytowane są tylko `tresc/*.tex` — wypełniane realnymi danymi z kroku 1.
 **Matematyka zawsze w LaTeX:** `$\ge 0{,}50$` nie ≥ 0,50 · `$\binom{n}{2}$` · `$\approx$` nie ≈  
 **Tysiące:** `152\,526` · **Ułamki PL:** `0{,}034`
 
-### 5. Inicjalizacja git i push
+### 5. Commit i push do repo Datasets
 
 ```powershell
 # PowerShell — używaj ; zamiast &&
-git init; git add .; git commit -m "feat: raport <nazwa> v0.1"
-git remote add origin https://github.com/PiotrStyla/<repo>.git
-git push -u origin master
+# Zakładamy, że PiotrStyla/Datasets jest sklonowany lokalnie
+git add papers/<nazwa>; git commit -m "feat: raport <nazwa> v0.1"; git push
 ```
 
 ### 6. Sprawdź CI
 
-Wejdź w `https://github.com/PiotrStyla/<repo>/actions`  
-→ zielony run → sekcja **Artifacts** na dole → pobierz `raport-pdf` (ZIP z `main.pdf`)
+Wejdź w `https://github.com/PiotrStyla/Datasets/actions`  
+→ zielony run → sekcja **Artifacts** na dole → pobierz `<nazwa>-pdf` (ZIP z `main.pdf`)  
+CI **automatycznie buduje każdy nowy folder** `papers/*/` — nie trzeba edytować workflow.
 
 ---
 

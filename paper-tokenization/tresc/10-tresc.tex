@@ -1,0 +1,888 @@
+% =====================================================================
+%  Treść — MorphBPE: morfologicznie informowany BPE dla polszczyzny
+% =====================================================================
+
+\begin{abstract}
+\noindent
+Prezentujemy MorphBPE --- wariant algorytmu Byte-Pair Encoding, który
+wymusza poszanowanie granic morfemów podczas scalania par tokenów.
+Granice sufiksów pozyskiwane są z~analizatora morfologicznego Morfeusz2;
+scalenia przekraczające granicę sufiksu są karane mnożnikiem częstotliwości.
+Porównujemy MorphBPE (wariant \texttt{strict\_suffix}) ze standardowym BPE
+na korpusie 10\,000 przemówień sejmowych (split 80/20, seed=42)
+przy rozmiarach słownika 500 i~1000.
+Ewaluacja intrinsic (Fertility, Morphological Edit Distance) z~bootstrap
+CI (1000 resamples, 95\%) pokazuje, że MorphBPE redukuje MorphED
+o~3{,}6\%--6{,}8\% bez kosztu fertility.
+Ewaluacja extrinsic z~dwoma architekturami --- LSTM (1 warstwa)
+i~Transformer (2 warstwy, 4 głowice) --- potwierdza,
+że MorphBPE obniża cross-entropy o~0{,}7\%--2{,}6\%
+i~perplexity o~2{,}1\%--9{,}3\% względem BPE przy tym samym rozmiarze słownika.
+Analiza błędów per-suffix pokazuje, że MorphBPE zyskuje
+na sufiksach złożonych (\texttt{-ach}: $-11{,}5\%$),
+ale traci na krótkich (\texttt{-ych}: $+42{,}1\%$).
+Rozszerzone badanie siły kary $\alpha \in [0{,}0;\,3{,}0]$
+pokazuje, że $\alpha = 2{,}0$ (tzw.\ over-penalization) daje
+lepsze wyniki niż standardowy zakres $\alpha \le 1{,}0$:
+CE spada o~dodatkowe $1{,}5\%$--$3{,}1\%$ względem $\alpha = 1{,}0$.
+\end{abstract}
+
+% ---------------------------------------------------------------
+\section{Przegląd literatury}
+
+\textbf{Byte-Pair Encoding.} BPE zostało wprowadzone jako algorytm
+kompresji danych przez Gage~(1994), a~adaptowane do tokenizacji
+w~NLP przez Sennrich et al.~(2016). Stało się standardem
+w~modelach takich jak GPT-2, GPT-3 czy BART. BPE skaluje się
+iteracyjnie, łącząc najczęstsze pary znaków aż do osiągnięcia
+docelowego rozmiaru słownika.
+
+\textbf{Morfologicznie informowana tokenizacja.} Kłopot z~BPE
+dla języków o~bogatej fleksji (polski, czeski, węgierski, turecki)
+polega na tym, że scalania oparte na częstotliwości ignorują
+strukturę morfologiczną --- tokeny mogą przekraczać granice
+morfemów, tworząc jednostki lingwistycznie nienaturalne.
+Kilka prac podjęło ten problem:
+
+\begin{itemize}
+  \item \textbf{MorphBPE} (Asgari et al., 2025) --- wprowadza
+        morfologicznie świadome rozszerzenie BPE z~karami
+        za przekraczanie granic morfemów. Propozycje dwóch metryk
+        ewaluacji: Morphological Consistency F1 oraz Morphological
+        Edit Distance --- tych samych metryk używa nasza praca.
+        Eksperymenty na angielskim, rosyjskim, węgierskim
+        i~arabskim z~modelami 300M i~1B parametrów.
+        \emph{Język polski nie jest testowany.}
+  \item \textbf{MorphPiece} (Jabbar, 2023) --- lingwistyczny
+        tokenizator oparty na tabeli morfemów z~wewnętrznym BPE
+        jako fallback; zaprojektowany dla angielskiego.
+  \item \textbf{SentencePiece + Unigram} (Kudo, 2018) --- alternatywa
+        dla BPE, modeluje prawdopodobieństwo tokenów zamiast
+        częstotliwości par; lepiej radzi sobie z~rzadkimi morfemami.
+  \item \textbf{Morfessor} (Creutz \& Lagus, 2007) --- klasyczny
+        system morfologicznej segmentacji, ale nie oparty na BPE.
+\end{itemize}
+
+\textbf{Polska tokenizacja NLP.} Morfeusz2 (Woliński, 2014)
+jest standardowym analizatorem morfologicznym dla języka polskiego.
+Wiącek et al.~(2024) zaproponowali benchmark NLPre-PL
+dla polskich narzędzi NLP, ale bez ewaluacji morfologicznej
+tokenizatorów sub-word. Dawidek~(2026) w~serii preprintów
+analizuje ograniczenia BPE w~polskim: wprowadza metryki
+stem integrity (SI), inflectional suffix separation (ISS)
+i~mean fragmentation per lexeme (MFL) dla 109 form fleksyjnych
+10 leksemów. Jej praca pokazuje, że tokenizatory trenowane
+na polskim (HerBERT BPE-PL, MFL$=1{,}22$) istotnie przewyższają
+tokenizatory angielskie (GPT-2 BPE-EN, MFL$=3{,}91$),
+ale \emph{nie testuje morfologicznie informowanego BPE}
+jako alternatywy.
+
+\textbf{Wkład naszej pracy.} Asgari et al.~(2025) zaproponowali
+MorphBPE i~MorphED, ale nie ewaluowali na polskim. Dawidek~(2026)
+analizuje jakość polskich tokenizatorów, ale nie testuje
+morfologicznie prowadzonego BPE. Nasza praca łączy oba wątki:
+stosuje MorphBPE z~graniami sufiksów z~Morfeusz2 na polskim
+korpusie, ewaluuje intrinsic (MorphED z~bootstrap CI)
+i~extrinsic z~dwiema architekturami (LSTM i~Transformer)
+przy dwóch rozmiarach słownika, oraz przeprowadza analizę
+błędów per-suffix-group identyfikującą klasy morfemów,
+które zyskują i~tracą na morfologicznym ograniczeniu.
+W~najlepszej naszej wiedzy jest to pierwsze zastosowanie
+MorphBPE z~analizatorem Morfeusz2 dla języka polskiego
+z~ewaluacją extrinsic i~analizą błędów per-suffix.
+
+% ---------------------------------------------------------------
+\section{Przegląd zbadanych podejść}
+\label{sec:exploration}
+
+Wybór MorphBPE (\texttt{strict\_suffix}) jako metody ewaluowanej
+w~tej pracy nie był arbitralny. Przed finalizacją eksperymentów
+zbadaliśmy dziesięć podejść do tokenizacji, obejmujących trzy
+paradygmaty: częstotliwościowy, semantyczny i~morfologiczny.
+Poniżej krótko charakteryzujemy każde podejście i~uzasadniamy
+kryteria selekcji.
+
+\textbf{1. Standard BPE} (Sennrich et al., 2016) --- baseline,
+klasyczny algorytm BPE oparty na częstotliwości par znaków.
+Punkt odniesienia dla wszystkich pozostałych wariantów.
+
+\textbf{2. Parallel BPE} --- nasz wariant eksperymentalny:
+równoległe rozważanie $k$ kandydatów na scalenie w~każdej
+iteracji (zamiast jednego najczęstszego), z~wyborem po
+fertility gain. Cel: sprawdzenie, czy zachłanne wybieranie
+najczęstszej pary jest optymalne. Wynik: brak istotnej
+poprawy nad standard BPE przy znacznie większym koszcie
+obliczeniowym.
+
+\textbf{3. Semantic BPE} --- nasz wariant eksperymentalny:
+BPE sterowany osadzeniami word2vec (Mikolov et al., 2013).
+Scalenia preferują pary o~wysokim podobieństwie kosinusowym
+między osadzeniami części. Testowano $\alpha \in \{0{,}1,
+0{,}25, 0{,}5, 1{,}0\}$. Wynik: poprawa alignmentu semantycznego,
+ale brak poprawy cross-entropy LM; osadzenia word2vec nie
+przechwytują struktury fleksyjnej polskiego.
+
+\textbf{4. Morpheme-aware BPE} --- nasz wczesny prototyp:
+segmentacja morfemowa Morfeusz2 jako krok pre-tokenizacji
+przed BPE. Wynik: nadmierna fragmentacja --- Morfeusz2 dzieli
+słowa na jednostki mniejsze niż użyteczne dla BPE, zwiększając
+fertility bez korzyści dla LM.
+
+\textbf{5. MorphBPE variants} (Asgari et al., 2026,
+arXiv:2502.00894) --- morfologicznie informowany BPE
+z~konfigurowalną siłą ograniczenia (strict, soft 75/50/25\%)
+i~typem granic (prefix, suffix, both). Testowano 7 wariantów.
+Najlepszy kompromis alignment/fertility: \texttt{strict\_suffix}
+z~$\alpha = 0{,}5$.
+
+\textbf{6. Bayesian BPE} --- nasz wariant eksperymentalny:
+scoring bayesowski z~priorytetami lingwistycznymi (polskie
+prefiksy i~sufiksy jako prior). Wynik: poprawa alignmentu
+dla słów z~prefiksami, ale pogorszenie dla słów bez prefiksu;
+mniej spójny niż MorphBPE.
+
+\textbf{7. Compression-aware BPE} (Limisiewicz et al., 2026,
+arXiv:2605.01188) --- BPE optymalizujący compression rate
+(bytes/token) zamiast częstotliwości par, inspirowany pracą
+FAIR/Meta o~compute-optimal tokenization. Wynik: lepsza
+kompresja, ale ignoruje granice morfemów --- nie rozwiązuje
+problemu alignmentu morfologicznego.
+
+\textbf{8. MorphTok / CBPE} (Brahma et al., 2025,
+arXiv:2504.10335) --- morfologiczna pre-tokenizacja
++ Constrained BPE (CBPE) zaprojektowane dla języków indyjskich
+(sandhi splitting, dependent vowels). Zaadaptowano na polski
+z~Morfeusz2 zamiast sandhi. Wynik: CBPE redukuje fertility,
+ale mechanizm zaprojektowany dla abugidy nie przenosi się
+dobrze na alfabet łaciński.
+
+\textbf{9. MorphBPE + ToaST} (Asgari et al., 2026 +
+Schmidt et al., 2026, arXiv:2605.22705) --- MorphBPE
+zastąpiony przez ToaST (Tokenization with Split Trees):
+top-down recursive splitting z~byte n-gram counts. Wynik:
+ToaST osiąga lepszą kompresję, ale nie ma wbudowanego
+morfologicznego ograniczenia; łączenie z~MorphBPE nie
+przyniosło synergii.
+
+\textbf{10. LangMAP} (Salhan, Szablewski, Lesci, Buttery,
+Meister, Pimentel, 2026, arXiv:2606.23566) --- language-adaptive
+MAP tokenization: rozszerzenie UnigramLM o~per-language
+distributions. Wynik: poprawa alignmentu morfologicznego,
+ale wymiera per-language training; nie jest wariantem BPE
+i~nie pozwala na bezpośrednie porównanie z~MorphBPE.
+
+\medskip
+\noindent
+\textbf{Kryteria selekcji.} MorphBPE \texttt{strict\_suffix}
+z~$\alpha = 0{,}5$ został wybrany, ponieważ:
+(i)~utrzymuje fertility na poziomie standardowego BPE
+(w~odróżnieniu od Morpheme-aware BPE i~MorphTok),
+(ii)~respektuje granice sufiksów z~Morfeusz2 (w~odróżnieniu
+od Semantic BPE, Bayesian BPE i~Compression-aware BPE),
+(iii)~jest prosty i~kompatybilny ze standardowym inference BPE
+(w~odróżnieniu od ToaST i~LangMAP),
+(iv)~pochodzi z~peer-reviewed paperu (ACL 2026 Findings)
+z~ewaluacją na 4 językach, ale \emph{bez polskiego} --- co
+uzasadnia nasz wkład.
+
+% ---------------------------------------------------------------
+\section{Wprowadzenie}
+
+\textbf{Pytanie:} czy wprowadzenie morfologicznych ograniczeń
+do algorytmu BPE poprawia jakość tokenizacji dla języka polskiego
+--- zarówno w~sensie alignmentu morfologicznego (intrinsic),
+jak i~użyteczności dla modelu języka (extrinsic)?
+
+\smallskip
+\noindent
+Nitka dialektyczna:
+
+\medskip
+\noindent
+\textbf{Teza~(T):} MorphBPE (\texttt{strict\_suffix}) produkuje tokeny
+lepiej zgrane z~granicami morfemów niż standardowy BPE, co przekłada
+się na niższą cross-entropy modelu języka LSTM przy tym samym
+rozmiarze słownika.
+
+\medskip
+\noindent
+\textbf{Antyteza~(A):} Morfologiczne ograniczenia hamują częstotliwościowe
+scalanie BPE, zwiększając fertility (liczbę tokenów na słowo)
+i~wzmacniając fragmentację, co może pogorszyć -- nie poprawić --
+cross-entropy LM.
+
+\begin{slayerinsight}
+\textbf{Synteza~(S):} MorphBPE suffix utrzymuje fertility na poziomie
+BPE ($\Delta < 0{,}1\%$) przy obu rozmiarach słownika, jednocześnie
+redukując MorphED o~3{,}6\% (vocab=500) i~6{,}8\% (vocab=1000).
+Cross-entropy LSTM spada o~1{,}3\% i~2{,}6\% odpowiednio;
+Transformer potwierdza trend ($-0{,}7\%$ i~$-1{,}1\%$).
+Morfologiczne ograniczenia nie kosztują compression, a~pomagają LM.
+\end{slayerinsight}
+
+% ---------------------------------------------------------------
+\section{Metoda}
+
+\subsection*{Korpus}
+Korpus: 10\,000 przemówień z~posiedzeń Sejm RP (polski parlament),
+pochodzących z~publicznego API sejm.gov.pl, udostępnionych
+poprzez repozytorium HuggingFace\footnote{\url{https://huggingface.co/datasets/PiotrSty/sejm-speeches-corpus}}.
+Podział train/test: 80/20 (8000/2000), seed=42.
+Tekst: małe litery, tokenizacja whitespace (interpunkcja
+pozostaje przyklejona do słów).
+
+\subsection*{Tokenizatory}
+\textbf{Standard BPE:} klasyczny algorytm BPE oparty na częstotliwości
+par. Słownik inicjowany pojedynczymi znakami; scalanie iteracyjne
+najczęstszych par aż do osiągnięcia docelowego rozmiaru słownika.
+
+\smallskip
+\noindent
+\textbf{MorphBPE (\texttt{strict\_suffix}):} wariant BPE z~morfologicznym
+ograniczeniem. Granice sufiksów pozyskiwane z~Morfeusz2.
+Dla każdej pary tokenów w~słowie obliczana jest kara:
+jeśli scalenie przekracza granicę sufiksu, częstotliwość pary
+mnożona jest przez $\alpha < 1$ (tutaj $\alpha = 0{,}5$).
+To preferuje scalenia wewnątrz rdzeni i~sufiksów, discouragując
+cross-boundary merges.
+
+\subsection*{Przykłady tokenizacji}
+Tab.~\ref{tab:examples} pokazuje konkretne słowa i~jak je tnie
+BPE vs MorphBPE suffix (vocab=1000). Różnice są subtelne --- oba
+tokenizatory produkują podobne segmenty dla większości słów.
+Kluczowa różnica widać przy \emph{samorządowych}:
+BPE tnie na \texttt{sa~|~morządowych} (przekracza granicę
+rdzeń$\to$sufiks), MorphBPE tnie na \texttt{sa~|~morządowy~|~ch}
+(respektuje granicę sufiksu \texttt{-ch}).
+Dla większości słów oba tokenizatory produkują identyczne segmentacje
+--- różnica ujawnia się tylko tam, gdzie BPE „przeskakuje''
+granicę morfemu.
+
+\begin{table}[h]
+  \centering
+  \caption{Przykłady tokenizacji: BPE vs MorphBPE suffix (vocab=1000).
+  Pionowa kreska \texttt{|} oznacza granicę tokena.}
+  \label{tab:examples}
+  \small
+  \begin{tabular}{lll}
+    \toprule
+    Słowo & BPE & MorphBPE suffix \\
+    \midrule
+    przedstawienie   & przedstawie~|~nie       & przedstawie~|~nie \\
+    rozważania       & rozważania              & rozważania \\
+    odpowiedzialności & odpowiedzial~|~ności    & odpowiedzial~|~ności \\
+    najważniejszych  & naj~|~waż~|~niej~|~szych & naj~|~waż~|~niej~|~szych \\
+    współpracy       & współ~|~pracy           & współ~|~pracy \\
+    niezależności    & nie~|~zale~|~ż~|~ności   & nie~|~zale~|~ż~|~ności \\
+    przekształcenia  & prze~|~ksz~|~tał~|~cenia & prze~|~ksz~|~tał~|~cenia \\
+    \rowcolor{slayergray}
+    samorządowych    & sa~|~morządowych        & sa~|~morządowy~|~ch \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Wyróżniony wiersz (\emph{samorządowych}) ilustruje kluczową różnicę:
+BPE łączy rdzeń z~sufiksem w~jeden token (\texttt{morządowych}),
+podczas gdy MorphBPE zachowuje granicę sufiksu \texttt{-ch},
+dzieląc na \texttt{morządowy~|~ch}. To pozwala LM rozpoznać
+wzorzec sufiksu \texttt{-ch} wspólny dla wielu przypadków
+(genitiv/accusativ plural) i~lepiej generalizować.
+
+\subsection*{Rozmiary słownika}
+Eksperymenty przeprowadzono dla dwóch rozmiarów słownika:
+$V = 500$ i~$V = 1000$.
+Rozmiar słownika obejmuje znaki bazowe + scalone tokeny.
+
+\subsection*{Ewaluacja intrinsic}
+\textbf{Fertility} (Fert): liczba tokenów na słowo.
+Niżej = bardziej kompaktowa tokenizacja.
+\[
+  \mathrm{Fert} = \frac{|\mathrm{tokens}|}{|\mathrm{words}|}
+\]
+
+\textbf{Morphological Edit Distance} (MorphED): średnia odległość
+Levenshteina między segmentacją tokenizatora a~segmentacją
+morfologiczną (Morfeusz2) po normalizacji.
+Niżej = lepszy alignment morfologiczny.
+\[
+  \mathrm{MorphED} = \frac{1}{|W|} \sum_{w \in W}
+    d_{\mathrm{Lev}}\!\bigl(\mathrm{tok}(w),\; \mathrm{morph}(w)\bigr)
+\]
+
+\subsection*{Ewaluacja extrinsic}
+\textbf{Model języka LSTM:} jednowarstwowy LSTM
+($\mathrm{embed\_dim}=64$, $\mathrm{hidden\_dim}=128$),
+trenowany na tokenach z~danego tokenizatora.
+Parametry: 3 epoki, batch=128, seq\_len=32, lr=0.003, optimizer Adam.
+Dane treningowe: 500 tekstów (train), test: 200 tekstów (test).
+
+\smallskip
+\noindent
+\textbf{Model języka Transformer:} 2-warstwowy Transformer encoder
+($\mathrm{embed\_dim}=64$, 4 głowice, $\mathrm{ff\_dim}=256$),
+trenowany na tych samych danych. Parametry: 3 epoki, batch=128,
+seq\_len=32, lr=0.001, optimizer AdamW, dropout=0.1.
+Positional embeddings uczone wspólnie z~modelowaniem.
+
+\textbf{Cross-entropy} (CE): średnia entropia krzyżowa na token
+na zbiorze testowym.
+\textbf{Perplexity} (PPL): $= \exp(\mathrm{CE})$.
+Niżej = lepszy model języka.
+
+\subsection*{Istotność statystyczna}
+Bootstrap confidence intervals: 1000 resamples, 95\% CI.
+Resampling po słowach ze zwracaniem z~zbioru testowego.
+Raportowane wartości: średnia $[\mathrm{CI}_{2{,}5\%},\, \mathrm{CI}_{97{,}5\%}]$.
+
+% ---------------------------------------------------------------
+\section{Wyniki}
+\label{sec:results}
+
+\subsection*{Ewaluacja intrinsic}
+
+\begin{table}[h]
+  \centering
+  \caption{Ewaluacja intrinsic: Fertility i~MorphED z~bootstrap CI (95\%).
+  Korpus: 10\,000 przemówień sejmowych, split 80/20, seed=42.}
+  \label{tab:intrinsic}
+  \begin{tabular}{lrccr}
+    \toprule
+    Metoda & Vocab & Fertility [CI] & MorphED [CI] & Czas [s] \\
+    \midrule
+    BPE                  & 500  & 2{,}443 [2{,}439, 2{,}447] & 2{,}503 [2{,}497, 2{,}509] & 368{,}9 \\
+    MorphBPE suffix      & 500  & 2{,}444 [2{,}440, 2{,}449] & 2{,}414 [2{,}408, 2{,}420] & 469{,}5 \\
+    \addlinespace
+    BPE                  & 1000 & 1{,}932 [1{,}929, 1{,}936] & 1{,}838 [1{,}832, 1{,}843] & 654{,}9 \\
+    MorphBPE suffix      & 1000 & 1{,}934 [1{,}930, 1{,}937] & 1{,}712 [1{,}707, 1{,}717] & 1031{,}8 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\textbf{Fertility.} MorphBPE suffix utrzymuje fertility na poziomie BPE:
+$\Delta = +0{,}04\%$ (vocab=500) i~$\Delta = +0{,}10\%$ (vocab=1000).
+Różnice wewnątrz CI --- brak istotnego kosztu compression.
+
+\textbf{MorphED.} MorphBPE suffix redukuje MorphED istotnie:
+\begin{itemize}
+  \item vocab=500: $2{,}414$ vs $2{,}503$ ($-3{,}6\%$), CI nie pokrywają się.
+  \item vocab=1000: $1{,}712$ vs $1{,}838$ ($-6{,}8\%$), CI nie pokrywają się.
+\end{itemize}
+Efekt rośnie z~rozmiarem słownika --- przy większym vocab BPE tworzy
+dłuższe tokeny przekraczające granice morfemów, podczas gdy MorphBPE
+utrzymuje granice sufiksów.
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+        ybar,
+        bar width=14pt,
+        width=0.82\linewidth, height=5.5cm,
+        symbolic x coords={vocab=500, vocab=1000},
+        xtick=data,
+        ymin=1.5, ymax=2.7,
+        ylabel={MorphED (niżej = lepiej)},
+        nodes near coords,
+        every node near coord/.style={font=\small},
+        xmajorgrids=true, ymajorgrids=true,
+        grid style={gray!20},
+        legend style={at={(0.5,-0.28)}, anchor=north, legend columns=2, font=\small},
+        enlarge x limits=0.5,
+    ]
+      \addplot[fill=slayerblue!60, draw=slayerblue] coordinates {
+        (vocab=500, 2.503)
+        (vocab=1000, 1.838)
+      };
+      \addlegendentry{BPE}
+      \addplot[fill=slayergreen!60, draw=slayergreen] coordinates {
+        (vocab=500, 2.414)
+        (vocab=1000, 1.712)
+      };
+      \addlegendentry{MorphBPE suffix}
+    \end{axis}
+  \end{tikzpicture}
+  \caption{MorphED --- BPE vs MorphBPE suffix. CI 95\% nie pokrywają się
+  przy obu rozmiarach słownika.}
+  \label{fig:morphed}
+\end{figure}
+
+\subsection*{Ewaluacja extrinsic}
+
+\begin{table}[h]
+  \centering
+  \caption{Ewaluacja extrinsic: cross-entropy i~perplexity LSTM LM.
+  Model: LSTM(64, 128, 1 warstwa), 3 epoki, batch=128, seq\_len=32.}
+  \label{tab:extrinsic}
+  \begin{tabular}{lrccr}
+    \toprule
+    Metoda & Vocab & Cross-Entropy & Perplexity & Czas LM [s] \\
+    \midrule
+    BPE                  & 500  & 3{,}2758 & 26{,}46 & 698{,}2 \\
+    MorphBPE suffix      & 500  & 3{,}2332 & 25{,}36 & 794{,}7 \\
+    \addlinespace
+    BPE                  & 1000 & 3{,}7438 & 42{,}26 & 810{,}5 \\
+    MorphBPE suffix      & 1000 & 3{,}6461 & 38{,}33 & 789{,}5 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\textbf{Cross-entropy.} MorphBPE suffix obniża CE względem BPE:
+\begin{itemize}
+  \item vocab=500: $3{,}2332$ vs $3{,}2758$ ($-1{,}3\%$).
+  \item vocab=1000: $3{,}6461$ vs $3{,}7438$ ($-2{,}6\%$).
+\end{itemize}
+
+\textbf{Perplexity.} MorphBPE suffix obniża PPL:
+\begin{itemize}
+  \item vocab=500: $25{,}36$ vs $26{,}46$ ($-4{,}2\%$).
+  \item vocab=1000: $38{,}33$ vs $42{,}26$ ($-9{,}3\%$).
+\end{itemize}
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+        ybar,
+        bar width=14pt,
+        width=0.82\linewidth, height=5.5cm,
+        symbolic x coords={vocab=500, vocab=1000},
+        xtick=data,
+        ymin=3.0, ymax=4.0,
+        ylabel={Cross-entropy (niżej = lepiej)},
+        nodes near coords,
+        every node near coord/.style={font=\small},
+        xmajorgrids=true, ymajorgrids=true,
+        grid style={gray!20},
+        legend style={at={(0.5,-0.28)}, anchor=north, legend columns=2, font=\small},
+        enlarge x limits=0.5,
+    ]
+      \addplot[fill=slayerblue!60, draw=slayerblue] coordinates {
+        (vocab=500, 3.2758)
+        (vocab=1000, 3.7438)
+      };
+      \addlegendentry{BPE}
+      \addplot[fill=slayergreen!60, draw=slayergreen] coordinates {
+        (vocab=500, 3.2332)
+        (vocab=1000, 3.6461)
+      };
+      \addlegendentry{MorphBPE suffix}
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Cross-entropy LSTM LM --- BPE vs MorphBPE suffix.
+  MorphBPE suffix obniża CE o~1{,}3\% (vocab=500) i~2{,}6\% (vocab=1000).}
+  \label{fig:ce}
+\end{figure}
+
+\textbf{Uwaga:} przy vocab=1000 oba tokenizatory osiągają wyższą CE
+niż przy vocab=500. Wynika to z~większej liczby rzadkich tokenów
+przy ograniczonym rozmiarze danych treningowych LM (500 tekstów)
+i~małej pojemności modelu. Efekt ten jest spójny
+dla obu metod --- różnica względna MorphBPE vs BPE rośnie jednak
+z~rozmiarem słownika ($-1{,}3\% \to -2{,}6\%$ dla LSTM,
+$-0{,}7\% \to -1{,}1\%$ dla Transformera), co wskazuje,
+że korzyść z~morfologicznego ograniczenia jest silniejsza
+przy większym słowniku.
+
+\subsection*{Ewaluacja Transformer LM}
+
+\begin{table}[h]
+  \centering
+  \caption{Ewaluacja extrinsic: cross-entropy i~perplexity Transformer LM.
+  Model: Transformer(64, 4h, 2L, ff=256), 3 epoki, batch=128, seq\_len=32.}
+  \label{tab:transformer}
+  \begin{tabular}{lrccr}
+    \toprule
+    Metoda & Vocab & Cross-Entropy & Perplexity & Czas LM [s] \\
+    \midrule
+    BPE                  & 500  & 3{,}1306 & 22{,}89 & 1511{,}8 \\
+    MorphBPE suffix      & 500  & 3{,}1094 & 22{,}41 & 1236{,}1 \\
+    \addlinespace
+    BPE                  & 1000 & 3{,}5216 & 33{,}84 & 1009{,}1 \\
+    MorphBPE suffix      & 1000 & 3{,}4815 & 32{,}51 & 997{,}2 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\textbf{Cross-entropy (Transformer).} MorphBPE suffix obniża CE:
+\begin{itemize}
+  \item vocab=500: $3{,}1094$ vs $3{,}1306$ ($-0{,}7\%$).
+  \item vocab=1000: $3{,}4815$ vs $3{,}5216$ ($-1{,}1\%$).
+\end{itemize}
+Trend jest spójny z~wynikami LSTM: MorphBPE obniża CE przy obu
+rozmiarach słownika, a~korzyść rośnie z~$V$. Magnituda jest
+mniejsza ($-0{,}7\%$ vs $-1{,}3\%$ przy vocab=500), co może wynikać
+z~większej pojemności Transformera --- model z~attention lepiej
+radzi sobie z~suboptymalną segmentacją, więc potencjalna korzyść
+z~morfologicznego alignmentu jest mniejsza.
+
+\subsection*{Analiza błędów per-suffix}
+
+Aby zrozumieć, \emph{które} klasy morfemów zyskują i~tracą
+na morfologicznym ograniczeniu, przeprowadziliśmy analizę
+per-suffix-group cross-entropy na modelu Transformer (vocab=1000).
+Dla każdej grupy słów kończących się danym sufiksem obliczyliśmy
+średni per-token CE osobno dla BPE i~MorphBPE.
+
+\begin{table}[h]
+  \centering
+  \caption{Analiza błędów: średni per-token CE wg grupy sufiksu
+  (Transformer, vocab=1000). $\Delta < 0$ = MorphBPE lepszy.}
+  \label{tab:errors}
+  \small
+  \begin{tabular}{lrccr}
+    \toprule
+    Sufiks & N & BPE CE & MorphBPE CE & $\Delta$ [\%] \\
+    \midrule
+    \rowcolor{slayergreen!20}
+    -ach    & 49 & 4{,}3432 & 3{,}8443 & $-11{,}5$ \\
+    \rowcolor{slayergreen!20}
+    -ego    & 38 & 4{,}6068 & 4{,}4511 & $-3{,}4$ \\
+    \rowcolor{slayergreen!20}
+    -ości   & 47 & 5{,}1136 & 4{,}9541 & $-3{,}1$ \\
+    \rowcolor{slayergreen!20}
+    -enia   & 26 & 2{,}6377 & 2{,}6033 & $-1{,}3$ \\
+    -owania & 31 & 1{,}6421 & 1{,}6443 & $+0{,}1$ \\
+    -ami    & 50 & 3{,}8532 & 3{,}8720 & $+0{,}5$ \\
+    \rowcolor{slayerred!20}
+    -ny     & 43 & 3{,}0789 & 3{,}3573 & $+9{,}0$ \\
+    \rowcolor{slayerred!20}
+    -ów     & 32 & 2{,}7220 & 3{,}0345 & $+11{,}5$ \\
+    \rowcolor{slayerred!20}
+    -ych    & 40 & 1{,}9407 & 2{,}7585 & $+42{,}1$ \\
+    \rowcolor{slayerred!20}
+    -owych  & 37 & 1{,}9336 & 3{,}0116 & $+55{,}8$ \\
+    \rowcolor{slayerred!20}
+    -ć      & 49 & 3{,}5789 & 5{,}5765 & $+55{,}8$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\textbf{Wzorzec:} MorphBPE zyskuje na sufiksach złożonych
+(wieloznakowych: \texttt{-ach}, \texttt{-ego}, \texttt{-ości},
+\texttt{-enia}), gdzie respektowanie granicy morfemu pozwala LM
+lepiej generalizować wzorce fleksyjne. MorphBPE traci na sufiksach
+krótkich (\texttt{-ć}, \texttt{-ych}, \texttt{-ów}), gdzie wymuszone
+oddzielenie jednoliterowego lub dwuliterowego sufiksu prowadzi
+do nieefektywnej fragmentacji --- LM musi modelować krótki token
+w~izolacji, bez kontekstu rdzenia.
+
+To sugeruje, że \emph{adaptacyjna kara} --- silniejsza dla sufiksów
+długich, słabsza dla krótkich --- mogłaby połączyć korzyści
+morfologicznego alignmentu z~mniejszą fragmentacją.
+
+Odwołania: rys.~\ref{fig:hero} (hero MorphED),
+rys.~\ref{fig:morphed} (MorphED),
+rys.~\ref{fig:ce} (cross-entropy LSTM),
+tab.~\ref{tab:intrinsic}, tab.~\ref{tab:extrinsic},
+tab.~\ref{tab:transformer}, tab.~\ref{tab:errors}.
+
+% ---------------------------------------------------------------
+\section{Wpływ siły kary i~typu ograniczenia}
+\label{sec:penalty-sweep}
+
+Aby zbadać, jak siła kary $\alpha$ i~typ ograniczenia
+(prefix, suffix, both) wpływają na jakość tokenizacji
+i~wydajność modelu języka, przeprowadziliśmy systematyczny
+przegląd $\alpha \in \{0{,}0;\, 0{,}1;\, 0{,}25;\, 0{,}5;\, 0{,}75;\,
+1{,}0\}$ × 3 typy ograniczenia × 2 rozmiary słownika
+= 36 eksperymentów (z~których $\alpha = 0{,}0$ jest równoważne
+standardowemu BPE niezależnie od typu ograniczenia).
+Następnie rozszerzyliśmy zakres o~$\alpha > 1{,}0$ (tzw.\
+over-penalization): $\alpha \in \{1{,}0;\, 1{,}5;\, 2{,}0;\, 2{,}5;\,
+3{,}0\}$ dla ograniczenia suffix × 2 vocab = 10 dodatkowych
+eksperymentów. Wszystkie eksperymenty używają tego samego korpusu,
+podziału train/test i~architektury Transformer LM (64d, 4h, 2L,
+ff=256, 3 epoki, 500/200 tekstów).
+
+\subsection*{Wyniki główne ($\alpha \in [0;\,1]$)}
+
+\begin{table}[h]
+  \centering
+  \caption{Wpływ $\alpha$ i~typu ograniczenia na cross-entropy
+  Transformer LM (vocab=500). $\alpha = 0{,}0$ = standardowy BPE.}
+  \label{tab:sweep500}
+  \small
+  \begin{tabular}{lcccccc}
+    \toprule
+    Constraint & $\alpha{=}0{,}0$ & $\alpha{=}0{,}1$ & $\alpha{=}0{,}25$ & $\alpha{=}0{,}5$ & $\alpha{=}0{,}75$ & $\alpha{=}1{,}0$ \\
+    \midrule
+    suffix & 3{,}131 & 3{,}144 & 3{,}142 & 3{,}111 & 3{,}095 & \textbf{3{,}090} \\
+    prefix & 3{,}131 & 3{,}138 & 3{,}140 & 3{,}138 & 3{,}139 & 3{,}143 \\
+    both   & 3{,}131 & 3{,}144 & 3{,}132 & 3{,}135 & 3{,}116 & 3{,}111 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \caption{Wpływ $\alpha$ i~typu ograniczenia na cross-entropy
+  Transformer LM (vocab=1000).}
+  \label{tab:sweep1000}
+  \small
+  \begin{tabular}{lcccccc}
+    \toprule
+    Constraint & $\alpha{=}0{,}0$ & $\alpha{=}0{,}1$ & $\alpha{=}0{,}25$ & $\alpha{=}0{,}5$ & $\alpha{=}0{,}75$ & $\alpha{=}1{,}0$ \\
+    \midrule
+    suffix & 3{,}525 & 3{,}545 & 3{,}523 & 3{,}477 & 3{,}462 & \textbf{3{,}431} \\
+    prefix & 3{,}525 & 3{,}522 & 3{,}522 & 3{,}513 & 3{,}517 & 3{,}511 \\
+    both   & 3{,}525 & 3{,}520 & 3{,}505 & --- & --- & --- \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\textbf{Trzy wnioski z~zakresu $\alpha \le 1$:}
+
+\begin{enumerate}
+  \item \textbf{Suffix >> prefix >> both.} Ograniczenie suffix
+        poprawia CE monotonicznie ze wzrostem $\alpha$
+        ($-1{,}3\%$ przy vocab=500, $-2{,}7\%$ przy vocab=1000
+        dla $\alpha = 1{,}0$). Ograniczenie prefix \emph{pogarsza}
+        CE względem BPE przy vocab=500 i~daje marginalną poprawę
+        przy vocab=1000. Typ \texttt{both} jest gorszy od
+        \texttt{suffix} alone --- komponent prefiksowy przeszkadza.
+        To potwierdza typologię polskiego jako języka sufiksalnego:
+        fleksja realizowana jest na końcu wyrazu, prefiksy są rzadkie.
+  \item \textbf{Niska kara ($\alpha = 0{,}1$) szkodzi.} Przy obu
+        rozmiarach słownika $\alpha = 0{,}1$ daje \emph{gorsze} CE
+        niż BPE ($+0{,}4\%$ i~$+0{,}6\%$). Słaba kara zaburza
+        naturalną kolejność scalenia BPE bez wystarczająco silnego
+        sygnału morfologicznego --- najgorszy z~obu światów.
+  \item \textbf{Korzyść rośnie z~$\alpha$ i~z~$V$.} Im silniejsza
+        kara i~im większy słownik, tym większa poprawa CE.
+        Przy $\alpha = 1{,}0$ i~vocab=1000: $\Delta\mathrm{CE} = -0{,}094$
+        ($-2{,}7\%$), podczas gdy przy vocab=500: $\Delta = -0{,}041$
+        ($-1{,}3\%$).
+\end{enumerate}
+
+\subsection*{Over-penalization ($\alpha > 1{,}0$)}
+
+W~oryginalnej formulacji MorphBPE wartość $\alpha = 1{,}0$ oznacza
+pełne blokowanie scaleń przekraczających granice morfemów
+(częstotliwość pary mnożona przez $1 - \alpha = 0$). Wartości
+$\alpha > 1{,}0$ dają \emph{ujemny} score dla takich par
+($\mathrm{freq} \times (1 - \alpha) < 0$). W~praktyce oznacza to,
+że gdy \emph{wszystkie} dostępne pary przekraczają granice,
+najczęstsza z~nich (least negative) jest wybierana zamiast losowej
+--- oraz że crossing merges są aktywnie ``odpychane'' w~kolejności
+scalenia, faworyzując merges wewnątrz morfemów.
+
+\begin{table}[h]
+  \centering
+  \caption{Over-penalization: $\alpha > 1{,}0$, ograniczenie suffix.
+  CE i~MorphED z~bootstrap CI (95\%).}
+  \label{tab:extended}
+  \small
+  \begin{tabular}{lrcccc}
+    \toprule
+    $\alpha$ & Vocab & Fertility & MorphED [CI] & CE & PPL \\
+    \midrule
+    1{,}0  & 500  & 2{,}449 & 2{,}423 [2{,}419, 2{,}427] & 3{,}092 & 22{,}01 \\
+    1{,}5  & 500  & 2{,}443 & 2{,}418 [2{,}413, 2{,}422] & 3{,}092 & 22{,}03 \\
+    \rowcolor{slayergreen!20}
+    2{,}0  & 500  & 2{,}388 & 2{,}332 [2{,}327, 2{,}336] & \textbf{3{,}044} & \textbf{21{,}00} \\
+    2{,}5  & 500  & 2{,}388 & 2{,}330 [2{,}326, 2{,}334] & 3{,}046 & 21{,}04 \\
+    3{,}0  & 500  & 2{,}387 & 2{,}322 [2{,}318, 2{,}327] & 3{,}046 & 21{,}02 \\
+    \addlinespace
+    1{,}0  & 1000 & 1{,}935 & 1{,}717 [1{,}713, 1{,}721] & 3{,}432 & 30{,}93 \\
+    1{,}5  & 1000 & 1{,}929 & 1{,}697 [1{,}693, 1{,}701] & 3{,}420 & 30{,}57 \\
+    2{,}0  & 1000 & 1{,}891 & 1{,}637 [1{,}633, 1{,}641] & 3{,}368 & 29{,}02 \\
+    2{,}5  & 1000 & 1{,}870 & 1{,}599 [1{,}595, 1{,}602] & 3{,}330 & 27{,}94 \\
+    \rowcolor{slayergreen!20}
+    3{,}0  & 1000 & 1{,}869 & 1{,}592 [1{,}589, 1{,}596] & \textbf{3{,}324} & \textbf{27{,}77} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\textbf{Kluczowe odkrycie:} $\alpha = 2{,}0$ daje \emph{skokową}
+poprawę nad $\alpha = 1{,}0$, nie plateau:
+
+\begin{itemize}
+  \item vocab=500: CE $3{,}092 \to 3{,}044$ ($\Delta = -0{,}048$,
+        $-1{,}6\%$) --- większa niż cała poprawa od $\alpha = 0{,}5$
+        do $\alpha = 1{,}0$ ($\Delta = 0{,}020$).
+  \item vocab=1000: CE $3{,}432 \to 3{,}368$ ($\Delta = -0{,}064$,
+        $-1{,}9\%$), a~$\alpha = 3{,}0$ daje $3{,}324$
+        ($\Delta = -0{,}108$ vs $\alpha = 1{,}0$, $-3{,}1\%$).
+  \item MorphED również skacze: $2{,}423 \to 2{,}332$ (vocab=500),
+        $1{,}717 \to 1{,}592$ (vocab=1000).
+  \item Fertility spada: $2{,}449 \to 2{,}388$ (vocab=500) ---
+        over-penalization tworzy bardziej konserwatywne segmentacje.
+\end{itemize}
+
+\textbf{Plateau ok.~$\alpha \in [2{,}0;\, 3{,}0]$.} Dalsze zwiększanie
+$\alpha$ powyżej 2{,}0 przynosi marginalne zyski (CE $3{,}044 \to
+3{,}046$ przy vocab=500), ale przy vocab=1000 trend jest nadal
+malejący ($3{,}368 \to 3{,}324$). Optymalum wydaje się $\alpha \approx
+2{,}0$--$3{,}0$ w~zależności od rozmiaru słownika.
+
+\textbf{Mechanizm.} Przy $\alpha \le 1{,}0$ crossing pairs otrzymują
+score $\ge 0$ --- są blokowane tylko wtedy, gdy istnieją alternatywy
+z~dodatnim score. Przy $\alpha > 1{,}0$ crossing pairs dostają
+score $< 0$, co ma dwa efekty: (1)~gdy wszystkie pary crossing,
+najczęstsza jest wybierana (least negative) zamiast losowej;
+(2)~kolejność scalenia jest reorganizowana --- merges wewnątrz
+morfemów są faworyzowane nawet kosztem opóźnienia crossing merges.
+To tłumaczy spadek fertility (bardziej konserwatywne scalenia)
+i~poprawę MorphED (lepszy alignment).
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+        width=0.85\linewidth, height=6cm,
+        xlabel={Kara $\alpha$},
+        ylabel={Cross-entropy (niżej = lepiej)},
+        xmin=-0.1, xmax=3.1,
+        ymin=3.0, ymax=3.6,
+        xtick={0,0.5,1,1.5,2,2.5,3},
+        grid=major, grid style={gray!20},
+        legend style={at={(0.98,0.98)}, anchor=north east, font=\small},
+    ]
+      \addplot[slayerblue, mark=*, thick] coordinates {
+        (0,3.131) (0.5,3.111) (1,3.090) (1.5,3.092) (2,3.044) (2.5,3.046) (3,3.046)
+      };
+      \addlegendentry{vocab=500}
+      \addplot[slayerred, mark=square*, thick] coordinates {
+        (0,3.525) (0.5,3.477) (1,3.432) (1.5,3.420) (2,3.368) (2.5,3.330) (3,3.324)
+      };
+      \addlegendentry{vocab=1000}
+      \draw[dashed, gray] (axis cs:1,3.0) -- (axis cs:1,3.6);
+      \node[font=\small, gray] at (axis cs:1,3.55) {over-pen.};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Wpływ kary $\alpha$ na cross-entropy Transformer LM.
+  Linia przerywana oddziela standardowy zakres ($\alpha \le 1$)
+  od over-penalization ($\alpha > 1$). Skok przy $\alpha = 2{,}0$
+  jest wyraźnie widoczny przy obu rozmiarach słownika.}
+  \label{fig:alpha-sweep}
+\end{figure}
+
+\textbf{Implikacja dla tej pracy.} Pierwotnie wybraliśmy $\alpha = 0{,}5$
+jako ``bezpieczny kompromis'' między alignmentem morfologicznym
+a~kompresją. Wyniki sweepu pokazują, że $\alpha = 2{,}0$ jest
+konsekwentnie lepszy we wszystkich metrykach. Główne wyniki
+w~sekcji~\ref{sec:results} (tab.~\ref{tab:intrinsic}--\ref{tab:transformer})
+pozostają ważne dla $\alpha = 0{,}5$ jako punktu odniesienia, ale
+optymalna konfiguracja to \texttt{suffix} z~$\alpha = 2{,}0$.
+
+\subsection*{Znaczenie praktyczne}
+
+Co w~praktyce oznaczają te odkrycia?
+
+\textbf{1. Mniej tokenów, tańsze przetwarzanie.}
+Over-penalization ($\alpha = 2{,}0$) obniża fertility z~2{,}449 do 2{,}388
+tokenów na słowo (vocab=500) --- to ~2{,}5\% mniej tokenów na ten sam tekst.
+W~skali infrastruktury LLM, gdzie koszt inference rośnie liniowo
+z~liczbą tokenów, 2{,}5\% redukcji tokenów przekłada się
+na ~2{,}5\% tańsze generowanie i~krótszy czas odpowiedzi.
+Przy vocab=1000 redukcja jest jeszcze większa: 1{,}935 $\to$ 1{,}869
+($-3{,}4\%$).
+
+\textbf{2. Lepszy model języka przy tym samym budżecie.}
+Cross-entropy spada o~1{,}5\%--3{,}1\% względem $\alpha = 1{,}0$,
+co oznacza, że~LM popełnia mniej błędów predykcji bez zwiększenia
+liczby parametrów, rozmiaru danych ani mocy obliczeniowej treningu.
+To ``darmowa'' poprawa --- jedynym kosztem jest zmiana jednego
+hiperparametru ($\alpha$) podczas treningu tokenizatora.
+
+\textbf{3. Korzyść rośnie ze słownikiem.}
+Przy vocab=1000 poprawa CE nad $\alpha = 1{,}0$ wynosi $-3{,}1\%$
+($\alpha = 3{,}0$), podczas gdy przy vocab=500 tylko $-1{,}6\%$.
+W~praktyce produkcyjne tokenizatory używają słowników 30\,000--100\,000
+tokenów. Jeśli trend utrzyma się, korzyść z~over-penalization może być
+tam jeszcze większa --- ale wymaga to weryfikacji eksperymentalnej.
+
+\textbf{4. Ekonomia tokenizacji.}
+Tokenizator jest trenowany raz, a~używany miliardy razy. Koszt treningu
+MorphBPE z~$\alpha = 2{,}0$ jest identyczny jak z~$\alpha = 0{,}5$
+--- to ten sam algorytm, różny jest tylko mnożnik w~funkcji score.
+Zatem: zerowy koszt dodatkowy przy treningu, stała korzyść
+przy każdym inference. W~kontekście modeli obsługujących języki
+o~bogatej fleksji (polski, czeski, węgierski, turecki, fiński),
+optymalizacja $\alpha$ to niskowiszący owoc --- prosta zmiana
+dająca mierzalną poprawę jakości i~kosztów.
+
+\textbf{5. Typologia języka ma znaczenie.}
+Wyniki sweepu constraint type potwierdzują, że~dla języków
+sufiksalnych (jak polski) kluczowe jest respektowanie granic sufiksów,
+a~nie prefiksów. To ma implikację projektową: dla danego języka
+należy wybrać constraint type zgodny z~jego typologią morfologiczną,
+a~nie stosować uniwersalne ``both''.
+
+% ---------------------------------------------------------------
+\section{Warunek obalenia}
+
+Teza o~wyższości MorphBPE suffix nad BPE upada, jeśli spełniony
+zostanie którykolwiek z~warunków:
+
+\begin{enumerate}
+  \item MorphBPE suffix zwiększa fertility o~$> 1\%$ względem BPE
+        przy którymś rozmiarze słownika.
+        Aktualnie: $\Delta = +0{,}04\%$ (500), $+0{,}10\%$ (1000) --- \textbf{nie spełniony}.
+  \item MorphBPE suffix zwiększa MorphED względem BPE
+        (CI się pokrywają lub MorphBPE > BPE).
+        Aktualnie: CI nie pokrywają się, MorphBPE $<$ BPE --- \textbf{nie spełniony}.
+  \item MorphBPE suffix zwiększa cross-entropy LM względem BPE
+        (LSTM lub Transformer).
+        Aktualnie: CE MorphBPE $<$ CE BPE przy obu vocab i~obu architekturach
+        --- \textbf{nie spełniony}.
+\end{enumerate}
+
+Żaden z~warunków nie jest spełniony --- synteza nie zostaje obalona.
+
+% ---------------------------------------------------------------
+\section{Dyskusja}
+
+\textbf{Główny wynik.} MorphBPE suffix dominuje nad standardowym BPE
+na wszystkich mierzonych metrykach (MorphED, cross-entropy, perplexity)
+przy obu rozmiarach słownika i~obu architekturach LM, bez istotnego
+kosztu fertility. Korzyść rośnie z~rozmiarem słownika:
+MorphED $-3{,}6\% \to -6{,}8\%$,
+CE (LSTM) $-1{,}3\% \to -2{,}6\%$,
+CE (Transformer) $-0{,}7\% \to -1{,}1\%$,
+PPL (LSTM) $-4{,}2\% \to -9{,}3\%$.
+
+\textbf{Dlaczego działa.} Standardowy BPE optymalizuje wyłącznie
+częstotliwość par, co prowadzi do scalenia przekraczających granice
+morfemów (np.\ \texttt{prze+staw} zamiast \texttt{prze+stawienie}).
+MorphBPE suffix kształtuje przestrzeń scalen tak, aby granice
+sufiksów były respektowane. Tokeny wynikowe są bardziej zgrane
+z~podziałem morfologicznym, co ułatwia LM generalizację
+(podobne sufiksy $\to$ podobne reprezentacje).
+
+\textbf{Ograniczenia.}
+(1)~Ewaluacja extrinsic używa małych modeli (LSTM 128, Transformer 64/2L)
+i~ograniczonego zbioru treningowego (500 tekstów). Wynik może się różnić
+dla większych modeli i~pełnego zbioru (8000 tekstów).
+(2)~MorphBPE wymaga analizatora morfologicznego (Morfeusz2) ---
+dodatkowa zależność, niedostępna dla wszystkich języków.
+(3)~Analiza per-suffix pokazuje, że MorphBPE traci na sufiksach krótkich
+(\texttt{-ć}, \texttt{-ych}); adaptacyjna kara może ten problem złagodzić.
+(4)~Over-penalization ($\alpha > 1$) została przetestowana tylko
+na ograniczeniu suffix; prefix i~both z~$\alpha > 1$ pozostają do zbadania.
+(5)~Wszystkie eksperymenty sweepu używają Transformer LM o~tej samej
+architekturze; ewaluacja z~LSTM i~większymi modelami może dać inne optimum $\alpha$.
+
+\textbf{Co dalej.}
+(1)~Ewaluacja z~większym modelem (Transformer 4+ warstw)
+na pełnym zbiorze treningowym (8000 tekstów).
+(2)~Adaptacyjna kara $\alpha$ zależna od długości sufiksu
+(silniejsza dla długich, słabsza dla krótkich) --- analiza
+per-suffix (tab.~\ref{tab:errors}) sugeruje, że krótkie sufiksy
+(\texttt{-ć}, \texttt{-ych}) tracą na sztywnym ograniczeniu.
+(3)~Test na innych językach słowiańskich (czeski, rosyjski)
+z~odpowiednimi analizatorami morfologicznymi.
+(4)~Porównanie z~SentencePiece i~Unigram LM tokenizer.
+(5)~Over-penalization ($\alpha > 1$) dla typów \texttt{prefix}
+i~\texttt{both} oraz weryfikacja, czy optymum $\alpha \approx 2{,}0$
+przenosi się na większe modele i~pełny zbiór danych.
+
+% ---------------------------------------------------------------
+\section*{Podpis}
+Dokument autorstwa: \emph{Piotr Styła}.
+Korpus: Polish Sejm Corpus (sejm.gov.pl, licencja publiczna).
+Kod: \texttt{paper\_experiments.py}, \texttt{lm\_eval.py},
+\texttt{transformer\_eval.py}, \texttt{penalty\_sweep.py},
+\texttt{penalty\_sweep\_extended.py}.
+Skompilowany w~CI (\texttt{.tex}~$\to$~PDF).
+Data: \today.

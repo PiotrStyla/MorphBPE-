@@ -38,13 +38,13 @@ licencjonowany seed języka codziennej polszczyzny.
 (studnie oligoceńskie, TF-IDF $= 0{,}679$) osłabiają jednorodność
 zbioru; seed NIE jest gotowy do treningu produkcyjnego.
 
-\medskip
-\noindent
+\begin{slayerinsight}
 \textbf{Synteza~(S):} Rdzeń 80~pełnych kart przechodzi wszystkie
 kontrole jakości (zero duplikatów, zero danych kontaktowych,
 atrybucja 80/80). Usunięcie 9~rekordów listowych i~karty-duplikatu
 studni $(\approx 2{,}55\%$ znaków) eliminuje główne ryzyko redundancji
 i~otwiera drogę do wydania gotowego do recenzji zespołu.
+\end{slayerinsight}
 
 % ---------------------------------------------------------------
 \section{Metoda}
@@ -155,7 +155,7 @@ Rekomendacja: usunąć krótszą kartę (ul.~Kołacińska, $\approx 1\,016$~znak
         y tick label style={font=\small},
         enlarge y limits=0.25,
     ]
-      \addplot[fill=blue!40, draw=blue!60] coordinates {
+      \addplot[fill=slayerblue!60, draw=slayerblue] coordinates {
         (8,wycofany)
         (21,negatywny)
         (60,dopuszczony)
