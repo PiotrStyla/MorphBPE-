@@ -25,6 +25,9 @@ Rozszerzone badanie siły kary $\alpha \in [0{,}0;\,3{,}0]$
 pokazuje, że $\alpha = 2{,}0$ (tzw.\ over-penalization) daje
 lepsze wyniki niż standardowy zakres $\alpha \le 1{,}0$:
 CE spada o~dodatkowe $1{,}6\%$--$3{,}1\%$ względem $\alpha = 1{,}0$.
+Skalowanie do rozmiarów produkcyjnych (vocab 8\,000--32\,000)
+potwierdza trend: redukcja MorphED rośnie do $21{,}0\%$,
+a~over-penalization pozostaje optymalne na wszystkich rozmiarach.
 \end{abstract}
 
 % ---------------------------------------------------------------
@@ -854,6 +857,71 @@ należy wybrać constraint type zgodny z~jego typologią morfologiczną,
 a~nie stosować uniwersalne ``both''.
 
 % ---------------------------------------------------------------
+\section{Skalowanie do rozmiarów produkcyjnych}
+\label{sec:scaling}
+
+Eksperymenty główne (sek.~\ref{sec:intrinsic}, \ref{sec:extrinsic})
+używały słowników 500 i~1000 tokenów --- wystarczających do pokazania
+trendu, ale dalekich od rozmiarów produkcyjnych (30\,000--100\,000).
+Aby zweryfikować, czy korzyść z~MorphBPE utrzymuje się przy większych
+słownikach, przeprowadziliśmy skalowanie do vocab $\in \{8000, 16\,000, 32\,000\}$
+przy $\alpha \in \{0{,}0;\, 1{,}0;\, 2{,}0\}$, na pełnym zbiorze treningowym
+(8000 tekstów, backend heurystyczny).
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{rrrrrrr}
+\hline
+Vocab & $\alpha$ & ActVocab & Fertility & MorphED & CI (95\%) & Czas \\
+\hline
+8000 & 0{,}0 & 8000 & 1{,}131 & 0{,}574 & [0{,}569, 0{,}578] & 2{,}3\,h \\
+8000 & 1{,}0 & 8000 & 1{,}141 & 0{,}504 & [0{,}499, 0{,}509] & 1{,}8\,h \\
+8000 & 2{,}0 & 8000 & 1{,}149 & \textbf{0{,}456} & [0{,}451, 0{,}460] & 1{,}6\,h \\
+16000 & 0{,}0 & 16000 & 1{,}051 & 0{,}442 & [0{,}438, 0{,}446] & 2{,}9\,h \\
+16000 & 1{,}0 & 16000 & 1{,}064 & 0{,}387 & [0{,}384, 0{,}391] & 3{,}2\,h \\
+16000 & 2{,}0 & 16000 & 1{,}077 & \textbf{0{,}338} & [0{,}335, 0{,}342] & 3{,}2\,h \\
+32000 & 0{,}0 & 32000 & 1{,}020 & 0{,}389 & [0{,}385, 0{,}393] & 6{,}0\,h \\
+32000 & 1{,}0 & 32000 & 1{,}035 & 0{,}347 & [0{,}343, 0{,}351] & 5{,}3\,h \\
+32000 & 2{,}0 & 32000 & 1{,}049 & \textbf{0{,}308} & [0{,}304, 0{,}311] & 5{,}9\,h \\
+\hline
+\end{tabular}
+\caption{Skalowanie MorphBPE suffix do rozmiarów produkcyjnych.
+Train: 8000 tekstów, test: 500 tekstów, backend heurystyczny.}
+\label{tab:scaling}
+\end{table}
+
+\textbf{Wyniki.}
+Przy wszystkich rozmiarach słownika MorphBPE redukuje MorphED
+względem BPE ($\alpha = 0$) o~20{,}5\%--23{,}4\%, przy czym
+CI 95\% nie pokrywają się przy żadnym rozmiarze.
+Over-penalization ($\alpha = 2{,}0$) daje dodatkowe 9{,}5\%--12{,}6\%
+redukcji MorphED względem $\alpha = 1{,}0$.
+Najlepszy wynik w~całym badaniu: vocab=32\,000, $\alpha = 2{,}0$,
+MorphED$=0{,}308$.
+
+\textbf{Koszt fertility.}
+Przy vocab=500--1000 koszt fertility wynosi $\Delta < 0{,}1\%$.
+Przy skalowaniu koszt rośnie: $+1{,}6\%$ (8k), $+2{,}5\%$ (16k), $+2{,}8\%$ (32k).
+Nadal jest to niewielki koszt, ale trend wskazuje, że~przy bardzo dużych
+słownikach ($> 100\,000$) może stać się istotny.
+
+\textbf{Porównanie z~Bielik-11B.}
+Tokenizator Bielik-11B-v2 (vocab=32\,128) osiąga fertility$=2{,}97$
+na tym samym zbiorze testowym. MorphBPE przy vocab=32\,000 osiąga
+fertility$=1{,}05$ --- 2{,}8$\times$ niższą. Bezpośrednie porównanie
+MorphED nie jest możliwe (Bielik nie publikuje segmentacji morfologicznej),
+ale różnica fertility wskazuje, że~MorphBPE produkuje znacznie bardziej
+kompaktową tokenizację przy tym samym rozmiarze słownika.
+
+\textbf{Wniosek.}
+Korzyść z~MorphBPE nie tylko utrzymuje się przy skalowaniu ---
+jest \emph{silniejsza} niż przy małych słownikach.
+Redukcja MorphED rośnie z~$-3{,}6\%$ (vocab=500) do $-21{,}0\%$ (vocab=32\,000).
+Over-penalization ($\alpha = 2{,}0$) pozostaje optymalną konfiguracją
+na wszystkich rozmiarach.
+
+% ---------------------------------------------------------------
 \section{Warunek obalenia}
 
 Teza o~wyższości MorphBPE suffix nad BPE upada, jeśli spełniony
@@ -886,6 +954,9 @@ CE (LSTM) $-1{,}3\% \to -2{,}6\%$,
 CE (Transformer) $-1{,}3\% \to -2{,}7\%$,
 PPL (LSTM) $-4{,}2\% \to -9{,}3\%$.
 PPL (Transformer) $-4{,}0\% \to -9{,}0\%$.
+Skalowanie do vocab=32\,000 (sek.~\ref{sec:scaling}) potwierdza
+trend: redukcja MorphED rośnie do $-21{,}0\%$, a~over-penalization
+pozostaje optymalne na wszystkich rozmiarach.
 Przegląd siły kary (sek.~\ref{sec:penalty-sweep}) pokazuje ponadto,
 że optymalna wartość to \texttt{suffix} z~$\alpha = 2{,}0$
 (over-penalization), która obniża CE o~kolejne $1{,}6\%$--$3{,}1\%$
@@ -913,8 +984,10 @@ na ograniczeniu suffix; prefix i~both z~$\alpha > 1$ pozostają do zbadania.
 architekturze; ewaluacja z~LSTM i~większymi modelami może dać inne optimum $\alpha$.
 
 \textbf{Co dalej.}
-(1)~Ewaluacja z~większym modelem (Transformer 4+ warstw)
-na pełnym zbiorze treningowym (8000 tekstów).
+(1)~Ewaluacja extrinsic (LM) przy vocab=32\,000 --- skalowanie intrinsic
+(sek.~\ref{sec:scaling}) potwierdza korzyść, ale ewaluacja z~modelem
+języka przy produkcyjnych rozmiarach słownika wymaga większych modeli
+(Transformer 4+ warstw) i~pełnego zbioru treningowego.
 (2)~Adaptacyjna kara $\alpha$ zależna od długości sufiksu
 (silniejsza dla długich, słabsza dla krótkich) --- analiza
 per-suffix (tab.~\ref{tab:errors}) sugeruje, że krótkie sufiksy

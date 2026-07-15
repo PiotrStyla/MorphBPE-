@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MorphBPE — Prezentacja</title>
+<link rel="stylesheet" href="reveal.css">
+<link rel="stylesheet" href="theme-white.css">
+<style>
+  :root {
+    --slayerblue: #0f4c81;
+    --slayercyan: #00a9e0;
+    --slayerdark: #222831;
+    --slayergray: #f5f5f5;
+    --slayergreen: #2e7d32;
+    --slayerred: #c62828;
+    --slayeramber: #f57c00;
+  }
+  .reveal { font-family: 'Segoe UI', 'Helvetica Neue', sans-serif; font-size: 28px; }
+  .reveal h1, .reveal h2, .reveal h3 { color: var(--slayerblue); text-transform: none; }
+  .reveal h1 { font-size: 1.8em; }
+  .reveal h2 { font-size: 1.4em; }
+  .reveal h3 { font-size: 1.1em; }
+  .reveal .title-slide h1 { font-size: 2.5em; color: var(--slayerblue); }
+  .reveal .title-slide p { font-size: 0.8em; color: var(--slayerdark); }
+  .reveal .slide-content { text-align: left; }
+  .reveal table { font-size: 0.55em; margin: 0 auto; border-collapse: collapse; }
+  .reveal th { background: var(--slayerblue); color: white; padding: 6px 12px; }
+  .reveal td { padding: 4px 12px; border-bottom: 1px solid #ddd; }
+  .reveal tr:hover { background: var(--slayergray); }
+  .reveal .green-row { background: rgba(46,125,50,0.15); }
+  .reveal .red-row { background: rgba(198,40,40,0.15); }
+  .reveal .insight-box {
+    background: var(--slayergray);
+    border-left: 4px solid var(--slayerblue);
+    padding: 12px 20px;
+    margin: 15px 0;
+    font-size: 0.7em;
+    border-radius: 4px;
+  }
+  .reveal .insight-box strong { color: var(--slayerblue); }
+  .reveal code { background: var(--slayergray); padding: 2px 6px; border-radius: 3px; font-size: 0.85em; color: var(--slayerdark); }
+  .reveal .green-text { color: var(--slayergreen); font-weight: bold; }
+  .reveal .red-text { color: var(--slayerred); font-weight: bold; }
+  .reveal .blue-text { color: var(--slayerblue); font-weight: bold; }
+  .reveal ul { list-style: none; }
+  .reveal ul li { margin-bottom: 0.3em; }
+  .reveal ul li::before { content: "▸"; color: var(--slayerblue); margin-right: 8px; }
+  .reveal .bar-chart { display: flex; align-items: flex-end; gap: 20px; height: 200px; margin: 20px auto; max-width: 500px; }
+  .reveal .bar-group { display: flex; gap: 6px; align-items: flex-end; }
+  .reveal .bar { width: 40px; border-radius: 4px 4px 0 0; text-align: center; font-size: 0.5em; color: white; padding-top: 4px; }
+  .reveal .bar-label { font-size: 0.5em; text-align: center; margin-top: 6px; color: var(--slayerdark); }
+  .reveal .bar-value { font-size: 0.5em; text-align: center; margin-bottom: 4px; color: var(--slayerdark); font-weight: bold; }
+  .reveal .col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  .reveal .footer-note { font-size: 0.5em; color: #888; margin-top: 20px; }
+  .reveal .math { font-family: 'Cambria Math', serif; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ================================================================== -->
+<section class="title-slide">
+  <h1>MorphBPE</h1>
+  <p style="font-size:1.1em; color:var(--slayerdark);">Morfologicznie informowany BPE dla polszczyzny</p>
+  <br>
+  <p>Piotr Styła</p>
+  <p style="color:#888;">2026</p>
+</section>
+
+<!-- ================================================================== -->
+<section>
+  <h2>Plan prezentacji</h2>
+  <ul>
+    <li>Problem: BPE a fleksja polska</li>
+    <li>Metoda: MorphBPE</li>
+    <li>Wyniki intrinsic (MorphED, Fertility)</li>
+    <li>Wyniki extrinsic (LSTM, Transformer)</li>
+    <li>Analiza błędów per-suffix</li>
+    <li>Over-penalization (α = 2.0)</li>
+    <li>Skalowanie do produkcji</li>
+    <li>Podsumowanie</li>
+  </ul>
+</section>
+
+<!-- ================================================================== -->
+<section>
+  <h2>Problem: BPE a fleksja polska</h2>
+  <div class="slide-content">
+    <div class="insight-box">
+      <strong>Pytanie badawcze:</strong> Czy morfologiczne ograniczenia w BPE poprawiają jakość tokenizacji dla polskiego — intrinsic (alignment) i extrinsic (LM)?
+    </div>
+    <p><strong>BPE ignoruje strukturę morfologiczną:</strong></p>
+    <ul>
+      <li>Scalania oparte wyłącznie na częstotliwości par</li>
+      <li>Tokeny przekraczają granice morfemów</li>
+      <li><code>samorządowych</code> → <code>sa | morządowych</code> (rdzeń + sufiks <code>-ch</code> sklejone)</li>
+    </ul>
+    <p><strong>Konsekwencja dla LM:</strong></p>
+    <ul>
+      <li>Sufiksy wspólne dla wielu wyrazów nie są rozpoznawane jako wzorzec</li>
+      <li>Gorsza generalizacja fleksyjna</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================================================================== -->
+<section>
+  <h2>Metoda: MorphBPE</h2>
+  <div class="slide-content">
+    <p><strong>Idea:</strong> kara za scalenia przekraczające granicę sufiksu</p>
+    <p><strong>Mechanizm:</strong></p>
+    <ul>
+      <li>Morfeusz2 analizuje każde słowo → granice sufiksów</li>
+      <li>Scalenie przekraczające granicę: <span class="math">score = freq × (1 − α)</span></li>
+      <li><span class="blue-text">α = 0</span>: standardowy BPE (brak kary)</li>
+      <li><span class="blue-text">α = 1</span>: pełne blokowanie (strict)</li>
+      <li><span class="blue-text">α > 1</span>: over-penalization (ujemny score)</li>
+    </ul>
+    <div class="insight-box">
+      <strong>Wariant strict_suffix:</strong> kara tylko na granice sufiksów. Polski = język sufiksalny, prefiksy rzadkie.
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================== -->
+<section>
+  <h2>Przykład: samorządowych</h2>
+  <div class="slide-content" style="text-align:center;">
+    <table style="font-size:0.8em;">
+      <tr><th>Tokenizator</th><th>Segmentacja</th></tr>
+      <tr><td><strong>BPE</strong></td><td><code>sa | morządowych</code></td></tr>
+      <tr><td><strong>MorphBPE suffix</strong></td><td><code>sa | morządowy | <span class="green-text">ch</span></code></td></tr>
+    </table>
+    <br>
+    <ul style="max-width:700px; margin:0 auto;">
+      <li>BPE skleja rdzeń z sufiksem <code>-ch</code> (genitiv/accusativ plural)</li>
+      <li>MorphBPE zachowuje granicę sufiksu → LM rozpoznaje wzorzec <code>-ch</code></li>
+      <li>Sufiks <code>-ch</code> wspólny dla wielu przypadków → lepsza generalizacja</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================================================================== -->
+<section>
+  <h2>Korpus i ewaluacja</h2>
+  <div class="slide-content">
+    <p><strong>Korpus:</strong> 10 000 przemówień sejmowych (sejm.gov.pl)<br>
+    Split: 80/20 (8000/2000), seed=42</p>
+    <p><strong>Ewaluacja intrinsic:</strong></p>
+    <ul>
+      <li><strong>Fertility</strong> = |tokens| / |words| (niżej = bardziej kompaktowo)</li>
+      <li><strong>MorphED</strong> = średnia odległość Levenshteina: segmentacja tokenizatora vs morfologiczna</li>
+      <li>Bootstrap CI: 1000 resamples, 95%</li>
+    </ul>
+    <p><strong>Ewaluacja extrinsic:</strong></p>
+    <ul>
+      <li>LSTM (1 warstwa, 64d/128h) i Transformer (2 warstwy, 4 głowice, 64d)</li>
+      <li>Cross-entropy i perplexity na zbiorze testowym</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================================================================== -->
+<section>
+  <h2>Wyniki intrinsic: MorphED</h2>
+  <div class="slide-content" style="text-align:center;">
+    <table>
+      <tr><th>Metoda</th><th>Vocab</th><th>MorphED [CI]</th><th>Fertility</th></tr>
+      <tr><td>BPE</td><td>500</td><td>2.503 [2.497, 2.509]</td><td>2.443</td></tr>
+      <tr class="green-row"><td><strong>MorphBPE suffix</strong></td><td>500</td><td><strong>2.414</strong> [2.408, 2.420]</td><td>2.444</td></tr>
+      <tr><td>BPE</td><td>1000</td><td>1.838 [1.832, 1.843]</td><td>1.932</td></tr>
+      <tr class="green-row"><td><strong>MorphBPE suffix</strong></td><td>1000</td><td><strong>1.712</strong> [1.707, 1.717]</td><td>1.934</td></tr>
+    </table>
+    <br>
+    <ul style="max-width:600px; margin:0 auto; text-align:left;">
+      <li>vocab=500: <span class="green-text">−3.6%</span> MorphED</li>
+      <li>vocab=1000: <span class="green-text">−6.8%</span> MorphED</li>
+      <li>CI 95% <strong>nie pokrywają się</strong> przy obu rozmiarach</li>
+      <li>Fertility bez zmian (Δ < 0.1%)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================================================================== -->
+<section>
+  <h2>Wyniki extrinsic: cross-entropy</h2>
+  <div class="slide-content" style="text-align:center;">
+    <table>
+      <tr><th>Architektura</th><th>Vocab</th><th>BPE CE</th><th>MorphBPE CE</th><th>Δ CE</th><th>Δ PPL</th></tr>
+      <tr><td>LSTM</td><td>500</td><td>3.276</td><td>3.233</td><td class="green-text">−1.3%</td><td class="green-text">−4.2%</td></tr>
+      <tr><td>LSTM</td><td>1000</td><td>3.744</td><td>3.646</td><td class="green-text">−2.6%</td><td class="green-text">−9.3%</td></tr>
+      <tr><td>Transformer</td><td>500</td><td>3.131</td><td>3.090</td><td class="green-text">−1.3%</td><td class="green-text">−4.0%</td></tr>
+      <tr><td>Transformer</td><td>1000</td><td>3.525</td><td>3.431</td><td class="green-text">−2.7%</td><td class="green-text">−9.0%</td></tr>
+    </table>
+    <br>
+    <div class="insight-box">
+      <strong>Trend:</strong> Korzyść rośnie z rozmiarem słownika. Spójna między architekturami (LSTM i Transformer).
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================== -->
+<section>
+  <h2>Analiza błędów per-suffix</h2>
+  <div class="slide-content">
+    <p style="text-align:center; font-size:0.7em;">Transformer, vocab=1000, α=0.5. Δ < 0 = MorphBPE lepszy</p>
+    <div class="col-2">
+      <div>
+        <p class="green-text">MorphBPE zyskuje (sufiksy złożone):</p>
+        <table style="font-size:0.7em;">
+          <tr><td><code>-ach</code></td><td class="green-text">−11.5%</td></tr>
+          <tr><td><code>-ego</code></td><td class="green-text">−3.4%</td></tr>
+          <tr><td><code>-ości</code></td><td class="green-text">−3.1%</td></tr>
+          <tr><td><code>-enia</code></td><td class="green-text">−1.3%</td></tr>
+        </table>
+      </div>
+      <div>
+        <p class="red-text">MorphBPE traci (sufiksy krótkie):</p>
+        <table style="font-size:0.7em;">
+          <tr><td><code>-owych</code></td><td class="red-text">+55.8%</td></tr>
+          <tr><td><code>-ć</code></td><td class="red-text">+55.8%</td></tr>
+          <tr><td><code>-ych</code></td><td class="red-text">+42.1%</td></tr>
+          <tr><td><code>-ów</code></td><td class="red-text">+11.5%</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="insight-box">
+      <strong>Wniosek:</strong> Adaptacyjna kara (silna dla długich, słaba dla krótkich sufiksów) mogłaby połączyć korzyści z mniejszą fragmentacją.
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================== -->
+<section>
+  <h2>Over-penalization: α > 1.0</h2>
+  <div class="slide-content" style="text-align:center;">
+    <table>
+      <tr><th>α</th><th>Vocab</th><th>Fertility</th><th>MorphED</th><th>CE</th><th>PPL</th></tr>
+      <tr><td>1.0</td><td>500</td><td>2.449</td><td>2.423</td><td>3.092</td><td>22.01</td></tr>
+      <tr class="green-row"><td><strong>2.0</strong></td><td>500</td><td>2.388</td><td><strong>2.332</strong></td><td><strong>3.044</strong></td><td><strong>21.00</strong></td></tr>
+      <tr><td>3.0</td><td>500</td><td>2.387</td><td>2.322</td><td>3.046</td><td>21.02</td></tr>
+      <tr><td>1.0</td><td>1000</td><td>1.935</td><td>1.717</td><td>3.432</td><td>30.93</td></tr>
+      <tr class="green-row"><td><strong>2.0</strong></td><td>1000</td><td>1.891</td><td><strong>1.637</strong></td><td><strong>3.368</strong></td><td><strong>29.02</strong></td></tr>
+      <tr><td>3.0</td><td>1000</td><td>1.869</td><td>1.592</td><td>3.324</td><td>27.77</td></tr>
+    </table>
+    <br>
+    <ul style="max-width:600px; margin:0 auto; text-align:left;">
+      <li><span class="green-text">Skok przy α=2.0:</span> CE −1.6% (vocab=500), −1.9% (vocab=1000) vs α=1.0</li>
+      <li>MorphED również skacze: 2.423 → 2.332 (vocab=500)</li>
+      <li>Fertility <strong>spada</strong>: 2.449 → 2.388 — bardziej konserwatywne segmentacje</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================================================================== -->
+<section>
+  <h2>Dlaczego α = 2.0 działa?</h2>
+  <div class="slide-content">
+    <p><strong>Mechanizm:</strong></p>
+    <ul>
+      <li>α ≤ 1: crossing pairs mają score ≥ 0 — blokowane tylko gdy są alternatywy</li>
+      <li>α > 1: crossing pairs dostają score < 0:
+        <ul>
+          <li>Gdy wszystkie pary crossing → najczęstsza wybierana (least negative)</li>
+          <li>Kolejność scalenia reorganizowana — merges wewnątrz morfemów faworyzowane</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="insight-box">
+      <strong>Znaczenie praktyczne:</strong>
+      <ul>
+        <li>Mniej tokenów (−2.5% fertility) = tańsze inference LLM</li>
+        <li>Lepszy LM przy tym samym budżecie (CE −1.6% do −3.1%)</li>
+        <li>Korzyść rośnie ze słownikiem (−1.6% @500 → −3.1% @1000)</li>
+        <li>Zerowy koszt dodatkowy — ten sam algorytm, inny mnożnik</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================== -->
+<section>
+  <h2>Skalowanie do produkcji: vocab 8k–32k</h2>
+  <div class="slide-content" style="text-align:center;">
+    <table style="font-size:0.5em;">
+      <tr><th>Vocab</th><th>α</th><th>Fertility</th><th>MorphED [CI]</th><th>Czas</th></tr>
+      <tr><td>8000</td><td>0.0</td><td>1.131</td><td>0.574 [0.569, 0.578]</td><td>2.3h</td></tr>
+      <tr><td>8000</td><td>1.0</td><td>1.141</td><td>0.504 [0.499, 0.509]</td><td>1.8h</td></tr>
+      <tr class="green-row"><td><strong>8000</strong></td><td><strong>2.0</strong></td><td>1.149</td><td><strong>0.456</strong> [0.451, 0.460]</td><td>1.6h</td></tr>
+      <tr><td>16000</td><td>0.0</td><td>1.051</td><td>0.442 [0.438, 0.446]</td><td>2.9h</td></tr>
+      <tr><td>16000</td><td>1.0</td><td>1.064</td><td>0.387 [0.384, 0.391]</td><td>3.2h</td></tr>
+      <tr class="green-row"><td><strong>16000</strong></td><td><strong>2.0</strong></td><td>1.077</td><td><strong>0.338</strong> [0.335, 0.342]</td><td>3.2h</td></tr>
+      <tr><td>32000</td><td>0.0</td><td>1.020</td><td>0.389 [0.385, 0.393]</td><td>6.0h</td></tr>
+      <tr><td>32000</td><td>1.0</td><td>1.035</td><td>0.347 [0.343, 0.351]</td><td>5.3h</td></tr>
+      <tr class="green-row"><td><strong>32000</strong></td><td><strong>2.0</strong></td><td>1.049</td><td><strong>0.308</strong> [0.304, 0.311]</td><td>5.9h</td></tr>
+    </table>
+    <br>
+    <div class="col-2" style="text-align:left;">
+      <div>
+        <p><strong>Skalowanie potwierdza (9/9):</strong></p>
+        <ul>
+          <li>MorphED α=0→2: <span class="green-text">−20.5%</span> (8k), <span class="green-text">−23.4%</span> (16k), <span class="green-text">−21.0%</span> (32k)</li>
+          <li>CI 95% nie pokrywają się przy każdym vocab</li>
+          <li>Fertility koszt rośnie: +1.6% → +2.8% (niewielki)</li>
+          <li>Over-pen. silniejszy niż podwojenie vocab</li>
+        </ul>
+      </div>
+      <div>
+        <p><strong>vs Bielik-11B (vocab=32k):</strong></p>
+        <ul>
+          <li>Bielik fertility: <strong>2.97</strong></li>
+          <li>MorphBPE fertility: <strong>1.05</strong> (2.8× niższa!)</li>
+          <li>MorphED=0.308 = najlepszy wynik w badaniu</li>
+          <li>Dawidek: SI 50.8%→58.8%, MFL 2.07→1.91</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================== -->
+<section>
+  <h2>Podsumowanie</h2>
+  <div class="slide-content">
+    <div class="insight-box">
+      <strong>Teza:</strong> MorphBPE strict_suffix produkuje tokeny lepiej zgrane z granicami morfemów niż BPE, co przekłada się na niższą cross-entropy LM.
+    </div>
+    <p><strong>Wyniki intrinsic (vocab=500–1000):</strong></p>
+    <ul>
+      <li>MorphED <span class="green-text">−3.6%</span> (vocab=500) do <span class="green-text">−6.8%</span> (vocab=1000), CI nie pokrywają się</li>
+      <li>Fertility bez kosztu (Δ < 0.1%)</li>
+    </ul>
+    <p><strong>Skalowanie do produkcji (vocab=8k–32k, 9/9):</strong></p>
+    <ul>
+      <li>MorphED <span class="green-text">−20.5%</span> (8k) do <span class="green-text">−23.4%</span> (16k) — <strong>3–6× silniejszy efekt</strong></li>
+      <li>Najlepszy: 32k α=2.0 → MorphED=<strong>0.308</strong>, fertility=1.049</li>
+      <li>vs Bielik-11B (32k): fertility 1.05 vs 2.97 = <strong>2.8× niższa</strong></li>
+    </ul>
+    <p><strong>Wyniki extrinsic (LSTM + Transformer):</strong></p>
+    <ul>
+      <li>CE <span class="green-text">−1.3%</span> do <span class="green-text">−2.7%</span>; PPL <span class="green-text">−4.0%</span> do <span class="green-text">−9.3%</span></li>
+    </ul>
+    <p><strong>Over-penalization α=2.0:</strong></p>
+    <ul>
+      <li>Skokowa poprawa nad α=1.0: CE <span class="green-text">−1.6%</span> do <span class="green-text">−3.1%</span></li>
+      <li>Optymalna konfiguracja: <code>suffix</code> + <code>α=2.0</code></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================================================================== -->
+<section>
+  <h2>Ograniczenia i przyszłość</h2>
+  <div class="slide-content">
+    <div class="col-2">
+      <div>
+        <p><strong>Ograniczenia:</strong></p>
+        <ul>
+          <li>Małe modele LM (LSTM 128, Transformer 64/2L)</li>
+          <li>500 tekstów treningowych LM</li>
+          <li>Wymaga Morfeusz2</li>
+          <li>Traci na sufiksach krótkich (<code>-ć</code>, <code>-ych</code>)</li>
+          <li>Over-pen. testowane tylko na suffix</li>
+        </ul>
+      </div>
+      <div>
+        <p><strong>Co dalej:</strong></p>
+        <ul>
+          <li>Skalowanie vocab do 32k — <strong>ukończone</strong> (9/9)</li>
+          <li>Adaptacyjna kara α wg długości sufiksu</li>
+          <li>Test na czeskim, rosyjskim</li>
+          <li>Integracja HuggingFace + eval z Bielikiem</li>
+          <li>Większy korpus (Wikipedia/OSCAR)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================== -->
+<section class="title-slide">
+  <h1>Dziękuję za uwagę</h1>
+  <br>
+  <p style="font-size:1.1em;">Pytania?</p>
+  <br>
+  <p style="font-size:0.7em; color:#888;">morphbpe v0.1.0 — pip-installable, CLI, 29 testów</p>
+</section>
+
+</div>
+</div>
+
+<script src="reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'slide',
+    width: 1280,
+    height: 720,
+  });
+</script>
+</body>
+</html>
