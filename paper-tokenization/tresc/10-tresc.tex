@@ -410,7 +410,9 @@ Raportowane wartości: średnia $[\mathrm{CI}_{2{,}5\%},\, \mathrm{CI}_{97{,}5\%
     MorphBPE ($\alpha{=}2$) & 32\,000 & 1{,}049 & \textbf{0{,}308} [0{,}304, 0{,}311] & --- \\
     \addlinespace
     \rowcolor{slayergray}
-    Bielik-11B (ref.)    & 32\,128 & 2{,}970 & --- & --- \\
+    Bielik-11B orig. (ref.) & 32\,128 & 3{,}220 & --- & --- \\
+    \rowcolor{slayergray}
+    Bielik APT4 (ref.)   & $\sim$32k & 1{,}620 & --- & --- \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -423,8 +425,13 @@ Różnice wewnątrz CI --- brak istotnego kosztu compression.
 Dla kontekstualizacji wyników dołączamy Bielik-11B-v2 --- produkcyjny
 tokenizator (SentencePiece BPE, vocab=32\,128) wytrenowany na wielomiliardowym
 korpusie polskim. Przy porównywalnym rozmiarze słownika ($\sim$32k)
-MorphBPE osiąga fertility $2{,}8\times$ niższą (1{,}049 vs 2{,}970).
-Bezpośrednie porównanie MorphED z~Bielik nie jest możliwe (Bielik nie
+MorphBPE osiąga fertility $3{,}1\times$ niższą niż oryginalny Bielik
+(1{,}049 vs 3{,}220) i~$1{,}5\times$ niższą niż polsko-zoptymalizowany
+APT4 (1{,}049 vs 1{,}620). Oryginalny tokenizer Bielika (Mistral-derived,
+vocab=32\,128) jest używany w~Bielik-11B v2, v2.x i~v3.
+APT4 to nowy, polsko-zoptymalizowany tokenizer opisany w~raporcie
+o~optymalizacji tokenizera Bielik v3.
+Bezpośrednie porównanie MorphED nie jest możliwe (Bielik nie
 publikuje segmentacji morfologicznej), ale różnica fertility wskazuje,
 że MorphBPE produkuje znacznie bardziej kompaktową tokenizację.
 Uwaga: Bielik trenowany jest na innym, większym korpusie --- porównanie

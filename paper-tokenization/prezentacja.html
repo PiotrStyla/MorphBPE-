@@ -178,14 +178,16 @@
       <tr class="green-row"><td><strong>MorphBPE (α=2)</strong></td><td>16 000</td><td><strong>0.338</strong> [0.335, 0.342]</td><td>1.077</td></tr>
       <tr><td>BPE (α=0)</td><td>32 000</td><td>0.389 [0.385, 0.393]</td><td>1.020</td></tr>
       <tr class="green-row"><td><strong>MorphBPE (α=2)</strong></td><td>32 000</td><td><strong>0.308</strong> [0.304, 0.311]</td><td>1.049</td></tr>
-      <tr style="background:#e8eaf6;"><td><em>Bielik-11B (ref.)</em></td><td>32 128</td><td>—</td><td>2.970</td></tr>
+      <tr style="background:#e8eaf6;"><td><em>Bielik-11B orig. (ref.)</em></td><td>32 128</td><td>—</td><td>3.220</td></tr>
+      <tr style="background:#e8eaf6;"><td><em>Bielik APT4 (ref.)</em></td><td>~32k</td><td>—</td><td>1.620</td></tr>
     </table>
     <br>
     <ul style="max-width:700px; margin:0 auto; text-align:left;">
       <li>Redukcja MorphED: <span class="green-text">−3.6%</span> (500) → <span class="green-text">−6.8%</span> (1k) → <span class="green-text">−20.5%</span> (8k) → <span class="green-text">−23.4%</span> (16k) → <span class="green-text">−21.0%</span> (32k)</li>
       <li>CI 95% <strong>nie pokrywają się</strong> przy żadnym rozmiarze</li>
       <li>Fertility: Δ < 0.1% (500–1k), +2.8% (32k) — nadal niski koszt</li>
-      <li><strong>vs Bielik-11B (vocab≈32k):</strong> MorphBPE fertility <span class="green-text">2.8× niższa</span> (1.05 vs 2.97)</li>
+      <li><strong>vs Bielik orig. (vocab≈32k):</strong> MorphBPE fertility <span class="green-text">3.1× niższa</span> (1.05 vs 3.22)</li>
+      <li><strong>vs Bielik APT4 (zoptymalizowany):</strong> MorphBPE fertility <span class="green-text">1.5× niższa</span> (1.05 vs 1.62)</li>
     </ul>
   </div>
 </section>
