@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.16)  16 JUL 2026 08:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.16)  16 JUL 2026 08:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1218,31 +1218,35 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [6]
-Package pgfplots info on input line 546: Using 'lua backend=false' for axis: x 
+Package pgfplots info on input line 552: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[7] [8]
-Overfull \hbox (53.09866pt too wide) in paragraph at lines 673--686
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[7]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (53.09866pt too wide) in paragraph at lines 680--693
 \T1/lmr/m/n/10.95 cji i wy-daj-no±¢ mo-delu j¦-zyka, prze-pro-wa-dzi-li-±my sys
 -te-ma-tyczny prze-gl¡d $\OML/lmm/m/it/10.95  \OMS/lmsy/m/n/10.95 2 f\OT1/lmr/
 m/n/10.95 0[]0;  0[]1;  0[]25;  0[]5;  0[]75;  1[]0\OMS/lmsy/m/n/10.95 g$
  []
 
+[8]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 687.
-[9]
+(Font)              <12> on input line 694.
+ [9]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[10]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[11] [12])
-Overfull \hbox (112.64207pt too wide) in paragraph at lines 1052--14
+[10] [11] [12])
+Overfull \hbox (112.64207pt too wide) in paragraph at lines 1059--14
 \T1/lmr/m/n/10.95 Kod: \T1/lmtt/m/n/10.95 paper_experiments.py\T1/lmr/m/n/10.95
  , \T1/lmtt/m/n/10.95 lm_eval.py\T1/lmr/m/n/10.95 , \T1/lmtt/m/n/10.95 transfor
 mer_eval.py\T1/lmr/m/n/10.95 , \T1/lmtt/m/n/10.95 penalty_sweep.py\T1/lmr/m/n/1
@@ -1260,7 +1264,7 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Here is how much of TeX's memory you used:
  42212 strings out of 467871
  1028569 string characters out of 5417895
- 1509765 words of memory out of 5000000
+ 1510920 words of memory out of 5000000
  70428 multiletter control sequences out of 15000+600000
  705965 words of font info for 102 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1283,9 +1287,9 @@ y8.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lmt
 k10.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lm
 tt10.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/l
 mtt9.pfb>
-Output written on main.pdf (14 pages, 388800 bytes).
+Output written on main.pdf (14 pages, 389638 bytes).
 PDF statistics:
- 263 PDF objects out of 1000 (max. 8388607)
+ 264 PDF objects out of 1000 (max. 8388607)
  44 named destinations out of 1000 (max. 500000)
  85 words of extra memory for PDF output out of 10000 (max. 10000000)
 

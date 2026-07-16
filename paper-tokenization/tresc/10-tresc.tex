@@ -496,9 +496,15 @@ przy vocab=8k--32k niż przy 500--1000.
 
 \subsection*{Ewaluacja extrinsic}
 
+\textbf{Zakres.} Ewaluację modeli językowych (CE/PPL) wykonano wyłącznie
+przy vocab=500 i~1000. Skalowanie do vocab=8k, 16k i~32k obejmuje
+metryki intrinsic (Fertility i~MorphED; sek.~\ref{sec:scaling}), lecz nie
+trenowanie dodatkowych modeli LM. Dlatego większe słowniki nie występują
+w~tabelach ani wykresach CE/PPL.
+
 \begin{table}[h]
   \centering
-  \caption{Ewaluacja extrinsic: cross-entropy i~perplexity LSTM LM.
+  \caption{Ewaluacja extrinsic przy vocab=500 i~1000: cross-entropy i~perplexity LSTM LM.
   Model: LSTM(64, 128, 1 warstwa), 3 epoki, batch=128, seq\_len=32.}
   \label{tab:extrinsic}
   \begin{tabular}{lrccr}
@@ -556,8 +562,9 @@ przy vocab=8k--32k niż przy 500--1000.
       \addlegendentry{MorphBPE suffix}
     \end{axis}
   \end{tikzpicture}
-  \caption{Cross-entropy LSTM LM --- BPE vs MorphBPE suffix.
-  MorphBPE suffix obniża CE o~1{,}3\% (vocab=500) i~2{,}6\% (vocab=1000).}
+  \caption{Cross-entropy LSTM LM --- BPE vs MorphBPE suffix (vocab=500 i~1000).
+  MorphBPE suffix obniża CE o~1{,}3\% (vocab=500) i~2{,}6\% (vocab=1000).
+  Brak wyników CE/PPL dla 8k--32k: dla tych rozmiarów wykonano tylko ewaluację intrinsic.}
   \label{fig:ce}
 \end{figure}
 
@@ -575,7 +582,7 @@ przy większym słowniku.
 
 \begin{table}[h]
   \centering
-  \caption{Ewaluacja extrinsic: cross-entropy i~perplexity Transformer LM.
+  \caption{Ewaluacja extrinsic przy vocab=500 i~1000: cross-entropy i~perplexity Transformer LM.
   MorphBPE suffix: wariant strict ($\alpha = 1{,}0$).
   Model: Transformer(64, 4h, 2L, ff=256), 3 epoki, batch=128, seq\_len=32.}
   \label{tab:transformer}
