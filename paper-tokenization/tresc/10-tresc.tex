@@ -338,6 +338,7 @@ $V = 500$ i~$V = 1000$.
 Rozmiar słownika obejmuje znaki bazowe + scalone tokeny.
 
 \subsection*{Ewaluacja intrinsic}
+\label{sec:intrinsic}
 \textbf{Fertility} (Fert): liczba tokenów na słowo.
 Niżej = bardziej kompaktowa tokenizacja.
 \[
@@ -354,6 +355,7 @@ Niżej = lepszy alignment morfologiczny.
 \]
 
 \subsection*{Ewaluacja extrinsic}
+\label{sec:extrinsic}
 \textbf{Model języka LSTM:} jednowarstwowy LSTM
 ($\mathrm{embed\_dim}=64$, $\mathrm{hidden\_dim}=128$),
 trenowany na tokenach z~danego tokenizatora.

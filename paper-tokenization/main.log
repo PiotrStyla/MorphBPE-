@@ -1,86 +1,84 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.11)  13 JUL 2026 12:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.16)  16 JUL 2026 07:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **./main.tex
 (main.tex
-LaTeX2e <2026-06-01>
-L3 programming layer <2026-05-26>
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/base\article.cls
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/base\article.cls
 Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/base\size11.clo
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/base\size11.clo
 File: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count276
-\c@section=\count277
-\c@subsection=\count278
-\c@subsubsection=\count279
-\c@paragraph=\count280
-\c@subparagraph=\count281
-\c@figure=\count282
-\c@table=\count283
+\c@part=\count275
+\c@section=\count276
+\c@subsection=\count277
+\c@subsubsection=\count278
+\c@paragraph=\count279
+\c@subparagraph=\count280
+\c@figure=\count281
+\c@table=\count282
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
-\bibindent=\dimen150
+\bibindent=\dimen148
 )
 (formatka/slayer.sty
 Package: formatka/slayer 2026/06/24 Slayer â€” empiryczny raport
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/base\fontenc.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/base\fontenc.sty
 Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/base\inputenc.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/base\inputenc.sty
 Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks17
 \inpenc@posthook=\toks18
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/babel\babel.sty
-Package: babel 2026/05/20 v26.8 The multilingual framework for LuaLaTeX, pdfLaT
-eX and XeLaTeX
-\babel@savecnt=\count284
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/babel\babel.sty
+Package: babel 2025/12/11 v25.17 The multilingual framework for LuaLaTeX, pdfLa
+TeX and XeLaTeX
+\babel@savecnt=\count283
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
-ne 2084.
+ne 2068.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
-ne 2086.
+ne 2070.
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
-e 2088.
+e 2072.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
-e 2089.
+e 2073.
 LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
-on input line 2090.
+on input line 2074.
 LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
-on input line 2092.
+on input line 2076.
 LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
-on input line 2117.
-\U@D=\dimen151
+on input line 2101.
+\U@D=\dimen149
 \l@unhyphenated=\language79
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/babel\txtbabel.de
-f)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/babel\txtbabel.def)
 \bbl@readstream=\read2
-\bbl@dirlevel=\count285
+\bbl@dirlevel=\count284
 Package babel Info: Configuration files are deprecated, as
 (babel)             they can break document portability.
-(babel)             Reported on input line 4228.
+(babel)             Reported on input line 4196.
 
 *************************************
 * Local config file bblopts.cfg used
 *
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/arabi\bblopts.cfg
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/arabi\bblopts.cfg
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
  babel
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/babel/locale/pl\b
-abel-polish.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/babel/locale/pl\babe
+l-polish.tex)
 Package babel Info: Importing font and identification data for polish
-(babel)             from babel-pl.ini. Reported on input line 4356.
+(babel)             from babel-pl.ini. Reported on input line 4320.
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/babel-polish\polish
-.ldf
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/babel-polish\polish.ld
+f
 Language: polish 2022/03/12 1.3 Babel support for Polish
 Package babel Info: Making " an active character on input line 101.
-))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/lm\lmodern.sty
+)) (C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/lm\lmodern.sty
 Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -115,70 +113,64 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/geometry\geometry.s
-ty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/geometry\geometry.sty
 Package: geometry 2026/03/07 v6.0 Page Geometry
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/graphics\keyval.sty
-Package: keyval 2026-05-17 v1.15 key=value parser (DPC)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks19
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/iftex\ifvtex.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/iftex\iftex.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/iftex\iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 ))
-\Gm@cnth=\count286
-\Gm@cntv=\count287
-\c@Gm@tempcnt=\count288
-\Gm@bindingoffset=\dimen152
-\Gm@wd@mp=\dimen153
-\Gm@odd@mp=\dimen154
-\Gm@even@mp=\dimen155
-\Gm@layoutwidth=\dimen156
-\Gm@layoutheight=\dimen157
-\Gm@layouthoffset=\dimen158
-\Gm@layoutvoffset=\dimen159
+\Gm@cnth=\count285
+\Gm@cntv=\count286
+\c@Gm@tempcnt=\count287
+\Gm@bindingoffset=\dimen150
+\Gm@wd@mp=\dimen151
+\Gm@odd@mp=\dimen152
+\Gm@even@mp=\dimen153
+\Gm@layoutwidth=\dimen154
+\Gm@layoutheight=\dimen155
+\Gm@layouthoffset=\dimen156
+\Gm@layoutvoffset=\dimen157
 \Gm@dimlist=\toks20
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/geometry\geometry.c
-fg))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/parskip\parskip.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/geometry\geometry.cfg)
+) (C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/parskip\parskip.sty
 Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/kvoptions\kvoptions
-.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/kvoptions\kvoptions.st
+y
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/ltxcmds\ltxcmds.s
-ty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/ltxcmds\ltxcmds.sty
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/kvsetkeys\kvsetkeys
-.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/kvsetkeys\kvsetkeys.st
+y
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 ))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/etoolbox\etoolbox.s
-ty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count289
-))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/xcolor\xcolor.sty
+\etb@tempcnta=\count288
+)) (C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/xcolor\xcolor.sty
 Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/graphics-cfg\color.
-cfg
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/graphics-cfg\color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 274.
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/graphics-def\pdftex
-.def
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/graphics-def\pdftex.de
+f
 File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/graphics\mathcolor.
-ltx)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/graphics\mathcolor.ltx
+)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
 Package xcolor Info: Model `RGB' extended on input line 1365.
@@ -189,46 +181,45 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/titlesec\titlesec.s
-ty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/titlesec\titlesec.sty
 Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \ttl@box=\box53
 \beforetitleunit=\skip51
 \aftertitleunit=\skip52
-\ttl@plus=\dimen160
-\ttl@minus=\dimen161
+\ttl@plus=\dimen158
+\ttl@minus=\dimen159
 \ttl@toksa=\toks21
-\titlewidth=\dimen162
-\titlewidthlast=\dimen163
-\titlewidthfirst=\dimen164
-)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/amsmath\amsmath.sty
-Package: amsmath 2026/05/19 v2.18d AMS math features
+\titlewidth=\dimen160
+\titlewidthlast=\dimen161
+\titlewidthfirst=\dimen162
+) (C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/amsmath\amsmath.sty
+Package: amsmath 2025/07/09 v2.17z AMS math features
 \@mathmargin=\skip53
-For additional information on amsmath, use the `?' option.
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/amsmath\amstext.sty
+For additional information on amsmath, use the `?' option.
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/amsmath\amstext.sty
 Package: amstext 2024/11/17 v2.01 AMS text
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/amsmath\amsgen.sty
+
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks22
-\ex@=\dimen165
+\ex@=\dimen163
 ))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/amsmath\amsbsy.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen166
-) (C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/amsmath\amsopn.st
-y
+\pmbraise@=\dimen164
+)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count290
+\inf@bad=\count289
 LaTeX Info: Redefining \frac on input line 233.
-\uproot@=\count291
-\leftroot@=\count292
+\uproot@=\count290
+\leftroot@=\count291
 LaTeX Info: Redefining \overline on input line 398.
 LaTeX Info: Redefining \colon on input line 409.
-\classnum@=\count293
-\DOTSCASE@=\count294
+\classnum@=\count292
+\DOTSCASE@=\count293
 LaTeX Info: Redefining \ldots on input line 495.
 LaTeX Info: Redefining \dots on input line 498.
 LaTeX Info: Redefining \cdots on input line 619.
@@ -238,77 +229,74 @@ LaTeX Info: Redefining \big on input line 721.
 LaTeX Info: Redefining \Big on input line 722.
 LaTeX Info: Redefining \bigg on input line 723.
 LaTeX Info: Redefining \Bigg on input line 724.
-\big@size=\dimen167
+\big@size=\dimen165
 LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
-\macc@depth=\count295
+\macc@depth=\count294
 LaTeX Info: Redefining \bmod on input line 904.
 LaTeX Info: Redefining \pmod on input line 909.
 LaTeX Info: Redefining \smash on input line 939.
 LaTeX Info: Redefining \relbar on input line 969.
 LaTeX Info: Redefining \Relbar on input line 970.
-\c@MaxMatrixCols=\count296
+\c@MaxMatrixCols=\count295
 \dotsspace@=\muskip17
-\c@parentequation=\count297
-\dspbrk@lvl=\count298
+\c@parentequation=\count296
+\dspbrk@lvl=\count297
 \tag@help=\toks23
-\row@=\count299
-\column@=\count300
-\maxfields@=\count301
+\row@=\count298
+\column@=\count299
+\maxfields@=\count300
 \andhelp@=\toks24
-\eqnshift@=\dimen168
-\alignsep@=\dimen169
-\tagshift@=\dimen170
-\tagwidth@=\dimen171
-\totwidth@=\dimen172
-\lineht@=\dimen173
+\eqnshift@=\dimen166
+\alignsep@=\dimen167
+\tagshift@=\dimen168
+\tagwidth@=\dimen169
+\totwidth@=\dimen170
+\lineht@=\dimen171
 \@envbody=\toks25
 \multlinegap=\skip54
 \multlinetaggap=\skip55
 \mathdisplay@stack=\toks26
-LaTeX Info: Redefining \[ on input line 2965.
-LaTeX Info: Redefining \] on input line 2966.
+LaTeX Info: Redefining \[ on input line 2950.
+LaTeX Info: Redefining \] on input line 2951.
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/amsfonts\amssymb.st
-y
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/amsfonts\amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/amsfonts\amsfonts.s
-ty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/amsfonts\amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/siunitx\siunitx.sty
+)) (C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/siunitx\siunitx.sty
 Package: siunitx 2026-05-15 v3.5.5 A comprehensive (SI) units package
-\l__siunitx_number_uncert_offset_int=\count302
-\l__siunitx_number_exponent_fixed_int=\count303
-\l__siunitx_number_min_decimal_int=\count304
-\l__siunitx_number_min_integer_int=\count305
-\l__siunitx_number_round_precision_int=\count306
-\l__siunitx_number_lower_threshold_int=\count307
-\l__siunitx_number_upper_threshold_int=\count308
-\l__siunitx_number_group_first_int=\count309
-\l__siunitx_number_group_size_int=\count310
-\l__siunitx_number_group_min_int=\count311
-\l__siunitx_number_group_minimum_int=\count312
-\l__siunitx_compound_count_int=\count313
+\l__siunitx_number_uncert_offset_int=\count301
+\l__siunitx_number_exponent_fixed_int=\count302
+\l__siunitx_number_min_decimal_int=\count303
+\l__siunitx_number_min_integer_int=\count304
+\l__siunitx_number_round_precision_int=\count305
+\l__siunitx_number_lower_threshold_int=\count306
+\l__siunitx_number_upper_threshold_int=\count307
+\l__siunitx_number_group_first_int=\count308
+\l__siunitx_number_group_size_int=\count309
+\l__siunitx_number_group_min_int=\count310
+\l__siunitx_number_group_minimum_int=\count311
+\l__siunitx_compound_count_int=\count312
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/translations\transl
-ations.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/translations\translati
+ons.sty
 Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages
  (CN)
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pdftexcmds\pdftex
-cmds.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pdftexcmds\pdftexcmd
+s.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/infwarerr\infware
-rr.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/infwarerr\infwarerr.
+sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -316,638 +304,624 @@ Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 ))
 \l__siunitx_table_tmp_box=\box56
-\l__siunitx_table_tmp_dim=\dimen174
-\l__siunitx_table_column_width_dim=\dimen175
+\l__siunitx_table_tmp_dim=\dimen172
+\l__siunitx_table_column_width_dim=\dimen173
 \l__siunitx_table_integer_box=\box57
 \l__siunitx_table_decimal_box=\box58
 \l__siunitx_table_uncert_box=\box59
 \l__siunitx_table_before_box=\box60
 \l__siunitx_table_after_box=\box61
-\l__siunitx_table_before_dim=\dimen176
-\l__siunitx_table_carry_dim=\dimen177
-\l__siunitx_unit_tmp_int=\count314
-\l__siunitx_unit_position_int=\count315
-\l__siunitx_unit_total_int=\count316
-\l__siunitx_sexagesimal_tmp_dim=\dimen178
+\l__siunitx_table_before_dim=\dimen174
+\l__siunitx_table_carry_dim=\dimen175
+\l__siunitx_unit_tmp_int=\count313
+\l__siunitx_unit_position_int=\count314
+\l__siunitx_unit_total_int=\count315
+\l__siunitx_sexagesimal_tmp_dim=\dimen176
 \l__siunitx_sexagesimal_marker_box=\box62
 \l__siunitx_sexagesimal_unit_box=\box63
-
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/tools\array.sty
-Package: array 2026/02/24 v2.7b Tabular extension package (FMi)
-\col@sep=\dimen179
+ (C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/tools\array.sty
+Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
+\col@sep=\dimen177
 \ar@mcellbox=\box64
-\extrarowheight=\dimen180
+\extrarowheight=\dimen178
 \NC@list=\toks27
 \extratabsurround=\skip56
 \backup@length=\skip57
 \ar@cellbox=\box65
 ))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/booktabs\booktabs.s
-ty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/booktabs\booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen181
-\lightrulewidth=\dimen182
-\cmidrulewidth=\dimen183
-\belowrulesep=\dimen184
-\belowbottomsep=\dimen185
-\aboverulesep=\dimen186
-\abovetopsep=\dimen187
-\cmidrulesep=\dimen188
-\cmidrulekern=\dimen189
-\defaultaddspace=\dimen190
-\@cmidla=\count317
-\@cmidlb=\count318
-\@aboverulesep=\dimen191
-\@belowrulesep=\dimen192
-\@thisruleclass=\count319
-\@lastruleclass=\count320
-\@thisrulewidth=\dimen193
-)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/colortbl\colortbl.s
-ty
+\heavyrulewidth=\dimen179
+\lightrulewidth=\dimen180
+\cmidrulewidth=\dimen181
+\belowrulesep=\dimen182
+\belowbottomsep=\dimen183
+\aboverulesep=\dimen184
+\abovetopsep=\dimen185
+\cmidrulesep=\dimen186
+\cmidrulekern=\dimen187
+\defaultaddspace=\dimen188
+\@cmidla=\count316
+\@cmidlb=\count317
+\@aboverulesep=\dimen189
+\@belowrulesep=\dimen190
+\@thisruleclass=\count318
+\@lastruleclass=\count319
+\@thisrulewidth=\dimen191
+) (C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/colortbl\colortbl.st
+y
 Package: colortbl 2026/05/01 v1.0l Color table columns (DPC)
-
-new hooks used!!
+\everycr=\toks28
 \minrowclearance=\skip58
-\rownum=\count321
+\rownum=\count320
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/graphics\graphicx.s
-ty
-Package: graphicx 2026-05-17 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/graphics\graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/graphics\graphics.s
-ty
-Package: graphics 2026-05-17 v1.4h Standard LaTeX Graphics (DPC,SPQR)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/graphics\graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/graphics\trig.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/graphics\trig.sty
 Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/graphics-cfg\graphi
-cs.cfg
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/graphics-cfg\graphics.
+cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 106.
 )
-\Gin@req@height=\dimen194
-\Gin@req@width=\dimen195
+\Gin@req@height=\dimen192
+\Gin@req@width=\dimen193
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/pgfplots\pgfplots.s
-ty
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots\pgfplots
-.revision.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/pgfplots\pgfplots.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots\pgfplots.re
+vision.tex)
 Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/pgf/frontendlayer\t
-ikz.sty
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/pgf/basiclayer\pgf.
-sty
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/pgf/utilities\pgfrc
-s.sty
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/utilities\pgf
-util-common.tex
-\pgfutil@everybye=\toks28
-\pgfutil@tempdima=\dimen196
-\pgfutil@tempdimb=\dimen197
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/pgf/frontendlayer\tikz
+.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/pgf/basiclayer\pgf.sty
+
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/pgf/utilities\pgfrcs.s
+ty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/utilities\pgfuti
+l-common.tex
+\pgfutil@everybye=\toks29
+\pgfutil@tempdima=\dimen194
+\pgfutil@tempdimb=\dimen195
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/utilities\pgf
-util-latex.def
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/utilities\pgfuti
+l-latex.def
 \pgfutil@abb=\box66
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/utilities\pgf
-rcs.code.tex
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf\pgf.revision.
-tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/utilities\pgfrcs
+.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf\pgf.revision.tex
+)
 Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
 ))
 Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/pgf/basiclayer\pgfc
-ore.sty
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/pgf/systemlayer\pgf
-sys.sty
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/systemlayer\p
-gfsys.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/pgf/basiclayer\pgfcore
+.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/pgf/systemlayer\pgfsys
+.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/systemlayer\pgfs
+ys.code.tex
 Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/utilities\pgf
-keys.code.tex
-\pgfkeys@pathtoks=\toks29
-\pgfkeys@temptoks=\toks30
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/utilities\pgfkey
+s.code.tex
+\pgfkeys@pathtoks=\toks30
+\pgfkeys@temptoks=\toks31
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/utilities\pgf
-keyslibraryfiltered.code.tex
-\pgfkeys@tmptoks=\toks31
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/utilities\pgfkey
+slibraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks32
 ))
-\pgf@x=\dimen198
-\pgf@y=\dimen199
-\pgf@xa=\dimen256
-\pgf@ya=\dimen257
-\pgf@xb=\dimen258
-\pgf@yb=\dimen259
-\pgf@xc=\dimen260
-\pgf@yc=\dimen261
-\pgf@xd=\dimen262
-\pgf@yd=\dimen263
+\pgf@x=\dimen196
+\pgf@y=\dimen197
+\pgf@xa=\dimen198
+\pgf@ya=\dimen199
+\pgf@xb=\dimen256
+\pgf@yb=\dimen257
+\pgf@xc=\dimen258
+\pgf@yc=\dimen259
+\pgf@xd=\dimen260
+\pgf@yd=\dimen261
 \w@pgf@writea=\write3
 \r@pgf@reada=\read3
-\c@pgf@counta=\count322
-\c@pgf@countb=\count323
-\c@pgf@countc=\count324
-\c@pgf@countd=\count325
-\t@pgf@toka=\toks32
-\t@pgf@tokb=\toks33
-\t@pgf@tokc=\toks34
-\pgf@sys@id@count=\count326
+\c@pgf@counta=\count321
+\c@pgf@countb=\count322
+\c@pgf@countc=\count323
+\c@pgf@countd=\count324
+\t@pgf@toka=\toks33
+\t@pgf@tokb=\toks34
+\t@pgf@tokc=\toks35
+\pgf@sys@id@count=\count325
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/systemlayer\p
-gf.cfg
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/systemlayer\pgf.
+cfg
 File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
 )
 Driver file for pgf: pgfsys-pdftex.def
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/systemlayer\p
-gfsys-pdftex.def
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/systemlayer\pgfs
+ys-pdftex.def
 File: pgfsys-pdftex.def 2025-08-29 v3.1.11a (3.1.11a)
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/systemlayer\p
-gfsys-common-pdf.def
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/systemlayer\pgfs
+ys-common-pdf.def
 File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
 )))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/systemlayer\p
-gfsyssoftpath.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/systemlayer\pgfs
+yssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfsyssoftpath@smallbuffer@items=\count327
-\pgfsyssoftpath@bigbuffer@items=\count328
+\pgfsyssoftpath@smallbuffer@items=\count326
+\pgfsyssoftpath@bigbuffer@items=\count327
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/systemlayer\p
-gfsysprotocol.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/systemlayer\pgfs
+ysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcore.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+re.code.tex
 Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/math\pgfmath.
-code.tex
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/math\pgfmathu
-til.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/math\pgfmathp
-arser.code.tex
-\pgfmath@dimen=\dimen264
-\pgfmath@count=\count329
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/math\pgfmath.cod
+e.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/math\pgfmathutil
+.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/math\pgfmathpars
+er.code.tex
+\pgfmath@dimen=\dimen262
+\pgfmath@count=\count328
 \pgfmath@box=\box67
-\pgfmath@toks=\toks35
-\pgfmath@stack@operand=\toks36
-\pgfmath@stack@operation=\toks37
+\pgfmath@toks=\toks36
+\pgfmath@stack@operand=\toks37
+\pgfmath@stack@operation=\toks38
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/math\pgfmathf
-unctions.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/math\pgfmathf
-unctions.basic.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/math\pgfmathf
-unctions.trigonometric.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/math\pgfmathf
-unctions.random.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/math\pgfmathf
-unctions.comparison.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/math\pgfmathf
-unctions.base.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/math\pgfmathf
-unctions.round.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/math\pgfmathf
-unctions.misc.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/math\pgfmathf
-unctions.integerarithmetics.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/math\pgfmathc
-alc.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/math\pgfmathf
-loat.code.tex
-\c@pgfmathroundto@lastzeros=\count330
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/math\pgfmathfunc
+tions.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/math\pgfmathfunc
+tions.basic.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/math\pgfmathfunc
+tions.trigonometric.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/math\pgfmathfunc
+tions.random.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/math\pgfmathfunc
+tions.comparison.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/math\pgfmathfunc
+tions.base.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/math\pgfmathfunc
+tions.round.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/math\pgfmathfunc
+tions.misc.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/math\pgfmathfunc
+tions.integerarithmetics.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/math\pgfmathcalc
+.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/math\pgfmathfloa
+t.code.tex
+\c@pgfmathroundto@lastzeros=\count329
 ))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/math\pgfint.c
-ode.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcorepoints.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/math\pgfint.code
+.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+repoints.code.tex
 File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@picminx=\dimen265
-\pgf@picmaxx=\dimen266
-\pgf@picminy=\dimen267
-\pgf@picmaxy=\dimen268
-\pgf@pathminx=\dimen269
-\pgf@pathmaxx=\dimen270
-\pgf@pathminy=\dimen271
-\pgf@pathmaxy=\dimen272
-\pgf@xx=\dimen273
-\pgf@xy=\dimen274
-\pgf@yx=\dimen275
-\pgf@yy=\dimen276
-\pgf@zx=\dimen277
-\pgf@zy=\dimen278
+\pgf@picminx=\dimen263
+\pgf@picmaxx=\dimen264
+\pgf@picminy=\dimen265
+\pgf@picmaxy=\dimen266
+\pgf@pathminx=\dimen267
+\pgf@pathmaxx=\dimen268
+\pgf@pathminy=\dimen269
+\pgf@pathmaxy=\dimen270
+\pgf@xx=\dimen271
+\pgf@xy=\dimen272
+\pgf@yx=\dimen273
+\pgf@yy=\dimen274
+\pgf@zx=\dimen275
+\pgf@zy=\dimen276
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcorepathconstruct.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+repathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@path@lastx=\dimen279
-\pgf@path@lasty=\dimen280
+\pgf@path@lastx=\dimen277
+\pgf@path@lasty=\dimen278
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcorepathusage.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+repathusage.code.tex
 File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@shorten@end@additional=\dimen281
-\pgf@shorten@start@additional=\dimen282
+\pgf@shorten@end@additional=\dimen279
+\pgf@shorten@start@additional=\dimen280
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcorescopes.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+rescopes.code.tex
 File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfpic=\box68
 \pgf@hbox=\box69
 \pgf@layerbox@main=\box70
-\pgf@picture@serial@count=\count331
+\pgf@picture@serial@count=\count330
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcoregraphicstate.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+regraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgflinewidth=\dimen283
+\pgflinewidth=\dimen281
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcoretransformations.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+retransformations.code.tex
 File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@pt@x=\dimen284
-\pgf@pt@y=\dimen285
-\pgf@pt@temp=\dimen286
+\pgf@pt@x=\dimen282
+\pgf@pt@y=\dimen283
+\pgf@pt@temp=\dimen284
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcorequick.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+requick.code.tex
 File: pgfcorequick.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcoreobjects.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+reobjects.code.tex
 File: pgfcoreobjects.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcorepathprocessing.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+repathprocessing.code.tex
 File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcorearrows.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+rearrows.code.tex
 File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfarrowsep=\dimen287
+\pgfarrowsep=\dimen285
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcoreshade.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+reshade.code.tex
 File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@max=\dimen288
-\pgf@sys@shading@range@num=\count332
-\pgf@shadingcount=\count333
+\pgf@max=\dimen286
+\pgf@sys@shading@range@num=\count331
+\pgf@shadingcount=\count332
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcoreimage.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+reimage.code.tex
 File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcoreexternal.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+reexternal.code.tex
 File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfexternal@startupbox=\box71
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcorelayers.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+relayers.code.tex
 File: pgfcorelayers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcoretransparency.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+retransparency.code.tex
 File: pgfcoretransparency.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcorepatterns.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+repatterns.code.tex
 File: pgfcorepatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/basiclayer\pg
-fcorerdf.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/basiclayer\pgfco
+rerdf.code.tex
 File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/modules\pgfmo
-duleshapes.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/modules\pgfmodul
+eshapes.code.tex
 File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfnodeparttextbox=\box72
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/modules\pgfmo
-duleplot.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/modules\pgfmodul
+eplot.code.tex
 File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/pgf/compatibility\p
-gfcomp-version-0-65.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/pgf/compatibility\pgfc
+omp-version-0-65.sty
 Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@nodesepstart=\dimen289
-\pgf@nodesepend=\dimen290
+\pgf@nodesepstart=\dimen287
+\pgf@nodesepend=\dimen288
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/pgf/compatibility\p
-gfcomp-version-1-18.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/pgf/compatibility\pgfc
+omp-version-1-18.sty
 Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
 ))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/pgf/utilities\pgffo
-r.sty
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/pgf/utilities\pgfke
-ys.sty
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/utilities\pgf
-keys.code.tex))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/pgf/math\pgfmath.st
-y
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/math\pgfmath.
-code.tex))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/utilities\pgf
-for.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/pgf/utilities\pgffor.s
+ty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/pgf/utilities\pgfkeys.
+sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/utilities\pgfkey
+s.code.tex))
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/pgf/math\pgfmath.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/math\pgfmath.cod
+e.tex))
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/utilities\pgffor
+.code.tex
 Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
-\pgffor@iter=\dimen291
-\pgffor@skip=\dimen292
-\pgffor@stack=\toks38
-\pgffor@toks=\toks39
+\pgffor@iter=\dimen289
+\pgffor@skip=\dimen290
+\pgffor@stack=\toks39
+\pgffor@toks=\toks40
 ))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/frontendlayer
-/tikz\tikz.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/frontendlayer/ti
+kz\tikz.code.tex
 Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/libraries\pgf
-libraryplothandlers.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/libraries\pgflib
+raryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@plot@mark@count=\count334
-\pgfplotmarksize=\dimen293
+\pgf@plot@mark@count=\count333
+\pgfplotmarksize=\dimen291
 )
-\tikz@lastx=\dimen294
-\tikz@lasty=\dimen295
-\tikz@lastxsaved=\dimen296
-\tikz@lastysaved=\dimen297
-\tikz@lastmovetox=\dimen298
-\tikz@lastmovetoy=\dimen299
-\tikzleveldistance=\dimen300
-\tikzsiblingdistance=\dimen301
+\tikz@lastx=\dimen292
+\tikz@lasty=\dimen293
+\tikz@lastxsaved=\dimen294
+\tikz@lastysaved=\dimen295
+\tikz@lastmovetox=\dimen296
+\tikz@lastmovetoy=\dimen297
+\tikzleveldistance=\dimen298
+\tikzsiblingdistance=\dimen299
 \tikz@figbox=\box73
 \tikz@figbox@bg=\box74
 \tikz@tempbox=\box75
 \tikz@tempbox@bg=\box76
-\tikztreelevel=\count335
-\tikznumberofchildren=\count336
-\tikznumberofcurrentchild=\count337
-\tikz@fig@count=\count338
+\tikztreelevel=\count334
+\tikznumberofchildren=\count335
+\tikznumberofcurrentchild=\count336
+\tikz@fig@count=\count337
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/modules\pgfmo
-dulematrix.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/modules\pgfmodul
+ematrix.code.tex
 File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfmatrixcurrentrow=\count339
-\pgfmatrixcurrentcolumn=\count340
-\pgf@matrix@numberofcolumns=\count341
+\pgfmatrixcurrentrow=\count338
+\pgfmatrixcurrentcolumn=\count339
+\pgf@matrix@numberofcolumns=\count340
 )
-\tikz@expandcount=\count342
+\tikz@expandcount=\count341
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/frontendlayer
-/tikz/libraries\tikzlibrarytopaths.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/frontendlayer/ti
+kz/libraries\tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots\pgfplots
-.code.tex
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots\pgfplots
-core.code.tex
-\t@pgfplots@toka=\toks40
-\t@pgfplots@tokb=\toks41
-\t@pgfplots@tokc=\toks42
-\pgfplots@tmpa=\dimen302
-\c@pgfplots@coordindex=\count343
-\c@pgfplots@scanlineindex=\count344
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots\pgfplots.co
+de.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots\pgfplotscor
+e.code.tex
+\t@pgfplots@toka=\toks41
+\t@pgfplots@tokb=\toks42
+\t@pgfplots@tokc=\toks43
+\pgfplots@tmpa=\dimen300
+\c@pgfplots@coordindex=\count342
+\c@pgfplots@scanlineindex=\count343
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/sys\pgfp
-lotssysgeneric.code.tex))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/libs\pgf
-plotslibrary.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/oldpgfco
-mpatib\pgfplotsoldpgfsupp_loader.code.tex
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/libraries\pgf
-libraryfpu.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/sys\pgfplot
+ssysgeneric.code.tex))
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/libs\pgfplo
+tslibrary.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/oldpgfcompa
+tib\pgfplotsoldpgfsupp_loader.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/libraries\pgflib
+raryfpu.code.tex)
 Package pgfplots: loading complementary utilities for your pgf version...
-\t@pgf@toka=\toks43
-\t@pgf@tokb=\toks44
-\t@pgf@tokc=\toks45
+\t@pgf@toka=\toks44
+\t@pgf@tokb=\toks45
+\t@pgf@tokc=\toks46
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/oldpgfco
-mpatib\pgfplotsoldpgfsupp_pgfutil-common-lists.tex))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/util\pgf
-plotsutil.code.tex
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/liststru
-cture\pgfplotsliststructure.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/liststru
-cture\pgfplotsliststructureext.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/liststru
-cture\pgfplotsarray.code.tex
-\c@pgfplotsarray@tmp=\count345
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/oldpgfcompa
+tib\pgfplotsoldpgfsupp_pgfutil-common-lists.tex))
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/util\pgfplo
+tsutil.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/liststructu
+re\pgfplotsliststructure.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/liststructu
+re\pgfplotsliststructureext.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/liststructu
+re\pgfplotsarray.code.tex
+\c@pgfplotsarray@tmp=\count344
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/liststru
-cture\pgfplotsmatrix.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/numtable
-\pgfplotstableshared.code.tex
-\c@pgfplotstable@counta=\count346
-\t@pgfplotstable@a=\toks46
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/liststructu
+re\pgfplotsmatrix.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/numtable\pg
+fplotstableshared.code.tex
+\c@pgfplotstable@counta=\count345
+\t@pgfplotstable@a=\toks47
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/liststru
-cture\pgfplotsdeque.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/util\pgf
-plotsbinary.code.tex
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/util\pgf
-plotsbinary.data.code.tex))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/util\pgf
-plotsutil.verb.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/libs\pgf
-librarypgfplots.surfshading.code.tex
-\c@pgfplotslibrarysurf@no=\count347
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/liststructu
+re\pgfplotsdeque.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/util\pgfplo
+tsbinary.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/util\pgfplo
+tsbinary.data.code.tex))
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/util\pgfplo
+tsutil.verb.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/libs\pgflib
+rarypgfplots.surfshading.code.tex
+\c@pgfplotslibrarysurf@no=\count346
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/sys\pgfl
-ibrarypgfplots.surfshading.pgfsys-pdftex.def)))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/util\pgf
-plotscolormap.code.tex
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/util\pgf
-plotscolor.code.tex))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots\pgfplots
-stackedplots.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots\pgfplots
-plothandlers.code.tex
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots\pgfplots
-meshplothandler.code.tex
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots\pgfplots
-meshplotimage.code.tex)))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots\pgfplots
-.scaling.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots\pgfplots
-coordprocessing.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots\pgfplots
-.errorbars.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots\pgfplots
-.markers.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots\pgfplots
-ticks.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots\pgfplots
-.paths.code.tex)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/frontendlayer
-/tikz/libraries\tikzlibrarydecorations.code.tex
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/modules\pgfmo
-duledecorations.code.tex
-\pgfdecoratedcompleteddistance=\dimen303
-\pgfdecoratedremainingdistance=\dimen304
-\pgfdecoratedinputsegmentcompleteddistance=\dimen305
-\pgfdecoratedinputsegmentremainingdistance=\dimen306
-\pgf@decorate@distancetomove=\dimen307
-\pgf@decorate@repeatstate=\count348
-\pgfdecorationsegmentamplitude=\dimen308
-\pgfdecorationsegmentlength=\dimen309
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/sys\pgflibr
+arypgfplots.surfshading.pgfsys-pdftex.def)))
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/util\pgfplo
+tscolormap.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/util\pgfplo
+tscolor.code.tex))
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots\pgfplotssta
+ckedplots.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots\pgfplotsplo
+thandlers.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots\pgfplotsmes
+hplothandler.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots\pgfplotsmes
+hplotimage.code.tex)))
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots\pgfplots.sc
+aling.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots\pgfplotscoo
+rdprocessing.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots\pgfplots.er
+rorbars.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots\pgfplots.ma
+rkers.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots\pgfplotstic
+ks.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots\pgfplots.pa
+ths.code.tex)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/frontendlayer/ti
+kz/libraries\tikzlibrarydecorations.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/modules\pgfmodul
+edecorations.code.tex
+\pgfdecoratedcompleteddistance=\dimen301
+\pgfdecoratedremainingdistance=\dimen302
+\pgfdecoratedinputsegmentcompleteddistance=\dimen303
+\pgfdecoratedinputsegmentremainingdistance=\dimen304
+\pgf@decorate@distancetomove=\dimen305
+\pgf@decorate@repeatstate=\count347
+\pgfdecorationsegmentamplitude=\dimen306
+\pgfdecorationsegmentlength=\dimen307
 )
 \tikz@lib@dec@box=\box77
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/frontendlayer
-/tikz/libraries\tikzlibrarydecorations.pathmorphing.code.tex
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/libraries/dec
-orations\pgflibrarydecorations.pathmorphing.code.tex))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/frontendlayer
-/tikz/libraries\tikzlibrarydecorations.pathreplacing.code.tex
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/libraries/dec
-orations\pgflibrarydecorations.pathreplacing.code.tex))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgfplots/libs\tik
-zlibrarypgfplots.contourlua.code.tex)
-\pgfplots@numplots=\count349
-\pgfplots@xmin@reg=\dimen310
-\pgfplots@xmax@reg=\dimen311
-\pgfplots@ymin@reg=\dimen312
-\pgfplots@ymax@reg=\dimen313
-\pgfplots@zmin@reg=\dimen314
-\pgfplots@zmax@reg=\dimen315
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/frontendlayer/ti
+kz/libraries\tikzlibrarydecorations.pathmorphing.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/libraries/decora
+tions\pgflibrarydecorations.pathmorphing.code.tex))
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/frontendlayer/ti
+kz/libraries\tikzlibrarydecorations.pathreplacing.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/libraries/decora
+tions\pgflibrarydecorations.pathreplacing.code.tex))
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgfplots/libs\tikzli
+brarypgfplots.contourlua.code.tex)
+\pgfplots@numplots=\count348
+\pgfplots@xmin@reg=\dimen308
+\pgfplots@xmax@reg=\dimen309
+\pgfplots@ymin@reg=\dimen310
+\pgfplots@ymax@reg=\dimen311
+\pgfplots@zmin@reg=\dimen312
+\pgfplots@zmax@reg=\dimen313
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/frontendlayer
-/tikz/libraries\tikzlibraryplotmarks.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/frontendlayer/ti
+kz/libraries\tikzlibraryplotmarks.code.tex
 File: tikzlibraryplotmarks.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pgf/libraries\pgf
-libraryplotmarks.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pgf/libraries\pgflib
+raryplotmarks.code.tex
 File: pgflibraryplotmarks.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/caption\caption.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/caption\caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/caption\caption3.st
-y
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/caption\caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen316
-\captionmargin=\dimen317
-\caption@leftmargin=\dimen318
-\caption@rightmargin=\dimen319
-\caption@width=\dimen320
-\caption@indent=\dimen321
-\caption@parindent=\dimen322
-\caption@hangindent=\dimen323
+\caption@tempdima=\dimen314
+\captionmargin=\dimen315
+\caption@leftmargin=\dimen316
+\caption@rightmargin=\dimen317
+\caption@width=\dimen318
+\caption@indent=\dimen319
+\caption@parindent=\dimen320
+\caption@hangindent=\dimen321
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count350
-\c@continuedfloat=\count351
-)
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/hyperref\hyperref.s
-ty
-Package: hyperref 2026-04-24 v7.01q Hypertext links for LaTeX
+\c@caption@flags=\count349
+\c@continuedfloat=\count350
+) (C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/hyperref\hyperref.st
+y
+Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/kvdefinekeys\kvde
-finekeys.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/kvdefinekeys\kvdefin
+ekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/pdfescape\pdfesca
-pe.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/pdfescape\pdfescape.
+sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/hycolor\hycolor.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/hycolor\hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/hyperref\nameref.st
-y
-Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/hyperref\nameref.sty
+Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/refcount\refcount.s
-ty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/refcount\refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/gettitlestring\ge
-ttitlestring.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/gettitlestring\getti
+tlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count352
+\c@section@level=\count351
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/stringenc\stringe
-nc.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/stringenc\stringenc.
+sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
-\@linkdim=\dimen324
-\Hy@linkcounter=\count353
-\Hy@pagecounter=\count354
+\@linkdim=\dimen322
+\Hy@linkcounter=\count352
+\Hy@pagecounter=\count353
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/hyperref\pd1enc.def
-File: pd1enc.def 2026-04-24 v7.01q Hyperref: PDFDocEncoding definition (HO)
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/hyperref\pd1enc.def
+File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/intcalc\intcalc.s
-ty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count355
-
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/hyperref\puenc.def
-File: puenc.def 2026-04-24 v7.01q Hyperref: PDF Unicode definition (HO)
+\Hy@SavedSpaceFactor=\count354
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/hyperref\puenc.def
+File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Hyper figures OFF on input line 4199.
-Package hyperref Info: Link nesting OFF on input line 4204.
-Package hyperref Info: Hyper index ON on input line 4207.
-Package hyperref Info: Plain pages OFF on input line 4214.
-Package hyperref Info: Backreferencing OFF on input line 4219.
+Package hyperref Info: Hyper figures OFF on input line 4195.
+Package hyperref Info: Link nesting OFF on input line 4200.
+Package hyperref Info: Hyper index ON on input line 4203.
+Package hyperref Info: Plain pages OFF on input line 4210.
+Package hyperref Info: Backreferencing OFF on input line 4215.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4466.
-\c@Hy@tempcnt=\count356
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/url\url.sty
+Package hyperref Info: Bookmarks ON on input line 4462.
+\c@Hy@tempcnt=\count355
+
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/url\url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4805.
-\XeTeXLinkMargin=\dimen325
+LaTeX Info: Redefining \url on input line 4801.
+\XeTeXLinkMargin=\dimen323
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/bitset\bitset.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/bigintcalc\bigint
-calc.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/bigintcalc\bigintcal
+c.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count357
-\Field@Width=\dimen326
-\Fld@charsize=\dimen327
-Package hyperref Info: Hyper figures OFF on input line 6091.
-Package hyperref Info: Link nesting OFF on input line 6096.
-Package hyperref Info: Hyper index ON on input line 6099.
-Package hyperref Info: backreferencing OFF on input line 6106.
-Package hyperref Info: Link coloring OFF on input line 6111.
-Package hyperref Info: Link coloring with OCG OFF on input line 6116.
-Package hyperref Info: PDF/A mode OFF on input line 6121.
-\Hy@abspage=\count358
-\c@Item=\count359
-\c@Hfootnote=\count360
+\Fld@menulength=\count356
+\Field@Width=\dimen324
+\Fld@charsize=\dimen325
+Package hyperref Info: Hyper figures OFF on input line 6078.
+Package hyperref Info: Link nesting OFF on input line 6083.
+Package hyperref Info: Hyper index ON on input line 6086.
+Package hyperref Info: backreferencing OFF on input line 6093.
+Package hyperref Info: Link coloring OFF on input line 6098.
+Package hyperref Info: Link coloring with OCG OFF on input line 6103.
+Package hyperref Info: PDF/A mode OFF on input line 6108.
+\Hy@abspage=\count357
+\c@Item=\count358
+\c@Hfootnote=\count359
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/hyperref\hpdftex.de
-f
-File: hpdftex.def 2026-04-24 v7.01q Hyperref driver for pdfTeX
-\Fld@listcount=\count361
-\c@bookmark@seq@number=\count362
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/hyperref\hpdftex.def
+File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
+\Fld@listcount=\count360
+\c@bookmark@seq@number=\count361
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/rerunfilecheck\reru
-nfilecheck.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/rerunfilecheck\rerunfi
+lecheck.sty
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/generic/uniquecounter\uni
-quecounter.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/generic/uniquecounter\unique
+counter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
@@ -957,60 +931,59 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 57.
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/tcolorbox\tcolorbox
-.sty
-Package: tcolorbox 2026/05/28 version 6.10.0 text color boxes
-
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/tools\verbatim.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/tcolorbox\tcolorbox.st
+y
+Package: tcolorbox 2025/11/28 version 6.9.0 text color boxes
+ (C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/tools\verbatim.sty
 Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks47
-\verbatim@line=\toks48
+\every@verbatim=\toks48
+\verbatim@line=\toks49
 \verbatim@in@stream=\read4
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/environ\environ.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/environ\environ.sty
 Package: environ 2014/05/04 v0.3 A new way to define environments
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/trimspaces\trimspac
-es.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/trimspaces\trimspaces.
+sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
 \tcb@titlebox=\box78
 \tcb@upperbox=\box79
 \tcb@lowerbox=\box80
 \tcb@phantombox=\box81
-\c@tcbbreakpart=\count363
-\c@tcblayer=\count364
-\c@tcolorbox@number=\count365
+\c@tcbbreakpart=\count362
+\c@tcblayer=\count363
+\c@tcolorbox@number=\count364
 \l__tcobox_tmpa_box=\box82
-\l__tcobox_tmpa_dim=\dimen328
+\l__tcobox_tmpa_dim=\dimen326
 \tcb@temp=\box83
 \tcb@temp=\box84
 \tcb@temp=\box85
 \tcb@temp=\box86
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/tcolorbox\tcbskins.
-code.tex
-Library (tcolorbox): 'tcbskins.code.tex' version '6.10.0'
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/tcolorbox\tcbskins.cod
+e.tex
+Library (tcolorbox): 'tcbskins.code.tex' version '6.9.0'
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/tikzfill\tikzfill.i
-mage.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/tikzfill\tikzfill.imag
+e.sty
 Package: tikzfill.image 2026/04/23 v1.2.0 Image filling library for TikZ
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/tikzfill\tikzlibrar
-yfill.image.code.tex
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/tikzfill\tikzlibraryfi
+ll.image.code.tex
 File: tikzlibraryfill.image.code.tex 2026/04/23 v1.2.0 Image filling library
-\l__tikzfill_tmpa_dim=\dimen329
-\l__tikzfill_tmpb_dim=\dimen330
+\l__tikzfill_tmpa_dim=\dimen327
+\l__tikzfill_tmpb_dim=\dimen328
 \l__tikzfill_img_box=\box87
 ))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/tcolorbox\tcbskinsj
-igsaw.code.tex
-Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.10.0'
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/tcolorbox\tcbskinsjigs
+aw.code.tex
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.9.0'
 ))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/tcolorbox\tcbbreaka
-ble.code.tex
-Library (tcolorbox): 'tcbbreakable.code.tex' version '6.10.0'
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/pdfcol\pdfcol.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/tcolorbox\tcbbreakable
+.code.tex
+Library (tcolorbox): 'tcbbreakable.code.tex' version '6.9.0'
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/pdfcol\pdfcol.sty
 Package: pdfcol 2022-09-21 v1.7 Handle new color stacks for pdfTeX (HO)
 )
 Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
@@ -1020,13 +993,14 @@ Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
 ))
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 10
 .
- (C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/lm\t1lmr.fd
+
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/lm\t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/l3backend\l3backend
--pdftex.def
-File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count366
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/l3backend\l3backend-pd
+ftex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count365
 ) (main.aux
 Package babel Info: 'polish' activates 'polish' shorthands.
 (babel)             Reported on input line 8.
@@ -1087,33 +1061,33 @@ LaTeX Font Info:    ... okay on input line 10.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/context/base/mkii\supp-pd
-f.mkii
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/context/base/mkii\supp-pdf.m
+kii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count367
-\scratchdimen=\dimen331
+\scratchcounter=\count366
+\scratchdimen=\dimen329
 \scratchbox=\box91
-\nofMPsegments=\count368
-\nofMParguments=\count369
-\everyMPshowfont=\toks49
-\MPscratchCnt=\count370
-\MPscratchDim=\dimen332
-\MPnumerator=\count371
-\makeMPintoPDFobject=\count372
-\everyMPtoPDFconversion=\toks50
+\nofMPsegments=\count367
+\nofMParguments=\count368
+\everyMPshowfont=\toks50
+\MPscratchCnt=\count369
+\MPscratchDim=\dimen330
+\MPnumerator=\count370
+\makeMPintoPDFobject=\count371
+\everyMPtoPDFconversion=\toks51
 )
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/epstopdf-pkg\epstop
-df-base.sty
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/epstopdf-pkg\epstopdf-
+base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/00miktex\epstopdf-s
-ys.cfg
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/00miktex\epstopdf-sys.
+cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/translations/dicts\
-translations-basic-dictionary-polish.trsl
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/translations/dicts\tra
+nslations-basic-dictionary-polish.trsl
 File: translations-basic-dictionary-polish.trsl (polish translation file `trans
 lations-basic-dictionary')
 )
@@ -1137,25 +1111,25 @@ oord trafo unsupported.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 4
 4.
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/lm\ot1lmr.fd
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 4
 4.
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/lm\omllmm.fd
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
 44.
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/lm\omslmsy.fd
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
 44.
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/lm\omxlmex.fd
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -1167,13 +1141,13 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    Trying to load font information for U+msa on input line 44.
 
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/amsfonts\umsa.fd
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
 
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/amsfonts\umsb.fd
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -1186,44 +1160,44 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 [1
 
 {C:/Users/Hipek/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Hipe
-k/AppData/Local/Programs/MiKTeX-new/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/Hipe
-k/AppData/Local/Programs/MiKTeX-new/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/Hipe
-k/AppData/Local/Programs/MiKTeX-new/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/
-Hipek/AppData/Local/Programs/MiKTeX-new/fonts/enc/dvips/lm/lm-mathsy.enc}])
+k/AppData/Local/Programs/MiKTeX1/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/Hipek/A
+ppData/Local/Programs/MiKTeX1/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/Hipek/AppD
+ata/Local/Programs/MiKTeX1/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/Hipek/App
+Data/Local/Programs/MiKTeX1/fonts/enc/dvips/lm/lm-mathsy.enc}])
 (tresc/10-tresc.tex
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
 1.
 
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/lm\t1lmtt.fd
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (25.64777pt too wide) in paragraph at lines 33--39
+Overfull \hbox (25.64777pt too wide) in paragraph at lines 36--42
 \T1/lmr/bx/n/10.95 Byte-Pair En-co-ding. \T1/lmr/m/n/10.95 BPE zo-staªo wpro-wa
 -dzone jako al-go-rytm kom-pre-sji da-nych przez Gage (1994),
  []
 
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 4
-8.
-(C:\Users\Hipek\AppData\Local\Programs\MiKTeX-new\tex/latex/lm\ts1lmr.fd
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 5
+1.
+(C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.93 
-      [1{C:/Users/Hipek/AppData/Local/Programs/MiKTeX-new/fonts/enc/dvips/lm/lm
--ts1.enc}]
-Overfull \hbox (8.37627pt too wide) in paragraph at lines 151--158
+l.96 
+      [1{C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/enc/dvips/lm/lm-ts
+1.enc}]
+Overfull \hbox (8.37627pt too wide) in paragraph at lines 154--161
 []\T1/lmr/bx/n/10.95 8. Mor-ph-Tok / CBPE \T1/lmr/m/n/10.95 (Brahma et al., 202
 5, arXiv:2504.10335) --- mor-fo-lo-giczna pre-tokenizacja
  []
 
 [2] [3]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 266.
+(Font)              <9> on input line 269.
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 278.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 281.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1232,73 +1206,85 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[5{C:/Users/Hipek/AppData/Local/Programs/MiKTeX-new/fonts/enc/dvips/lm/lm-mathe
-x.enc}]
-Package pgfplots info on input line 432: Using 'lua backend=false' for axis: x 
-coord trafo unsupported.
- [6]
-Package pgfplots info on input line 499: Using 'lua backend=false' for axis: x 
+[5{C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/enc/dvips/lm/lm-mathex.e
+nc}]
+Package pgfplots info on input line 472: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[7]
-Overfull \hbox (53.09866pt too wide) in paragraph at lines 626--639
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[6]
+Package pgfplots info on input line 539: Using 'lua backend=false' for axis: x 
+coord trafo unsupported.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[7] [8]
+Overfull \hbox (53.09866pt too wide) in paragraph at lines 666--679
 \T1/lmr/m/n/10.95 cji i wy-daj-no±¢ mo-delu j¦-zyka, prze-pro-wa-dzi-li-±my sys
 -te-ma-tyczny prze-gl¡d $\OML/lmm/m/it/10.95  \OMS/lmsy/m/n/10.95 2 f\OT1/lmr/
 m/n/10.95 0[]0;  0[]1;  0[]25;  0[]5;  0[]75;  1[]0\OMS/lmsy/m/n/10.95 g$
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 640.
+(Font)              <12> on input line 680.
+[9]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[8] [9] [10] [11])
-Overfull \hbox (112.64207pt too wide) in paragraph at lines 931--14
+[10]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[11] [12])
+Overfull \hbox (112.64207pt too wide) in paragraph at lines 1045--14
 \T1/lmr/m/n/10.95 Kod: \T1/lmtt/m/n/10.95 paper_experiments.py\T1/lmr/m/n/10.95
  , \T1/lmtt/m/n/10.95 lm_eval.py\T1/lmr/m/n/10.95 , \T1/lmtt/m/n/10.95 transfor
 mer_eval.py\T1/lmr/m/n/10.95 , \T1/lmtt/m/n/10.95 penalty_sweep.py\T1/lmr/m/n/1
 0.95 , \T1/lmtt/m/n/10.95 penalty_sweep_extended.py\T1/lmr/m/n/10.95 .
  []
 
-[12] (main.aux)
+[13] (main.aux)
  ***********
-LaTeX2e <2026-06-01>
-L3 programming layer <2026-05-26>
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 92271432DDBC65192389F0DD721F73D8;1029.
+(rerunfilecheck)             Checksum: 57DFCF1AB3AA27FD85F842DB5EC210F5;1269.
  ) 
 Here is how much of TeX's memory you used:
- 42233 strings out of 467508
- 1031357 string characters out of 5406833
- 1515920 words of memory out of 5000000
- 70811 multiletter control sequences out of 15000+600000
+ 42200 strings out of 467871
+ 1028220 string characters out of 5417895
+ 1508739 words of memory out of 5000000
+ 70416 multiletter control sequences out of 15000+600000
  705965 words of font info for 102 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 114i,19n,122p,1195b,2350s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Hipek/AppData/Local/Programs/MiKTeX-new/fonts/type1/public/lm/lmbx1
-0.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX-new/fonts/type1/public/lm/l
-mbx12.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX-new/fonts/type1/public/
-lm/lmex10.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX-new/fonts/type1/pub
-lic/lm/lmmi10.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX-new/fonts/type1
-/public/lm/lmmi12.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX-new/fonts/t
-ype1/public/lm/lmmi8.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX-new/font
-s/type1/public/lm/lmr10.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX-new/f
-onts/type1/public/lm/lmr12.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX-ne
-w/fonts/type1/public/lm/lmr6.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX-
-new/fonts/type1/public/lm/lmr8.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTe
-X-new/fonts/type1/public/lm/lmri10.pfb><C:/Users/Hipek/AppData/Local/Programs/M
-iKTeX-new/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Hipek/AppData/Local/Progra
-ms/MiKTeX-new/fonts/type1/public/lm/lmsy8.pfb><C:/Users/Hipek/AppData/Local/Pro
-grams/MiKTeX-new/fonts/type1/public/lm/lmtk10.pfb><C:/Users/Hipek/AppData/Local
-/Programs/MiKTeX-new/fonts/type1/public/lm/lmtt10.pfb><C:/Users/Hipek/AppData/L
-ocal/Programs/MiKTeX-new/fonts/type1/public/lm/lmtt9.pfb>
-Output written on main.pdf (13 pages, 368684 bytes).
+ 114i,19n,122p,1195b,2354s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lmbx10.p
+fb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lmbx12.
+pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lmex10
+.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lmmi1
+0.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lmmi
+12.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lmm
+i8.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lmr
+10.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lmr
+12.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lmr
+6.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lmr8
+.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lmri1
+0.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lmsy
+10.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lms
+y8.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lmt
+k10.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lm
+tt10.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/l
+mtt9.pfb>
+Output written on main.pdf (14 pages, 374970 bytes).
 PDF statistics:
- 241 PDF objects out of 1000 (max. 8388607)
- 41 named destinations out of 1000 (max. 500000)
- 77 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 255 PDF objects out of 1000 (max. 8388607)
+ 44 named destinations out of 1000 (max. 500000)
+ 85 words of extra memory for PDF output out of 10000 (max. 10000000)
 
