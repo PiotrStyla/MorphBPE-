@@ -387,7 +387,8 @@ Raportowane wartości: średnia $[\mathrm{CI}_{2{,}5\%},\, \mathrm{CI}_{97{,}5\%
 \begin{table}[h]
   \centering
   \caption{Ewaluacja intrinsic: Fertility i~MorphED z~bootstrap CI (95\%).
-  Korpus: 10\,000 przemówień sejmowych, split 80/20, seed=42.}
+  Korpus: 10\,000 przemówień sejmowych, split 80/20, seed=42.
+  Bielik-11B podany jako zewnętrzny punkt odniesienia (produkcyjny tokenizator).}
   \label{tab:intrinsic}
   \begin{tabular}{lrccr}
     \toprule
@@ -398,6 +399,11 @@ Raportowane wartości: średnia $[\mathrm{CI}_{2{,}5\%},\, \mathrm{CI}_{97{,}5\%
     \addlinespace
     BPE                  & 1000 & 1{,}932 [1{,}929, 1{,}936] & 1{,}838 [1{,}832, 1{,}843] & 654{,}9 \\
     MorphBPE suffix      & 1000 & 1{,}934 [1{,}930, 1{,}937] & 1{,}712 [1{,}707, 1{,}717] & 1031{,}8 \\
+    \addlinespace
+    \rowcolor{slayergray}
+    Bielik-11B (ref.)    & 32\,128 & 2{,}970 & --- & --- \\
+    \rowcolor{slayergray}
+    MorphBPE suffix      & 32\,000 & 1{,}049 & 0{,}308 [0{,}304, 0{,}311] & --- \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -405,6 +411,17 @@ Raportowane wartości: średnia $[\mathrm{CI}_{2{,}5\%},\, \mathrm{CI}_{97{,}5\%
 \textbf{Fertility.} MorphBPE suffix utrzymuje fertility na poziomie BPE:
 $\Delta = +0{,}04\%$ (vocab=500) i~$\Delta = +0{,}10\%$ (vocab=1000).
 Różnice wewnątrz CI --- brak istotnego kosztu compression.
+
+\textbf{Punkt odniesienia zewnętrzny.}
+Dla kontekstualizacji wyników dołączamy Bielik-11B-v2 --- produkcyjny
+tokenizator (SentencePiece BPE, vocab=32\,128) wytrenowany na wielomiliardowym
+korpusie polskim. Przy porównywalnym rozmiarze słownika ($\sim$32k)
+MorphBPE osiąga fertility $2{,}8\times$ niższą (1{,}049 vs 2{,}970).
+Bezpośrednie porównanie MorphED z~Bielik nie jest możliwe (Bielik nie
+publikuje segmentacji morfologicznej), ale różnica fertility wskazuje,
+że MorphBPE produkuje znacznie bardziej kompaktową tokenizację.
+Uwaga: Bielik trenowany jest na innym, większym korpusie --- porównanie
+jest orientacyjne i~służy wyłącznie jako punkt odniesienia skali.
 
 \textbf{MorphED.} MorphBPE suffix redukuje MorphED istotnie:
 \begin{itemize}
