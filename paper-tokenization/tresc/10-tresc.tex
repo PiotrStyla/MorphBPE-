@@ -457,33 +457,40 @@ przy vocab=8k--32k niż przy 500--1000.
   \begin{tikzpicture}
     \begin{axis}[
         ybar,
-        bar width=14pt,
-        width=0.82\linewidth, height=5.5cm,
-        symbolic x coords={vocab=500, vocab=1000},
+        bar width=7pt,
+        width=0.95\linewidth, height=6cm,
+        symbolic x coords={vocab=500, vocab=1k, vocab=8k, vocab=16k, vocab=32k},
         xtick=data,
-        ymin=1.5, ymax=2.7,
+        ymin=0, ymax=2.8,
         ylabel={MorphED (niżej = lepiej)},
         nodes near coords,
-        every node near coord/.style={font=\small},
+        every node near coord/.style={font=\tiny, rotate=90, anchor=west},
         xmajorgrids=true, ymajorgrids=true,
         grid style={gray!20},
-        legend style={at={(0.5,-0.28)}, anchor=north, legend columns=2, font=\small},
-        enlarge x limits=0.5,
+        legend style={at={(0.5,-0.22)}, anchor=north, legend columns=2, font=\small},
+        enlarge x limits=0.12,
     ]
       \addplot[fill=slayerblue!60, draw=slayerblue] coordinates {
         (vocab=500, 2.503)
-        (vocab=1000, 1.838)
+        (vocab=1k, 1.838)
+        (vocab=8k, 0.574)
+        (vocab=16k, 0.442)
+        (vocab=32k, 0.389)
       };
       \addlegendentry{BPE}
       \addplot[fill=slayergreen!60, draw=slayergreen] coordinates {
         (vocab=500, 2.414)
-        (vocab=1000, 1.712)
+        (vocab=1k, 1.712)
+        (vocab=8k, 0.456)
+        (vocab=16k, 0.338)
+        (vocab=32k, 0.308)
       };
       \addlegendentry{MorphBPE suffix}
     \end{axis}
   \end{tikzpicture}
-  \caption{MorphED --- BPE vs MorphBPE suffix. CI 95\% nie pokrywają się
-  przy obu rozmiarach słownika.}
+  \caption{MorphED --- BPE vs MorphBPE suffix ($\alpha{=}2$) przy wszystkich
+  rozmiarach słownika. CI 95\% nie pokrywają się przy żadnym vocab.
+  Redukcja rośnie z~$-3{,}6\%$ (500) do $-21{,}0\%$ (32k).}
   \label{fig:morphed}
 \end{figure}
 
