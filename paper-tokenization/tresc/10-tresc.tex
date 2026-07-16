@@ -942,12 +942,16 @@ Nadal jest to niewielki koszt, ale trend wskazuje, że~przy bardzo dużych
 słownikach ($> 100\,000$) może stać się istotny.
 
 \textbf{Porównanie z~Bielik-11B.}
-Tokenizator Bielik-11B-v2 (vocab=32\,128) osiąga fertility$=2{,}97$
-na tym samym zbiorze testowym. MorphBPE przy vocab=32\,000 osiąga
-fertility$=1{,}05$ --- 2{,}8$\times$ niższą. Bezpośrednie porównanie
-MorphED nie jest możliwe (Bielik nie publikuje segmentacji morfologicznej),
-ale różnica fertility wskazuje, że~MorphBPE produkuje znacznie bardziej
-kompaktową tokenizację przy tym samym rozmiarze słownika.
+Oryginalny tokenizer Bielika (Mistral-derived, vocab=32\,128), używany
+w~Bielik-11B v2, v2.x i~v3, osiąga fertility$=3{,}22$ na~reprezentatywnym
+tekście polskim. Nowy, polsko-zoptymalizowany tokenizer APT4
+($\sim$32k vocab) obniża ten wskaźnik do $1{,}62$.
+MorphBPE przy vocab=32\,000 osiąga fertility$=1{,}05$ ---
+$3{,}1\times$ niższą niż oryginał i~$1{,}5\times$ niższą niż APT4.
+Bezpośrednie porównanie MorphED nie jest możliwe (Bielik nie publikuje
+segmentacji morfologicznej), ale różnica fertility wskazuje, że~MorphBPE
+produkuje znacznie bardziej kompaktową tokenizację przy tym samym
+rozmiarze słownika.
 
 \textbf{Wniosek.}
 Korzyść z~MorphBPE nie tylko utrzymuje się przy skalowaniu ---

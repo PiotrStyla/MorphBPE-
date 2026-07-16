@@ -18,7 +18,8 @@ Praca stanowi **pierwszą ewaluację MorphBPE na języku polskim** z analizatore
 | CE redukcja LSTM (vocab=1000) | −2.6% | cross-entropy modelu języka |
 | CE redukcja Transformer (vocab=1000) | −2.7% | cross-entropy modelu języka |
 | Fertility koszt | < 3% | nawet przy vocab=32k |
-| MorphBPE vs Bielik-11B fertility | 1.05 vs 2.97 | **2.8× niższa** przy vocab=32k |
+| MorphBPE vs Bielik-11B orig. | 1.05 vs 3.22 | **3.1× niższa** przy vocab=32k |
+| MorphBPE vs Bielik APT4 | 1.05 vs 1.62 | **1.5× niższa** (vs zoptymalizowany) |
 
 ---
 
@@ -140,7 +141,7 @@ Przed wyborem MorphBPE strict_suffix zbadaliśmy **10 podejść** do tokenizacji
 
 **Redukcja MorphED (α=0 → α=2):** −20.5% (8k), −23.4% (16k), −21.0% (32k)
 
-**Porównanie z Bielik-11B:** fertility 2.97 vs MorphBPE 1.05 → **2.8× bardziej kompaktowa tokenizacja** przy tym samym vocab=32k.
+**Porównanie z Bielik-11B:** oryginalny tokenizer (Mistral-derived, vocab=32128) ma fertility=3.22. Polsko-zoptymalizowany APT4 (~32k) ma fertility=1.62. MorphBPE: fertility=1.05 → **3.1× niższa** vs oryginał, **1.5× niższa** vs APT4.
 
 ---
 
