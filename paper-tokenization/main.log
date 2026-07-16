@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.16)  16 JUL 2026 08:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.16)  16 JUL 2026 09:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1171,13 +1171,13 @@ LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
 (C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (25.64777pt too wide) in paragraph at lines 36--42
+Overfull \hbox (25.64777pt too wide) in paragraph at lines 40--46
 \T1/lmr/bx/n/10.95 Byte-Pair En-co-ding. \T1/lmr/m/n/10.95 BPE zo-staªo wpro-wa
 -dzone jako al-go-rytm kom-pre-sji da-nych przez Gage (1994),
  []
 
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 5
-1.
+5.
 (C:\Users\Hipek\AppData\Local\Programs\MiKTeX1\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1185,19 +1185,19 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.96 
-      [1{C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/enc/dvips/lm/lm-ts
-1.enc}]
-Overfull \hbox (8.37627pt too wide) in paragraph at lines 154--161
+l.100 
+       [1{C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/enc/dvips/lm/lm-t
+s1.enc}]
+Overfull \hbox (8.37627pt too wide) in paragraph at lines 158--165
 []\T1/lmr/bx/n/10.95 8. Mor-ph-Tok / CBPE \T1/lmr/m/n/10.95 (Brahma et al., 202
 5, arXiv:2504.10335) --- mor-fo-lo-giczna pre-tokenizacja
  []
 
 [2] [3]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 269.
+(Font)              <9> on input line 273.
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 281.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 285.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1208,7 +1208,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [5{C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/enc/dvips/lm/lm-mathex.e
 nc}]
-Package pgfplots info on input line 472: Using 'lua backend=false' for axis: x 
+Package pgfplots info on input line 476: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
 
 
@@ -1218,7 +1218,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [6]
-Package pgfplots info on input line 552: Using 'lua backend=false' for axis: x 
+Package pgfplots info on input line 556: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
 
 
@@ -1232,7 +1232,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (53.09866pt too wide) in paragraph at lines 680--693
+Overfull \hbox (53.09866pt too wide) in paragraph at lines 684--697
 \T1/lmr/m/n/10.95 cji i wy-daj-no±¢ mo-delu j¦-zyka, prze-pro-wa-dzi-li-±my sys
 -te-ma-tyczny prze-gl¡d $\OML/lmm/m/it/10.95  \OMS/lmsy/m/n/10.95 2 f\OT1/lmr/
 m/n/10.95 0[]0;  0[]1;  0[]25;  0[]5;  0[]75;  1[]0\OMS/lmsy/m/n/10.95 g$
@@ -1240,13 +1240,13 @@ m/n/10.95 0[]0;  0[]1;  0[]25;  0[]5;  0[]75;  1[]0\OMS/lmsy/m/n/10.95 g$
 
 [8]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 694.
+(Font)              <12> on input line 698.
  [9]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [10] [11] [12])
-Overfull \hbox (112.64207pt too wide) in paragraph at lines 1059--14
+Overfull \hbox (112.64207pt too wide) in paragraph at lines 1063--14
 \T1/lmr/m/n/10.95 Kod: \T1/lmtt/m/n/10.95 paper_experiments.py\T1/lmr/m/n/10.95
  , \T1/lmtt/m/n/10.95 lm_eval.py\T1/lmr/m/n/10.95 , \T1/lmtt/m/n/10.95 transfor
 mer_eval.py\T1/lmr/m/n/10.95 , \T1/lmtt/m/n/10.95 penalty_sweep.py\T1/lmr/m/n/1
@@ -1287,7 +1287,7 @@ y8.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lmt
 k10.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/lm
 tt10.pfb><C:/Users/Hipek/AppData/Local/Programs/MiKTeX1/fonts/type1/public/lm/l
 mtt9.pfb>
-Output written on main.pdf (14 pages, 389638 bytes).
+Output written on main.pdf (14 pages, 389893 bytes).
 PDF statistics:
  264 PDF objects out of 1000 (max. 8388607)
  44 named destinations out of 1000 (max. 500000)

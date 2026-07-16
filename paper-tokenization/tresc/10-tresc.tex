@@ -10,13 +10,14 @@ Granice sufiksów pozyskiwane są z~analizatora morfologicznego Morfeusz2;
 scalenia przekraczające granicę sufiksu są karane mnożnikiem częstotliwości.
 Porównujemy MorphBPE (wariant \texttt{strict\_suffix}) ze standardowym BPE
 na korpusie 10\,000 przemówień sejmowych (split 80/20, seed=42)
-przy rozmiarach słownika 500 i~1000.
+przy rozmiarach słownika 500, 1000, 8\,000, 16\,000 i~32\,000.
 Ewaluacja intrinsic (Fertility, Morphological Edit Distance) z~bootstrap
 CI (1000 resamples, 95\%) pokazuje, że MorphBPE redukuje MorphED
-o~3{,}6\%--6{,}8\% bez kosztu fertility.
+o~3{,}6\%--6{,}8\% (vocab 500--1000) i~do $21{,}0\%$ (vocab 32\,000)
+bez kosztu fertility.
 Ewaluacja extrinsic z~dwoma architekturami --- LSTM (1 warstwa)
-i~Transformer (2 warstwy, 4 głowice) --- potwierdza,
-że MorphBPE obniża cross-entropy o~1{,}3\%--2{,}7\%
+i~Transformer (2 warstwy, 4 głowice) --- przeprowadzona dla vocab 500 i~1000
+potwierdza, że MorphBPE obniża cross-entropy o~1{,}3\%--2{,}7\%
 i~perplexity o~4{,}0\%--9{,}3\% względem BPE przy tym samym rozmiarze słownika.
 Analiza błędów per-suffix pokazuje, że MorphBPE zyskuje
 na sufiksach złożonych (\texttt{-ach}: $-11{,}5\%$),
@@ -28,6 +29,9 @@ CE spada o~dodatkowe $1{,}6\%$--$3{,}1\%$ względem $\alpha = 1{,}0$.
 Skalowanie do rozmiarów produkcyjnych (vocab 8\,000--32\,000)
 potwierdza trend: redukcja MorphED rośnie do $21{,}0\%$,
 a~over-penalization pozostaje optymalne na wszystkich rozmiarach.
+Przy vocab=32\,000 MorphBPE osiąga fertility $1{,}05$ ---
+$3{,}1\times$ niższą niż Bielik-11B orig.\ ($3{,}22$)
+i~$1{,}5\times$ niższą niż zoptymalizowany Bielik APT4 ($1{,}62$).
 \end{abstract}
 
 % ---------------------------------------------------------------
