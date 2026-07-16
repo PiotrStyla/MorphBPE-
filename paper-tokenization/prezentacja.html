@@ -172,15 +172,19 @@
       <tr class="green-row"><td><strong>MorphBPE suffix</strong></td><td>500</td><td><strong>2.414</strong> [2.408, 2.420]</td><td>2.444</td></tr>
       <tr><td>BPE</td><td>1000</td><td>1.838 [1.832, 1.843]</td><td>1.932</td></tr>
       <tr class="green-row"><td><strong>MorphBPE suffix</strong></td><td>1000</td><td><strong>1.712</strong> [1.707, 1.717]</td><td>1.934</td></tr>
+      <tr><td>BPE (α=0)</td><td>8 000</td><td>0.574 [0.569, 0.578]</td><td>1.131</td></tr>
+      <tr class="green-row"><td><strong>MorphBPE (α=2)</strong></td><td>8 000</td><td><strong>0.456</strong> [0.451, 0.460]</td><td>1.149</td></tr>
+      <tr><td>BPE (α=0)</td><td>16 000</td><td>0.442 [0.438, 0.446]</td><td>1.051</td></tr>
+      <tr class="green-row"><td><strong>MorphBPE (α=2)</strong></td><td>16 000</td><td><strong>0.338</strong> [0.335, 0.342]</td><td>1.077</td></tr>
+      <tr><td>BPE (α=0)</td><td>32 000</td><td>0.389 [0.385, 0.393]</td><td>1.020</td></tr>
+      <tr class="green-row"><td><strong>MorphBPE (α=2)</strong></td><td>32 000</td><td><strong>0.308</strong> [0.304, 0.311]</td><td>1.049</td></tr>
       <tr style="background:#e8eaf6;"><td><em>Bielik-11B (ref.)</em></td><td>32 128</td><td>—</td><td>2.970</td></tr>
-      <tr class="green-row"><td><strong>MorphBPE suffix</strong></td><td>32 000</td><td><strong>0.308</strong> [0.304, 0.311]</td><td>1.049</td></tr>
     </table>
     <br>
-    <ul style="max-width:600px; margin:0 auto; text-align:left;">
-      <li>vocab=500: <span class="green-text">−3.6%</span> MorphED</li>
-      <li>vocab=1000: <span class="green-text">−6.8%</span> MorphED</li>
-      <li>CI 95% <strong>nie pokrywają się</strong> przy obu rozmiarach</li>
-      <li>Fertility bez zmian (Δ < 0.1%) przy małych vocab</li>
+    <ul style="max-width:700px; margin:0 auto; text-align:left;">
+      <li>Redukcja MorphED: <span class="green-text">−3.6%</span> (500) → <span class="green-text">−6.8%</span> (1k) → <span class="green-text">−20.5%</span> (8k) → <span class="green-text">−23.4%</span> (16k) → <span class="green-text">−21.0%</span> (32k)</li>
+      <li>CI 95% <strong>nie pokrywają się</strong> przy żadnym rozmiarze</li>
+      <li>Fertility: Δ < 0.1% (500–1k), +2.8% (32k) — nadal niski koszt</li>
       <li><strong>vs Bielik-11B (vocab≈32k):</strong> MorphBPE fertility <span class="green-text">2.8× niższa</span> (1.05 vs 2.97)</li>
     </ul>
   </div>
