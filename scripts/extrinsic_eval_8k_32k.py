@@ -238,6 +238,26 @@ def run_experiment(
     }
 
 
+def load_existing_results() -> list[dict]:
+    """Parse existing results file to skip already-completed experiments."""
+    if not os.path.exists(RESULTS_FILE):
+        return []
+    results = []
+    with open(RESULTS_FILE, encoding="utf-8") as f:
+        for line in f:
+            parts = line.split()
+            if len(parts) >= 6 and parts[0].isdigit():
+                results.append({
+                    "vocab_size": int(parts[0]),
+                    "alpha": float(parts[1]),
+                    "model": parts[2],
+                    "actual_vocab": int(parts[3]),
+                    "ce": float(parts[4]),
+                    "ppl": float(parts[5]),
+                })
+    return results
+
+
 def save_results(results: list[dict]):
     with open(RESULTS_FILE, "w", encoding="utf-8") as f:
         f.write("Extrinsic Evaluation: MorphBPE vocab 8k-32k\n")
@@ -267,17 +287,27 @@ def main():
     configs = [
         # (vocab_size, alpha)
         (8000, 0.0),  # BPE baseline
-        (8000, 2.0),  # MorphBPE
+        (8000, 1.0),  # MorphBPE block
+        (8000, 2.0),  # MorphBPE over-penalize
         (16000, 0.0),
+        (16000, 1.0),
         (16000, 2.0),
         (32000, 0.0),
+        (32000, 1.0),
         (32000, 2.0),
     ]
     models = ["LSTM", "Transformer"]
 
-    results = []
+    # Load existing results to skip completed experiments
+    results = load_existing_results()
+    done = {(r["vocab_size"], r["alpha"], r["model"]) for r in results}
+    if done:
+        print(f"Skipping {len(done)} already-completed experiments.")
+
     for vocab_size, alpha in configs:
         for model_name in models:
+            if (vocab_size, alpha, model_name) in done:
+                continue
             r = run_experiment(
                 train_texts, test_texts, vocab_size, alpha, model_name, device
             )
