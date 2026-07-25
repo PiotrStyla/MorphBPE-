@@ -103,10 +103,16 @@ class MorphBPETokenizer:
 
     def encode_word(self, word: str) -> List[str]:
         """Tokenize a single word into subword strings."""
+        if not hasattr(self, "_encode_cache"):
+            self._encode_cache: Dict[str, List[str]] = {}
+        if word in self._encode_cache:
+            return self._encode_cache[word]
         wt = " ".join(list(word))
         for a, b in self.merges:
             wt = wt.replace(f"{a} {b}", f"{a}{b}")
-        return wt.split()
+        result = wt.split()
+        self._encode_cache[word] = result
+        return result
 
     def encode(self, text: str) -> List[int]:
         """Encode text to a list of token IDs."""

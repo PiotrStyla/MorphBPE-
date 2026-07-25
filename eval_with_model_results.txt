@@ -1,0 +1,10 @@
+Eval with Existing Model: Fertility Comparison
+======================================================================
+Test corpus: 500 Sejm speeches
+
+Method                                 Vocab  Fertility   Tokens    Words
+----------------------------------------------------------------------
+Bielik-11B-v2 (vocab=32128)            32128     2.9705   573874   193192
+MorphBPE α=0.0 (vocab=1000)             1000     1.9403   374844   193192
+MorphBPE α=1.0 (vocab=1000)             1000     1.9061   368237   193192
+MorphBPE α=2.0 (vocab=1000)             1000     1.8439   356235   193192
