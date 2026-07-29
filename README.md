@@ -128,6 +128,22 @@ Corpus: Sejm speeches (4000 train / 400 test), seq_len=24, 3 epochs. See `plots/
 - **Best config**: 8k α=2.0 Transformer (CE=3.56, PPL=35.04)
 - **Vocab size**: 8k optimal at this corpus size; larger vocabs underperform due to sparse coverage
 
+### Cost-Benefit Analysis
+
+MorphBPE's morphological penalty costs only ~1-3% higher fertility but delivers substantial quality gains:
+
+| Metric | BPE 32k | MorphBPE 8k α=2.0 | Δ |
+|--------|---------|---------------------|---|
+| Vocab size | 32,000 | 8,000 | **4x smaller** |
+| Fertility | 1.020 | 1.149 | +1.3% (absolute) |
+| MorphED | 0.389 | 0.456 | **+20.5% better** |
+| CE (Transformer) | 3.897 | 3.556 | **−8.7%** |
+| PPL (Transformer) | 49.23 | 35.04 | **−28.8%** |
+
+**Pareto dominance**: MorphBPE 8k α=2.0 beats BPE 32k on CE while using 4x smaller vocabulary (= 4x smaller embedding layer, 4x less memory). All 6 MorphBPE configs with α≥1.0 Pareto-dominate BPE 32k.
+
+See `plots/` for visualizations: `pareto_ce_vs_vocab.png`, `fertility_vs_morphed.png`, `efficiency_ratio.png`.
+
 ## License
 
 MIT
