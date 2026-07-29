@@ -35,9 +35,9 @@ BATCH_SIZE = 128
 EPOCHS = 3
 LR = 0.001
 SEED = 42
-N_TRAIN = 2000  # reduced from 8000 for CPU speed
-N_TEST = 200
-SEQ_LEN = 16     # reduced from 32 for CPU speed
+N_TRAIN = 4000  # increased from 2000 for better statistics
+N_TEST = 400
+SEQ_LEN = 24     # increased from 16 for longer context
 
 
 def set_seed(seed: int = SEED):
@@ -262,7 +262,7 @@ def save_results(results: list[dict]):
     with open(RESULTS_FILE, "w", encoding="utf-8") as f:
         f.write("Extrinsic Evaluation: MorphBPE vocab 8k-32k\n")
         f.write("=" * 80 + "\n")
-        f.write(f"Corpus: 8000 train / 500 test, seq_len=32, epochs={EPOCHS}\n\n")
+        f.write(f"Corpus: {N_TRAIN} train / {N_TEST} test, seq_len={SEQ_LEN}, epochs={EPOCHS}\n\n")
         f.write(
             f"{'Vocab':>8} {'Alpha':>5} {'Model':>12} "
             f"{'ActVocab':>8} {'CE':>10} {'PPL':>10}\n"
