@@ -35,9 +35,9 @@ BATCH_SIZE = 128
 EPOCHS = 3
 LR = 0.001
 SEED = 42
-N_TRAIN = 4000  # increased from 2000 for better statistics
-N_TEST = 400
-SEQ_LEN = 24     # increased from 16 for longer context
+N_TRAIN = 8000  # full paper setting
+N_TEST = 500
+SEQ_LEN = 32     # full paper setting
 
 
 def set_seed(seed: int = SEED):

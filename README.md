@@ -97,36 +97,36 @@ Over-penalization (`alpha=2.0`) reduces CE by an additional 1.6–3.1%.
 
 ### Extrinsic Evaluation (vocab 8k–32k)
 
-Corpus: Sejm speeches (4000 train / 400 test), seq_len=24, 3 epochs. See `plots/` for visualizations.
+Corpus: Sejm speeches (8000 train / 500 test), seq_len=32, 3 epochs. See `plots/` for visualizations.
 
 | Vocab | α | Model | CE | PPL |
 |-------|---|-------|----|-----|
-| 8k | 0.0 (BPE) | LSTM | 4.1705 | 64.75 |
-| 8k | 0.0 (BPE) | Transformer | 3.8545 | 47.21 |
-| 8k | 1.0 | LSTM | 4.0076 | 55.01 |
-| 8k | 1.0 | Transformer | 3.6955 | 40.26 |
-| 8k | 2.0 | LSTM | 3.8659 | 47.75 |
-| 8k | 2.0 | Transformer | **3.5564** | **35.04** |
-| 16k | 0.0 (BPE) | LSTM | 4.2060 | 67.09 |
-| 16k | 0.0 (BPE) | Transformer | 3.8661 | 47.76 |
-| 16k | 1.0 | LSTM | 4.0554 | 57.71 |
-| 16k | 1.0 | Transformer | 3.7005 | 40.47 |
-| 16k | 2.0 | LSTM | 3.8646 | 47.68 |
-| 16k | 2.0 | Transformer | 3.5583 | 35.10 |
-| 32k | 0.0 (BPE) | LSTM | 4.2776 | 72.07 |
-| 32k | 0.0 (BPE) | Transformer | 3.8966 | 49.23 |
-| 32k | 1.0 | LSTM | 4.1401 | 62.81 |
-| 32k | 1.0 | Transformer | 3.7305 | 41.70 |
-| 32k | 2.0 | LSTM | 3.9881 | 53.95 |
-| 32k | 2.0 | Transformer | 3.6014 | 36.65 |
+| 8k | 0.0 (BPE) | LSTM | 4.1073 | 60.78 |
+| 8k | 0.0 (BPE) | Transformer | 3.9140 | 50.10 |
+| 8k | 1.0 | LSTM | 3.9243 | 50.62 |
+| 8k | 1.0 | Transformer | 3.7743 | 43.57 |
+| 8k | 2.0 | LSTM | 3.7758 | 43.63 |
+| 8k | 2.0 | Transformer | 3.6319 | 37.79 |
+| 16k | 0.0 (BPE) | LSTM | 4.1494 | 63.40 |
+| 16k | 0.0 (BPE) | Transformer | 3.9473 | 51.80 |
+| 16k | 1.0 | LSTM | 3.9870 | 53.89 |
+| 16k | 1.0 | Transformer | 3.7789 | 43.77 |
+| 16k | 2.0 | LSTM | 3.7984 | 44.63 |
+| 16k | 2.0 | Transformer | **3.6272** | **37.61** |
+| 32k | 0.0 (BPE) | LSTM | 4.2140 | 67.62 |
+| 32k | 0.0 (BPE) | Transformer | 3.9605 | 52.49 |
+| 32k | 1.0 | LSTM | 4.0106 | 55.18 |
+| 32k | 1.0 | Transformer | 3.7803 | 43.83 |
+| 32k | 2.0 | LSTM | 3.8427 | 46.65 |
+| 32k | 2.0 | Transformer | 3.6347 | 37.89 |
 
 **Key findings:**
 
 - **Alpha ranking**: α=2.0 > α=1.0 > α=0.0 (BPE) consistently across all vocab sizes and models
-- **CE reduction**: α=1.0 reduces CE by 3.2–4.3% vs BPE; α=2.0 by 6.8–8.1%
-- **Transformer > LSTM**: 7.6–9.9% CE reduction across all configs
-- **Best config**: 8k α=2.0 Transformer (CE=3.56, PPL=35.04)
-- **Vocab size**: 8k optimal at this corpus size; larger vocabs underperform due to sparse coverage
+- **CE reduction**: α=1.0 reduces CE by 3.6–4.8% vs BPE; α=2.0 by 7.2–8.8%
+- **Transformer > LSTM**: 3.8–6.0% CE reduction across all configs
+- **Best config**: 16k α=2.0 Transformer (CE=3.6272, PPL=37.61)
+- **Vocab size**: 8k and 16k perform similarly at α=2.0; 32k slightly worse due to sparse coverage
 
 ### Cost-Benefit Analysis
 
@@ -137,8 +137,8 @@ MorphBPE's morphological penalty costs only ~1-3% higher fertility but delivers 
 | Vocab size | 32,000 | 8,000 | **4x smaller** |
 | Fertility | 1.020 | 1.149 | +1.3% (absolute) |
 | MorphED | 0.389 | 0.456 | **+20.5% better** |
-| CE (Transformer) | 3.897 | 3.556 | **−8.7%** |
-| PPL (Transformer) | 49.23 | 35.04 | **−28.8%** |
+| CE (Transformer) | 3.897 | 3.632 | **−8.3%** |
+| PPL (Transformer) | 52.49 | 37.79 | **−28.0%** |
 
 **Pareto dominance**: MorphBPE 8k α=2.0 beats BPE 32k on CE while using 4x smaller vocabulary (= 4x smaller embedding layer, 4x less memory). All 6 MorphBPE configs with α≥1.0 Pareto-dominate BPE 32k.
 
