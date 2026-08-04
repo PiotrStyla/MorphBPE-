@@ -291,16 +291,19 @@ def main():
         (8000, 1.0),  # MorphBPE block
         (8000, 1.5),  # MorphBPE strong penalty
         (8000, 2.0),  # MorphBPE over-penalize
+        (8000, 2.5),  # MorphBPE extreme over-penalize
         (16000, 0.0),
         (16000, 0.5),
         (16000, 1.0),
         (16000, 1.5),
         (16000, 2.0),
+        (16000, 2.5),
         (32000, 0.0),
         (32000, 0.5),
         (32000, 1.0),
         (32000, 1.5),
         (32000, 2.0),
+        (32000, 2.5),
     ]
     models = ["LSTM", "Transformer"]
 
