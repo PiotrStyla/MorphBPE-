@@ -1,7 +1,12 @@
 """Cost-benefit analysis: MorphBPE vs BPE.
 
 Combines intrinsic (fertility, MorphED) and extrinsic (CE, PPL) results
-to show MorphBPE dominates on the Pareto frontier of quality vs cost.
+to characterize the trade-off between LM quality (CE/PPL, where MorphBPE 8k
+wins) and intrinsic segmentation quality (MorphED/fertility, where the larger
+BPE 32k vocab wins). This is a trade-off, NOT Pareto dominance.
+
+Caveat: CE/PPL are not directly comparable across vocab sizes without
+bits-per-character normalization. See README methodological caveats.
 """
 
 import matplotlib
@@ -239,24 +244,36 @@ def print_cost_benefit():
             pct = (bpe_ce - ce) / bpe_ce * 100
             print(f"  {v//1000}k: a={a} CE={ce:.4f} vs BPE={bpe_ce:.4f} ({pct:+.1f}%)")
 
-    print("\n4. Pareto dominance (Transformer):")
+    print("\n4. CE advantage at smaller vocab (Transformer) -- NOT full Pareto:")
     bpe_32k_ce = EXTRINSIC[(32000, 0.0, "Transformer")][0]
-    print(f"  BPE 32k baseline: CE={bpe_32k_ce:.4f}, vocab=32000")
+    bpe_32k_fert = INTRINSIC[(32000, 0.0)][0]
+    bpe_32k_med = INTRINSIC[(32000, 0.0)][1]
+    print(f"  BPE 32k baseline: CE={bpe_32k_ce:.4f}, fertility={bpe_32k_fert:.4f}, MorphED={bpe_32k_med:.4f}")
     for v in VOCABS:
         for a in ALPHAS:
             ce = EXTRINSIC[(v, a, "Transformer")][0]
-            dominates = ce < bpe_32k_ce and v < 32000
-            if dominates:
+            if ce < bpe_32k_ce and v < 32000:
+                fert = INTRINSIC[(v, a)][0]
+                med = INTRINSIC[(v, a)][1]
+                # True Pareto dominance requires winning on EVERY metric
+                pareto = fert <= bpe_32k_fert and med <= bpe_32k_med
+                tag = "PARETO-DOMINATES" if pareto else "CE-wins-only (worse MorphED/fertility)"
                 savings = 32000 / v
-                print(f"  >> MorphBPE {v//1000}k a={a}: CE={ce:.4f} ({savings:.0f}x smaller vocab, CE -{bpe_32k_ce-ce:.4f})")
+                print(f"  MorphBPE {v//1000}k a={a}: CE={ce:.4f} ({savings:.0f}x smaller vocab) -- {tag}")
 
-    print("\n5. Key insight:")
+    print("\n5. Key insight (with caveats):")
     best_8k = EXTRINSIC[(8000, 2.0, "Transformer")][0]
     worst_32k = EXTRINSIC[(32000, 0.0, "Transformer")][0]
-    print(f"  MorphBPE 8k a=2.0 (CE={best_8k:.4f}) BEATS BPE 32k (CE={worst_32k:.4f})")
-    print(f"  with 4x smaller vocabulary = 4x smaller embedding layer")
+    fert_8k = INTRINSIC[(8000, 2.0)][0]
+    med_8k = INTRINSIC[(8000, 2.0)][1]
+    print(f"  MorphBPE 8k a=2.0 (CE={best_8k:.4f}) beats BPE 32k (CE={worst_32k:.4f}) on LM quality,")
+    print(f"  with 4x smaller vocabulary = 4x smaller embedding layer.")
     print(f"  CE improvement: {(worst_32k - best_8k) / worst_32k * 100:.1f}%")
     print(f"  PPL improvement: {EXTRINSIC[(32000, 0.0, 'Transformer')][1]} -> {EXTRINSIC[(8000, 2.0, 'Transformer')][1]}")
+    print(f"  BUT it LOSES on intrinsic metrics:")
+    print(f"    fertility {bpe_32k_fert:.4f} -> {fert_8k:.4f} ({(fert_8k-bpe_32k_fert)/bpe_32k_fert*100:+.1f}%, worse)")
+    print(f"    MorphED  {bpe_32k_med:.4f} -> {med_8k:.4f} ({(med_8k-bpe_32k_med)/bpe_32k_med*100:+.1f}%, worse)")
+    print(f"  => Trade-off, not Pareto dominance. CE/PPL cross-vocab comparison needs bits-per-char.")
 
 
 def main():
