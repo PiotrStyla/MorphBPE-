@@ -136,7 +136,7 @@ Corpus: Sejm speeches (8000 train / 500 test), seq_len=32, 3 epochs. See `plots/
 
 - **Monotonic alpha improvement**: CE decreases monotonically with α for all three vocab sizes (8k, 16k, 32k) across both models
 - **α=1.5 sweet spot**: 8k α=1.5 Transformer (CE=3.7112, PPL=40.90) beats 32k BPE Transformer (CE=3.9605, PPL=52.49) — 4x smaller vocab, 22% lower PPL. *Caveat: CE/PPL across different vocab sizes are not strictly comparable without bits-per-character normalization (see Methodological caveats below).*
-- **CE reduction vs BPE**: α=0.5 → 1.2–1.8%; α=1.0 → 3.6–4.8%; α=1.5 → 5.2–6.0%; α=2.0 → 7.2–8.8%
+- **CE reduction vs BPE**: α=0.5 → 0.9–1.8%; α=1.0 → 3.6–4.8%; α=1.5 → 5.2–6.0%; α=2.0 → 7.2–8.8%
 - **Transformer > LSTM**: 3.8–6.2% CE reduction across all configs
 - **Best config**: 16k α=2.0 Transformer (CE=3.6272, PPL=37.61)
 - **Vocab size**: 8k and 16k perform similarly at α=2.0; 32k slightly worse due to sparse coverage on the small pilot corpus
