@@ -287,13 +287,19 @@ def main():
     configs = [
         # (vocab_size, alpha)
         (8000, 0.0),  # BPE baseline
+        (8000, 0.5),  # MorphBPE light penalty
         (8000, 1.0),  # MorphBPE block
+        (8000, 1.5),  # MorphBPE strong penalty
         (8000, 2.0),  # MorphBPE over-penalize
         (16000, 0.0),
+        (16000, 0.5),
         (16000, 1.0),
+        (16000, 1.5),
         (16000, 2.0),
         (32000, 0.0),
+        (32000, 0.5),
         (32000, 1.0),
+        (32000, 1.5),
         (32000, 2.0),
     ]
     models = ["LSTM", "Transformer"]

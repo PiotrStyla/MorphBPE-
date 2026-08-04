@@ -9,11 +9,23 @@ import os
 RESULTS_FILE = "extrinsic_eval_8k_32k_results.txt"
 PLOTS_DIR = "plots"
 
-ALPHA_LABELS = {0.0: "BPE (α=0)", 1.0: "MorphBPE (α=1)", 2.0: "MorphBPE (α=2)"}
+ALPHA_LABELS = {
+    0.0: "BPE (α=0)",
+    0.5: "MorphBPE (α=0.5)",
+    1.0: "MorphBPE (α=1)",
+    1.5: "MorphBPE (α=1.5)",
+    2.0: "MorphBPE (α=2)",
+}
 VOCABS = [8000, 16000, 32000]
-ALPHAS = [0.0, 1.0, 2.0]
+ALPHAS = [0.0, 0.5, 1.0, 1.5, 2.0]
 MODELS = ["LSTM", "Transformer"]
-COLORS = {0.0: "#4e79a7", 1.0: "#59a14f", 2.0: "#e15759"}
+COLORS = {
+    0.0: "#4e79a7",
+    0.5: "#76b7b2",
+    1.0: "#59a14f",
+    1.5: "#edc948",
+    2.0: "#e15759",
+}
 
 
 def load_results():
@@ -91,7 +103,7 @@ def plot_ppl_by_vocab(results):
 
 
 def plot_alpha_comparison(results):
-    fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+    fig, axes = plt.subplots(1, 2, figsize=(16, 6))
     x = np.arange(len(ALPHAS))
     width = 0.25
     for idx, metric in enumerate(["ce", "ppl"]):
@@ -117,9 +129,9 @@ def plot_alpha_comparison(results):
 
 
 def plot_model_comparison(results):
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(16, 8))
     x = np.arange(len(VOCABS))
-    width = 0.12
+    width = 0.08
     for ai, alpha in enumerate(ALPHAS):
         for mi, model in enumerate(MODELS):
             vals = [get_result(results, v, alpha, model, "ce") for v in VOCABS]
@@ -149,7 +161,9 @@ def print_summary(results):
     for model in MODELS:
         for vocab in VOCABS:
             bpe_ce = get_result(results, vocab, 0.0, model, "ce")
-            for alpha in [1.0, 2.0]:
+            for alpha in ALPHAS:
+                if alpha == 0.0:
+                    continue
                 ce = get_result(results, vocab, alpha, model, "ce")
                 if bpe_ce and ce:
                     reduction = (bpe_ce - ce) / bpe_ce * 100
@@ -169,6 +183,24 @@ def print_summary(results):
         ce = get_result(results, vocab, 2.0, "Transformer", "ce")
         if ce:
             print(f"  {vocab // 1000}k: CE={ce:.4f}")
+
+    print("\n3b. Fine-grained alpha sweep (Transformer CE):")
+    for vocab in VOCABS:
+        ces = []
+        for alpha in ALPHAS:
+            ce = get_result(results, vocab, alpha, "Transformer", "ce")
+            if ce:
+                ces.append(f"α={alpha}: {ce:.4f}")
+        print(f"  {vocab // 1000}k: {', '.join(ces)}")
+
+    print("\n3c. Fine-grained alpha sweep (LSTM CE):")
+    for vocab in VOCABS:
+        ces = []
+        for alpha in ALPHAS:
+            ce = get_result(results, vocab, alpha, "LSTM", "ce")
+            if ce:
+                ces.append(f"α={alpha}: {ce:.4f}")
+        print(f"  {vocab // 1000}k: {', '.join(ces)}")
 
     print("\n4. Best configuration:")
     best = min(results, key=lambda r: r["ce"])

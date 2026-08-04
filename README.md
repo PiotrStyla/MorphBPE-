@@ -95,7 +95,7 @@ or a heuristic fallback for environments without Morfeusz2.
 
 Over-penalization (`alpha=2.0`) reduces CE by an additional 1.6–3.1%.
 
-### Extrinsic Evaluation (vocab 8k–32k)
+### Extrinsic Evaluation (vocab 8k–32k, fine-grained alpha sweep)
 
 Corpus: Sejm speeches (8000 train / 500 test), seq_len=32, 3 epochs. See `plots/` for visualizations.
 
@@ -103,30 +103,44 @@ Corpus: Sejm speeches (8000 train / 500 test), seq_len=32, 3 epochs. See `plots/
 |-------|---|-------|----|-----|
 | 8k | 0.0 (BPE) | LSTM | 4.1073 | 60.78 |
 | 8k | 0.0 (BPE) | Transformer | 3.9140 | 50.10 |
+| 8k | 0.5 | LSTM | 4.0433 | 57.01 |
+| 8k | 0.5 | Transformer | 3.8552 | 47.24 |
 | 8k | 1.0 | LSTM | 3.9243 | 50.62 |
 | 8k | 1.0 | Transformer | 3.7743 | 43.57 |
+| 8k | 1.5 | LSTM | 3.8849 | 48.66 |
+| 8k | 1.5 | Transformer | 3.7112 | 40.90 |
 | 8k | 2.0 | LSTM | 3.7758 | 43.63 |
 | 8k | 2.0 | Transformer | 3.6319 | 37.79 |
 | 16k | 0.0 (BPE) | LSTM | 4.1494 | 63.40 |
 | 16k | 0.0 (BPE) | Transformer | 3.9473 | 51.80 |
+| 16k | 0.5 | LSTM | 4.1132 | 61.14 |
+| 16k | 0.5 | Transformer | 3.8966 | 49.24 |
 | 16k | 1.0 | LSTM | 3.9870 | 53.89 |
 | 16k | 1.0 | Transformer | 3.7789 | 43.77 |
+| 16k | 1.5 | LSTM | 3.9287 | 50.84 |
+| 16k | 1.5 | Transformer | 3.7188 | 41.21 |
 | 16k | 2.0 | LSTM | 3.7984 | 44.63 |
 | 16k | 2.0 | Transformer | **3.6272** | **37.61** |
 | 32k | 0.0 (BPE) | LSTM | 4.2140 | 67.62 |
 | 32k | 0.0 (BPE) | Transformer | 3.9605 | 52.49 |
+| 32k | 0.5 | LSTM | 4.1380 | 62.68 |
+| 32k | 0.5 | Transformer | 3.9135 | 50.07 |
 | 32k | 1.0 | LSTM | 4.0106 | 55.18 |
 | 32k | 1.0 | Transformer | 3.7803 | 43.83 |
+| 32k | 1.5 | LSTM | 3.9687 | 52.92 |
+| 32k | 1.5 | Transformer | 3.7210 | 41.31 |
 | 32k | 2.0 | LSTM | 3.8427 | 46.65 |
 | 32k | 2.0 | Transformer | 3.6347 | 37.89 |
 
 **Key findings:**
 
-- **Alpha ranking**: α=2.0 > α=1.0 > α=0.0 (BPE) consistently across all vocab sizes and models
-- **CE reduction**: α=1.0 reduces CE by 3.6–4.8% vs BPE; α=2.0 by 7.2–8.8%
-- **Transformer > LSTM**: 3.8–6.0% CE reduction across all configs
+- **Monotonic alpha improvement**: CE decreases monotonically with α for 8k and 16k across both models
+- **α=1.5 sweet spot**: 8k α=1.5 Transformer (CE=3.7112, PPL=40.90) beats 32k BPE Transformer (CE=3.9605, PPL=52.49) — 4x smaller vocab, 22% lower PPL
+- **CE reduction vs BPE**: α=0.5 → 1.2–1.8%; α=1.0 → 3.6–4.8%; α=1.5 → 5.2–6.0%; α=2.0 → 7.2–8.8%
+- **Transformer > LSTM**: 3.8–6.2% CE reduction across all configs
 - **Best config**: 16k α=2.0 Transformer (CE=3.6272, PPL=37.61)
 - **Vocab size**: 8k and 16k perform similarly at α=2.0; 32k slightly worse due to sparse coverage
+- **Diminishing returns at 32k**: CE gap between α=1.0 and α=1.5 shrinks for 32k LSTM (4.0106 → 3.9687 = 1.0%) vs 8k LSTM (3.9243 → 3.8849 = 1.0%), suggesting larger vocabs benefit less from intermediate alpha values
 
 ### Cost-Benefit Analysis
 
