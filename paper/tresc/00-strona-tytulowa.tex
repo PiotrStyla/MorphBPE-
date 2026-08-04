@@ -1,0 +1,74 @@
+% =====================================================================
+%  Strona tytułowa — Warsaw Civic Budget 2027
+% =====================================================================
+\begin{titlepage}
+\centering
+\vspace*{0.8cm}
+
+\slayertitle
+  {Warsaw Civic Budget 2027 --- Seed datasetu języka współczesnej polszczyzny}%
+  {PiotrStyla}%
+  {\today}%
+
+\vspace{0.9cm}
+
+% --- WYKRES HERO: rozkład 89 rekordów według kategorii ---
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+        xbar, bar width=7pt,
+        width=0.82\linewidth, height=7.6cm,
+        symbolic y coords={
+          ochrona srod i zwierzeta,
+          inne,
+          komunikacja i infrastr,
+          zielen i natura,
+          integracja sassiedzka,
+          sport i rekreacja,
+          kultura i sztuka,
+          edukacja i nauka,
+          zdrowie i pomoc spol},
+        ytick=data,
+        yticklabels={
+          ochrona środ.\ i zwierzęta,
+          inne,
+          komunikacja i infrastr.,
+          zieleń i natura,
+          integracja sąsiedzka,
+          sport i rekreacja,
+          kultura i sztuka,
+          edukacja i nauka,
+          zdrowie i pomoc społ.},
+        xlabel={liczba rekordów},
+        xmin=0, xmax=25,
+        nodes near coords,
+        nodes near coords align={horizontal},
+        every node near coord/.style={font=\small},
+        xmajorgrids=true, grid style={gray!20},
+        y tick label style={font=\small},
+        enlarge y limits=0.08,
+    ]
+      \addplot[fill=slayercyan!70, draw=slayercyan] coordinates {
+        (4,ochrona srod i zwierzeta)
+        (5,inne)
+        (7,komunikacja i infrastr)
+        (8,zielen i natura)
+        (9,integracja sassiedzka)
+        (11,sport i rekreacja)
+        (11,kultura i sztuka)
+        (15,edukacja i nauka)
+        (19,zdrowie i pomoc spol)
+      };
+    \end{axis}
+  \end{tikzpicture}
+  \caption{\textbf{Rozkład 89 rekordów według kategorii (152\,526 znaków, 9~kategorii, 16~dzielnic).}
+  Źródło: Budżet Obywatelski Warszawy 2027, CC~BY-SA~4.0.
+  Dominuje zdrowie i pomoc społeczna (19~rek.), edukacja (15~rek.),
+  kultura i sport (po~11~rek.). Zero duplikatów i danych kontaktowych.}
+  \label{fig:hero}
+\end{figure}
+
+\vfill
+{\small PiotrStyla \quad Warsaw Civic Budget 2027 \quad CC~BY-SA~4.0 \quad kompilowany w~CI}
+\end{titlepage}

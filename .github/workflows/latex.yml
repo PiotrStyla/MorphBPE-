@@ -1,0 +1,49 @@
+name: Build PDF
+
+on:
+  push:
+    paths:
+      - 'paper/**'
+      - '.github/workflows/latex.yml'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint — matematyka w LaTeX, nie unicode
+        run: |
+          python3 - <<'EOF'
+          import sys, glob, re
+          BAD = set("ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω"
+                    "≤≥≠≈±×÷√∞∑∏∫∂∇⟂∈∉⊂⊆⊇∪∩∀∃⇒⇔≅≡∝∅")
+          hits = []
+          for f in glob.glob("paper/**/*.tex", recursive=True):
+              for i, line in enumerate(open(f, encoding="utf-8"), 1):
+                  code = re.sub(r"(?<!\\)%.*$", "", line)
+                  for ch in code:
+                      if ch in BAD:
+                          hits.append((f, i, ch))
+          if hits:
+              print("Unicode matematyczny w renderowanym .tex — użyj LaTeX:")
+              for f, i, ch in hits[:50]:
+                  print(f"  {f}:{i}  «{ch}» (U+{ord(ch):04X})")
+              sys.exit(1)
+          print("OK: brak unicode matematycznego — zgodne z twardą regułą formatki.")
+          EOF
+
+      - name: Kompilacja paper/ → PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: paper
+          root_file: main.tex
+
+      - name: Wystaw PDF jako artefakt
+        uses: actions/upload-artifact@v4
+        with:
+          name: raport-pdf
+          path: paper/main.pdf
+          if-no-files-found: error

@@ -1,0 +1,62 @@
+% =====================================================================
+%  Strona tytułowa — MorphBPE: Morfologicznie informowany BPE dla polszczyzny
+% =====================================================================
+\begin{titlepage}
+\centering
+\vspace*{0.8cm}
+
+\slayertitle
+  {MorphBPE --- morfologicznie informowany Byte-Pair Encoding dla języka polskiego}%
+  {Piotr Styła}%
+  {\today}
+
+\vspace{0.9cm}
+
+% --- WYKRES HERO: MorphED — BPE vs MorphBPE przy wszystkich vocab ---
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+        ybar,
+        bar width=7pt,
+        width=0.95\linewidth, height=6.5cm,
+        symbolic x coords={vocab=500, vocab=1k, vocab=8k, vocab=16k, vocab=32k},
+        xtick=data,
+        ymin=0, ymax=2.8,
+        ylabel={Morphological Edit Distance (niżej = lepiej)},
+        nodes near coords,
+        every node near coord/.style={font=\tiny, rotate=90, anchor=west},
+        xmajorgrids=true, ymajorgrids=true,
+        grid style={gray!20},
+        legend style={at={(0.5,-0.25)}, anchor=north, legend columns=2, font=\small},
+        enlarge x limits=0.12,
+    ]
+      \addplot[fill=slayerblue!60, draw=slayerblue] coordinates {
+        (vocab=500, 2.503)
+        (vocab=1k, 1.838)
+        (vocab=8k, 0.574)
+        (vocab=16k, 0.442)
+        (vocab=32k, 0.389)
+      };
+      \addlegendentry{BPE}
+      \addplot[fill=slayergreen!60, draw=slayergreen] coordinates {
+        (vocab=500, 2.414)
+        (vocab=1k, 1.712)
+        (vocab=8k, 0.456)
+        (vocab=16k, 0.338)
+        (vocab=32k, 0.308)
+      };
+      \addlegendentry{MorphBPE suffix}
+    \end{axis}
+  \end{tikzpicture}
+  \caption{\textbf{Morphological Edit Distance (MorphED) --- BPE vs MorphBPE.}
+  Korpus: 10\,000 przemówień sejmowych. Wszystkie testowane rozmiary słownika:
+  500, 1k, 8k, 16k i~32k. Redukcja MorphED rośnie z~$-3{,}6\%$ (500)
+  do $-21{,}0\%$ (32k); CI 95\% nie pokrywają się przy żadnym rozmiarze.
+  Niżej = lepszy alignment morfologiczny.}
+  \label{fig:hero}
+\end{figure}
+
+\vfill
+{\small Piotr Styła \quad Polish Sejm Corpus \quad Slayer AI Lab \quad kompilowany w~CI}
+\end{titlepage}
