@@ -15,9 +15,10 @@ ALPHA_LABELS = {
     1.0: "MorphBPE (α=1)",
     1.5: "MorphBPE (α=1.5)",
     2.0: "MorphBPE (α=2)",
+    2.5: "MorphBPE (α=2.5)",
 }
 VOCABS = [8000, 16000, 32000]
-ALPHAS = [0.0, 0.5, 1.0, 1.5, 2.0]
+ALPHAS = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5]
 MODELS = ["LSTM", "Transformer"]
 COLORS = {
     0.0: "#4e79a7",
@@ -25,6 +26,7 @@ COLORS = {
     1.0: "#59a14f",
     1.5: "#edc948",
     2.0: "#e15759",
+    2.5: "#b07aa1",
 }
 
 
@@ -105,7 +107,7 @@ def plot_ppl_by_vocab(results):
 def plot_alpha_comparison(results):
     fig, axes = plt.subplots(1, 2, figsize=(16, 6))
     x = np.arange(len(ALPHAS))
-    width = 0.25
+    width = 0.20
     for idx, metric in enumerate(["ce", "ppl"]):
         ax = axes[idx]
         for vi, vocab in enumerate(VOCABS):
@@ -131,7 +133,7 @@ def plot_alpha_comparison(results):
 def plot_model_comparison(results):
     fig, ax = plt.subplots(figsize=(16, 8))
     x = np.arange(len(VOCABS))
-    width = 0.08
+    width = 0.065
     for ai, alpha in enumerate(ALPHAS):
         for mi, model in enumerate(MODELS):
             vals = [get_result(results, v, alpha, model, "ce") for v in VOCABS]

@@ -111,6 +111,8 @@ Corpus: Sejm speeches (8000 train / 500 test), seq_len=32, 3 epochs. See `plots/
 | 8k | 1.5 | Transformer | 3.7112 | 40.90 |
 | 8k | 2.0 | LSTM | 3.7758 | 43.63 |
 | 8k | 2.0 | Transformer | 3.6319 | 37.79 |
+| 8k | 2.5 | LSTM | 3.7871 | 44.13 |
+| 8k | 2.5 | Transformer | **3.6210** | **37.37** |
 | 16k | 0.0 (BPE) | LSTM | 4.1494 | 63.40 |
 | 16k | 0.0 (BPE) | Transformer | 3.9473 | 51.80 |
 | 16k | 0.5 | LSTM | 4.1132 | 61.14 |
@@ -120,7 +122,9 @@ Corpus: Sejm speeches (8000 train / 500 test), seq_len=32, 3 epochs. See `plots/
 | 16k | 1.5 | LSTM | 3.9287 | 50.84 |
 | 16k | 1.5 | Transformer | 3.7188 | 41.21 |
 | 16k | 2.0 | LSTM | 3.7984 | 44.63 |
-| 16k | 2.0 | Transformer | **3.6272** | **37.61** |
+| 16k | 2.0 | Transformer | 3.6272 | 37.61 |
+| 16k | 2.5 | LSTM | 3.8305 | 46.09 |
+| 16k | 2.5 | Transformer | 3.6276 | 37.62 |
 | 32k | 0.0 (BPE) | LSTM | 4.2140 | 67.62 |
 | 32k | 0.0 (BPE) | Transformer | 3.9605 | 52.49 |
 | 32k | 0.5 | LSTM | 4.1380 | 62.68 |
@@ -131,14 +135,17 @@ Corpus: Sejm speeches (8000 train / 500 test), seq_len=32, 3 epochs. See `plots/
 | 32k | 1.5 | Transformer | 3.7210 | 41.31 |
 | 32k | 2.0 | LSTM | 3.8427 | 46.65 |
 | 32k | 2.0 | Transformer | 3.6347 | 37.89 |
+| 32k | 2.5 | LSTM | 3.8777 | 48.31 |
+| 32k | 2.5 | Transformer | 3.6403 | 38.10 |
 
 **Key findings:**
 
-- **Monotonic alpha improvement**: CE decreases monotonically with α for all three vocab sizes (8k, 16k, 32k) across both models
-- **α=1.5 sweet spot**: 8k α=1.5 Transformer (CE=3.7112, PPL=40.90) beats 32k BPE Transformer (CE=3.9605, PPL=52.49) — 4x smaller vocab, 22% lower PPL. *Caveat: CE/PPL across different vocab sizes are not strictly comparable without bits-per-character normalization (see Methodological caveats below).*
-- **CE reduction vs BPE**: α=0.5 → 0.9–1.8%; α=1.0 → 3.6–4.8%; α=1.5 → 5.2–6.0%; α=2.0 → 7.2–8.8%
+- **Monotonic improvement up to α=2.0**: CE decreases monotonically with α up to 2.0 for all three vocab sizes (8k, 16k, 32k) across both models
+- **α=2.0 is the sweet spot**: α=2.5 shows diminishing returns — improvements plateau or reverse (especially at 16k and 32k), confirming α=2.0 as the optimal penalty strength
+- **Best overall**: 8k α=2.5 Transformer (CE=3.6210, PPL=37.37) edges out 8k α=2.0 (CE=3.6319), but 16k and 32k α=2.5 are worse than α=2.0
+- **α=1.5 sweet spot for efficiency**: 8k α=1.5 Transformer (CE=3.7112, PPL=40.90) beats 32k BPE Transformer (CE=3.9605, PPL=52.49) — 4x smaller vocab, 22% lower PPL. *Caveat: CE/PPL across different vocab sizes are not strictly comparable without bits-per-character normalization (see Methodological caveats below).*
+- **CE reduction vs BPE**: α=0.5 → 0.9–1.8%; α=1.0 → 3.6–4.8%; α=1.5 → 5.2–6.0%; α=2.0 → 7.2–8.8%; α=2.5 → 7.2–8.1% (plateau)
 - **Transformer > LSTM**: 3.8–6.2% CE reduction across all configs
-- **Best config**: 16k α=2.0 Transformer (CE=3.6272, PPL=37.61)
 - **Vocab size**: 8k and 16k perform similarly at α=2.0; 32k slightly worse due to sparse coverage on the small pilot corpus
 
 ### Cost-Benefit Analysis
