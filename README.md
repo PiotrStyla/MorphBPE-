@@ -6,15 +6,21 @@ MorphBPE extends Byte-Pair Encoding with morphological boundary penalties.
 Merges that cross morpheme boundaries receive a frequency penalty controlled by `alpha`,
 preserving suffix (or prefix) structure during tokenization.
 
-Based on: Styła (2026), *MorphBPE: morfologicznie informowany BPE dla polszczyzny*.
+## Attribution
+
+This project **builds on the original MorphBPE** by Ehsaneddin Asgari, Yassine El Kheir, Mohammad Ali Sadraei Javaheri, and Ali Nazari:
+
+> Asgari, E., El Kheir, Y., Sadraei Javaheri, M. A., & Nazari, A. (2025). *MorphBPE: A Morpho-Aware Tokenizer Bridging Linguistic Complexity for Efficient LLM Training Across Morphologies*. [arXiv:2502.00894](https://arxiv.org/abs/2502.00894). Also: Findings of ACL 2026 ([2026.findings-acl.2068](https://aclanthology.org/2026.findings-acl.2068)).
+
+**Credit for the original MorphBPE method (constraining BPE merges at morpheme boundaries) is theirs.** This repository is a Polish extension of that idea (Morfeusz2 morphology, fractal-aware alpha, Polish evaluation), described in: Styła (2026), *MorphBPE: morfologicznie informowany BPE dla polszczyzny*.
 
 ## Installation
 
 ```bash
-pip install morphbpe
+pip install morphbpe-pl
 
 # With Morfeusz2 support (recommended):
-pip install morphbpe[morfeusz]
+pip install morphbpe-pl[morfeusz]
 ```
 
 ## Quick Start
@@ -174,4 +180,4 @@ See `plots/` for visualizations: `pareto_ce_vs_vocab.png`, `fertility_vs_morphed
 
 ## License
 
-MIT
+[Business Source License 1.1](LICENSE) (BUSL-1.1) — free for non-production use (research, evaluation, development); production/commercial use is reserved to the licensor. Converts to MIT on **2028-10-27**.
