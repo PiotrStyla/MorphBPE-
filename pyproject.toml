@@ -7,7 +7,7 @@ name = "morphbpe"
 version = "0.1.0"
 description = "MorphBPE: Morphologically-aware BPE tokenizer for Polish"
 readme = "README.md"
-license = {text = "MIT"}
+license = {text = "BUSL-1.1"}
 authors = [{name = "Piotr Styła"}]
 requires-python = ">=3.10"
 dependencies = [
@@ -16,7 +16,7 @@ dependencies = [
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
+    "License :: Other/Proprietary License",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Natural Language :: Polish",
 ]
